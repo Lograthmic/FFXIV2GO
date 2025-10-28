@@ -1,0 +1,31 @@
+编写两个bat脚本
+
+脚本1：FFXIV环境配置
+1. 检测当前脚本所在盘符（以下记作X）
+2. 检测config.ini 是否存在PATH_FFXIV，如果不存在，提示用户输入FFXIV路径，并创建config.ini
+3. 检测PATH_FFXIV下有无文件夹"game\My Games\FINAL FANTASY XIV - A Realm Reborn"，如果没有，提示PATH_FFXIV路径输入错误，并结束脚本
+4. 重命名"PATH_FFXIV\game\My Games\FINAL FANTASY XIV - A Realm Reborn" 为 ”PATH_FFXIV\game\My Games\FINAL FANTASY XIV - A Realm Reborn.old"
+5. 硬链接"X:\pre\FINAL FANTASY XIV - A Realm Reborn" 到 “PATH_FFXIV\game\My Games\FINAL FANTASY XIV - A Realm Reborn”,如有错误立刻报错退出
+6. 如果存在"%appdata%\XIVLauncherCN”则重命名为“"%appdata%\XIVLauncherCN.old”
+7. 硬链接"X:\pre\XIVLauncherCN“到"%appdata%\XIVLauncherCN”,如有错误立刻报错退出
+8. 在当前用户桌面创建"MareSynchronos"文件夹
+9. 安装"X:\pre\VC_redist.x64.exe"
+10. 安装"X:\pre\windowsdesktop-runtime-8.0.21-win-x64.exe"
+11. 提示成功，按任意键退出
+
+脚本2：FFXIV环境卸载
+1. 检测当前脚本所在盘符（以下记作X）
+2.  检测config.ini 是否存在PATH_FFXIV，如果不存在，提示用户输入FFXIV路径
+3. 检测PATH_FFXIV下有无文件夹（硬链接）"game\My Games\FINAL FANTASY XIV - A Realm Reborn"，如果没有，提示PATH_FFXIV路径输入错误，并结束脚本
+4. 解除"PATH_FFXIV\game\My Games\FINAL FANTASY XIV - A Realm Reborn"硬链接
+5. 重命名"PATH_FFXIV\game\My Games\FINAL FANTASY XIV - A Realm Reborn.old" 为 "PATH_FFXIV\game\My Games\FINAL FANTASY XIV - A Realm Reborn"
+6. 解除硬链接"%appdata%\XIVLauncherCN”
+7. 如果存在"%appdata%\XIVLauncherCN.old”则重命名为“"%appdata%\XIVLauncherCN”
+7. 删除用户桌面"MareSynchronos"文件夹
+8. 提示成功，按任意键退出
+
+注意：
+1. 如果你觉得脚本需要提权，可以加上提权的指令，如果不需要则不加
+2. 每一步记得加上提示，以便于让我知道脚本在干什么
+3. 务必在获得路径、开始执行前让用户按enter确认操作
+4. 注意保存路径时不要有多余的空格导致路径读取错误
