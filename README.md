@@ -14,7 +14,7 @@
 
 1. 【可选】对于空间不足的U盘或移动硬盘，勾选“压缩此驱动器以节约磁盘空间”
 ![压缩此驱动器以节约磁盘空间](img/image1.png)
-2. 下载脚本，解压到U盘或移动硬盘根目录
+2. [下载脚本](https://github.com/Lograthmic/FFXIV2GO/releases/download/latest/FFXIV2GO_v1.0.0.zip)，解压到U盘或移动硬盘根目录
 3. 启动初始化脚本FFXIV_Init.bat，根据内容提示操作。
 
 ### 文件结构
