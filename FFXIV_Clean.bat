@@ -2,14 +2,14 @@
 setlocal enabledelayedexpansion
 
 echo ========================================
-echo           æ–‡ä»¶æ¸…ç†è„šæœ¬
+echo           ÎÄ¼şÇåÀí½Å±¾
 echo ========================================
 
 set "SCRIPT_DRIVE=%~d0"
-echo æ£€æµ‹åˆ°è„šæœ¬æ‰€åœ¨ç›˜ç¬¦: %SCRIPT_DRIVE%
+echo ¼ì²âµ½½Å±¾ËùÔÚÅÌ·û: %SCRIPT_DRIVE%
 echo.
 
-echo æ­£åœ¨æ‰«ææ–‡ä»¶...
+echo ÕıÔÚÉ¨ÃèÎÄ¼ş...
 set "total_files=0"
 set "total_size=0"
 
@@ -24,19 +24,19 @@ for /r "%SCRIPT_DRIVE%\" %%f in (*.log *.old) do (
 
 call :ConvertSize !total_size! readable_size
 echo.
-echo æ‰¾åˆ° !total_files! ä¸ªæ–‡ä»¶ï¼Œæ€»å¤§å°: !readable_size!
+echo ÕÒµ½ !total_files! ¸öÎÄ¼ş£¬×Ü´óĞ¡: !readable_size!
 echo.
 
 if !total_files! equ 0 (
-    echo æ²¡æœ‰æ‰¾åˆ°éœ€è¦æ¸…ç†çš„æ–‡ä»¶ã€‚
+    echo Ã»ÓĞÕÒµ½ĞèÒªÇåÀíµÄÎÄ¼ş¡£
     pause
     exit /b
 )
 
-set /p "confirm=è¯·æŒ‰Enteré”®å¼€å§‹åˆ é™¤ï¼Œæˆ–æŒ‰Ctrl+Cå–æ¶ˆ..."
+set /p "confirm=Çë°´Enter¼ü¿ªÊ¼É¾³ı£¬»ò°´Ctrl+CÈ¡Ïû..."
 echo.
 
-echo å¼€å§‹åˆ é™¤æ–‡ä»¶...
+echo ¿ªÊ¼É¾³ıÎÄ¼ş...
 echo.
 
 set "deleted_files=0"
@@ -47,7 +47,7 @@ for /r "%SCRIPT_DRIVE%\" %%f in (*.log *.old) do (
         for %%s in ("%%f") do (
             set /a "freed_size+=%%~zs"
         )
-        echo åˆ é™¤: %%f
+        echo É¾³ı: %%f
         del "%%f"
         set /a "deleted_files+=1"
     )
@@ -57,15 +57,15 @@ call :ConvertSize !freed_size! freed_readable
 
 echo.
 echo ========================================
-echo æ¸…ç†å®Œæˆï¼
-echo å…±åˆ é™¤ !deleted_files! ä¸ªæ–‡ä»¶
-echo é‡Šæ”¾ç©ºé—´: !freed_readable!
+echo ÇåÀíÍê³É£¡
+echo ¹²É¾³ı !deleted_files! ¸öÎÄ¼ş
+echo ÊÍ·Å¿Õ¼ä: !freed_readable!
 echo ========================================
 
 pause
 exit /b
 
-:: ç®€æ´çš„å¤§å°è½¬æ¢å‡½æ•°
+:: ¼ò½àµÄ´óĞ¡×ª»»º¯Êı
 :ConvertSize
 setlocal
 set "size=%1"

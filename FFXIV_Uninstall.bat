@@ -1,10 +1,10 @@
 @echo off
 setlocal EnableDelayedExpansion
 
-:: è¯·æ±‚ç®¡ç†å‘˜æƒé™
+:: ÇëÇó¹ÜÀíÔ±È¨ÏÞ
 >nul 2>&1 "%SYSTEMROOT%\system32\cacls.exe" "%SYSTEMROOT%\system32\config\system"
 if '%errorlevel%' NEQ '0' (
-    echo è¯·æ±‚ç®¡ç†å‘˜æƒé™...
+    echo ÇëÇó¹ÜÀíÔ±È¨ÏÞ...
     goto UACPrompt
 )
 goto gotAdmin
@@ -21,111 +21,111 @@ pushd "%CD%"
 CD /D "%~dp0"
 
 echo ========================================
-echo        FFXIVçŽ¯å¢ƒå¸è½½è„šæœ¬
+echo        FFXIV»·¾³Ð¶ÔØ½Å±¾
 echo ========================================
 echo.
 
-:: æ­¥éª¤1ï¼šæ£€æµ‹å½“å‰è„šæœ¬æ‰€åœ¨ç›˜ç¬¦
+:: ²½Öè1£º¼ì²âµ±Ç°½Å±¾ËùÔÚÅÌ·û
 set "CURRENT_DRIVE=%~d0"
-echo [æ­¥éª¤1] æ£€æµ‹åˆ°å½“å‰è„šæœ¬æ‰€åœ¨ç›˜ç¬¦: %CURRENT_DRIVE%
+echo [²½Öè1] ¼ì²âµ½µ±Ç°½Å±¾ËùÔÚÅÌ·û: %CURRENT_DRIVE%
 echo.
 
-:: æ­¥éª¤2ï¼šæ£€æµ‹config.iniæ˜¯å¦å­˜åœ¨PATH_FFXIV
+:: ²½Öè2£º¼ì²âconfig.iniÊÇ·ñ´æÔÚPATH_FFXIV
 set "FFXIV_PATH="
 if exist "config.ini" (
-    echo [æ­¥éª¤2] æ£€æµ‹åˆ°config.iniæ–‡ä»¶ï¼Œè¯»å–FFXIVè·¯å¾„...
+    echo [²½Öè2] ¼ì²âµ½config.iniÎÄ¼þ£¬¶ÁÈ¡FFXIVÂ·¾¶...
     for /f "tokens=2 delims==" %%i in ('findstr "PATH_FFXIV" config.ini') do (
         set "FFXIV_PATH=%%i"
     )
 )
 
 if "!FFXIV_PATH!"=="" (
-    echo [æ­¥éª¤2] æœªæ‰¾åˆ°FFXIVè·¯å¾„é…ç½®ï¼Œè¯·æ‰‹åŠ¨è¾“å…¥...
-    set /p "FFXIV_PATH=è¯·è¾“å…¥FFXIVå®‰è£…è·¯å¾„ï¼ˆä¾‹å¦‚ D:\FFXIVï¼‰: "
+    echo [²½Öè2] Î´ÕÒµ½FFXIVÂ·¾¶ÅäÖÃ£¬ÇëÊÖ¶¯ÊäÈë...
+    set /p "FFXIV_PATH=ÇëÊäÈëFFXIV°²×°Â·¾¶£¨ÀýÈç D:\FFXIV£©: "
 )
 
-echo [æ­¥éª¤2] FFXIVè·¯å¾„: !FFXIV_PATH!
+echo [²½Öè2] FFXIVÂ·¾¶: !FFXIV_PATH!
 echo.
 
-:: ç¡®è®¤æ“ä½œ
-echo å³å°†å¼€å§‹å¸è½½FFXIVçŽ¯å¢ƒï¼Œè¯·ç¡®è®¤ä»¥ä¸Šä¿¡æ¯æ­£ç¡®...
-echo æŒ‰Enteré”®ç»§ç»­ï¼Œæˆ–æŒ‰Ctrl+Cå–æ¶ˆ...
+:: È·ÈÏ²Ù×÷
+echo ¼´½«¿ªÊ¼Ð¶ÔØFFXIV»·¾³£¬ÇëÈ·ÈÏÒÔÉÏÐÅÏ¢ÕýÈ·...
+echo °´Enter¼ü¼ÌÐø£¬»ò°´Ctrl+CÈ¡Ïû...
 pause >nul
 echo.
 
-:: æ­¥éª¤3ï¼šæ£€æµ‹ç¡¬é“¾æŽ¥æ–‡ä»¶å¤¹æ˜¯å¦å­˜åœ¨
+:: ²½Öè3£º¼ì²âÓ²Á´½ÓÎÄ¼þ¼ÐÊÇ·ñ´æÔÚ
 set "GAME_FOLDER=!FFXIV_PATH!\game\My Games\FINAL FANTASY XIV - A Realm Reborn"
 set "BACKUP_FOLDER=!FFXIV_PATH!\game\My Games\FINAL FANTASY XIV - A Realm Reborn.old"
 
 if not exist "!GAME_FOLDER!\" (
-    echo [é”™è¯¯] åœ¨æŒ‡å®šè·¯å¾„ä¸‹æœªæ‰¾åˆ°FFXIVæ¸¸æˆç¡¬é“¾æŽ¥æ–‡ä»¶å¤¹!
-    echo è¯·æ£€æŸ¥è·¯å¾„æ˜¯å¦æ­£ç¡®: !FFXIV_PATH!
+    echo [´íÎó] ÔÚÖ¸¶¨Â·¾¶ÏÂÎ´ÕÒµ½FFXIVÓÎÏ·Ó²Á´½ÓÎÄ¼þ¼Ð!
+    echo Çë¼ì²éÂ·¾¶ÊÇ·ñÕýÈ·: !FFXIV_PATH!
     pause
     exit /b 1
 )
-echo [æ­¥éª¤3] FFXIVæ¸¸æˆç¡¬é“¾æŽ¥æ–‡ä»¶å¤¹éªŒè¯æˆåŠŸ
+echo [²½Öè3] FFXIVÓÎÏ·Ó²Á´½ÓÎÄ¼þ¼ÐÑéÖ¤³É¹¦
 echo.
 
-:: æ­¥éª¤4ï¼šè§£é™¤ç¡¬é“¾æŽ¥
-echo [æ­¥éª¤4] æ­£åœ¨è§£é™¤æ¸¸æˆé…ç½®ç¡¬é“¾æŽ¥...
+:: ²½Öè4£º½â³ýÓ²Á´½Ó
+echo [²½Öè4] ÕýÔÚ½â³ýÓÎÏ·ÅäÖÃÓ²Á´½Ó...
 rmdir "!GAME_FOLDER!"
 if errorlevel 1 (
-    echo [é”™è¯¯] è§£é™¤æ¸¸æˆé…ç½®ç¡¬é“¾æŽ¥å¤±è´¥!
+    echo [´íÎó] ½â³ýÓÎÏ·ÅäÖÃÓ²Á´½ÓÊ§°Ü!
     pause
     exit /b 1
 )
-echo [æ­¥éª¤4] æ¸¸æˆé…ç½®ç¡¬é“¾æŽ¥è§£é™¤æˆåŠŸ
+echo [²½Öè4] ÓÎÏ·ÅäÖÃÓ²Á´½Ó½â³ý³É¹¦
 echo.
 
-:: æ­¥éª¤5ï¼šæ¢å¤åŽŸæ–‡ä»¶å¤¹
-echo [æ­¥éª¤5] æ­£åœ¨æ¢å¤åŽŸæ¸¸æˆé…ç½®æ–‡ä»¶å¤¹...
+:: ²½Öè5£º»Ö¸´Ô­ÎÄ¼þ¼Ð
+echo [²½Öè5] ÕýÔÚ»Ö¸´Ô­ÓÎÏ·ÅäÖÃÎÄ¼þ¼Ð...
 if exist "!BACKUP_FOLDER!\" (
     ren "!BACKUP_FOLDER!" "FINAL FANTASY XIV - A Realm Reborn"
-    echo [æ­¥éª¤5] åŽŸæ¸¸æˆé…ç½®æ–‡ä»¶å¤¹æ¢å¤å®Œæˆ
+    echo [²½Öè5] Ô­ÓÎÏ·ÅäÖÃÎÄ¼þ¼Ð»Ö¸´Íê³É
 ) else (
-    echo [è­¦å‘Š] æœªæ‰¾åˆ°å¤‡ä»½æ–‡ä»¶å¤¹ï¼Œè·³è¿‡æ¢å¤
+    echo [¾¯¸æ] Î´ÕÒµ½±¸·ÝÎÄ¼þ¼Ð£¬Ìø¹ý»Ö¸´
 )
 echo.
 
-:: æ­¥éª¤6ï¼šè§£é™¤XIVå¯åŠ¨å™¨ç¡¬é“¾æŽ¥
+:: ²½Öè6£º½â³ýXIVÆô¶¯Æ÷Ó²Á´½Ó
 set "XIV_LAUNCHER=%appdata%\XIVLauncherCN"
-echo [æ­¥éª¤6] æ­£åœ¨è§£é™¤XIVå¯åŠ¨å™¨ç¡¬é“¾æŽ¥...
+echo [²½Öè6] ÕýÔÚ½â³ýXIVÆô¶¯Æ÷Ó²Á´½Ó...
 if exist "!XIV_LAUNCHER!\" (
     rmdir "!XIV_LAUNCHER!"
-    echo [æ­¥éª¤6] XIVå¯åŠ¨å™¨ç¡¬é“¾æŽ¥è§£é™¤æˆåŠŸ
+    echo [²½Öè6] XIVÆô¶¯Æ÷Ó²Á´½Ó½â³ý³É¹¦
 ) else (
-    echo [æ­¥éª¤6] XIVå¯åŠ¨å™¨ç¡¬é“¾æŽ¥ä¸å­˜åœ¨ï¼Œè·³è¿‡è§£é™¤
+    echo [²½Öè6] XIVÆô¶¯Æ÷Ó²Á´½Ó²»´æÔÚ£¬Ìø¹ý½â³ý
 )
 echo.
 
-:: æ­¥éª¤7ï¼šæ¢å¤XIVå¯åŠ¨å™¨é…ç½®
+:: ²½Öè7£º»Ö¸´XIVÆô¶¯Æ÷ÅäÖÃ
 set "XIV_BACKUP=%appdata%\XIVLauncherCN.old"
 if exist "!XIV_BACKUP!\" (
-    echo [æ­¥éª¤7] æ­£åœ¨æ¢å¤XIVå¯åŠ¨å™¨é…ç½®...
+    echo [²½Öè7] ÕýÔÚ»Ö¸´XIVÆô¶¯Æ÷ÅäÖÃ...
     ren "!XIV_BACKUP!" "XIVLauncherCN"
-    echo [æ­¥éª¤7] XIVå¯åŠ¨å™¨é…ç½®æ¢å¤å®Œæˆ
+    echo [²½Öè7] XIVÆô¶¯Æ÷ÅäÖÃ»Ö¸´Íê³É
 ) else (
-    echo [æ­¥éª¤7] æœªæ‰¾åˆ°XIVå¯åŠ¨å™¨å¤‡ä»½é…ç½®ï¼Œè·³è¿‡æ¢å¤
+    echo [²½Öè7] Î´ÕÒµ½XIVÆô¶¯Æ÷±¸·ÝÅäÖÃ£¬Ìø¹ý»Ö¸´
 )
 echo.
 
-:: æ­¥éª¤8ï¼šåˆ é™¤MareSynchronosæ¡Œé¢æ–‡ä»¶å¤¹
-echo [æ­¥éª¤8] æ­£åœ¨åˆ é™¤MareSynchronosæ¡Œé¢æ–‡ä»¶å¤¹...
+:: ²½Öè8£ºÉ¾³ýMareSynchronos×ÀÃæÎÄ¼þ¼Ð
+echo [²½Öè8] ÕýÔÚÉ¾³ýMareSynchronos×ÀÃæÎÄ¼þ¼Ð...
 set "DESKTOP=%userprofile%\Desktop"
 if not exist "!DESKTOP!\" set "DESKTOP=%userprofile%\OneDrive\Desktop"
-if not exist "!DESKTOP!\" set "DESKTOP=%userprofile%\OneDrive\æ¡Œé¢"
+if not exist "!DESKTOP!\" set "DESKTOP=%userprofile%\OneDrive\×ÀÃæ"
 if exist "!DESKTOP!\MareSynchronos\" (
     rmdir /s /q "!DESKTOP!\MareSynchronos"
-    echo [æ­¥éª¤8] MareSynchronosæ¡Œé¢æ–‡ä»¶å¤¹åˆ é™¤å®Œæˆ
+    echo [²½Öè8] MareSynchronos×ÀÃæÎÄ¼þ¼ÐÉ¾³ýÍê³É
 ) else (
-    echo [æ­¥éª¤8] MareSynchronosæ¡Œé¢æ–‡ä»¶å¤¹ä¸å­˜åœ¨ï¼Œè·³è¿‡åˆ é™¤
+    echo [²½Öè8] MareSynchronos×ÀÃæÎÄ¼þ¼Ð²»´æÔÚ£¬Ìø¹ýÉ¾³ý
 )
 echo.
 
-:: å®Œæˆ
+:: Íê³É
 echo ========================================
-echo        FFXIVçŽ¯å¢ƒå¸è½½å®Œæˆï¼
+echo        FFXIV»·¾³Ð¶ÔØÍê³É£¡
 echo ========================================
 echo.
-echo æ‰€æœ‰æ“ä½œå·²å®Œæˆï¼ŒæŒ‰ä»»æ„é”®é€€å‡º...
+echo ËùÓÐ²Ù×÷ÒÑÍê³É£¬°´ÈÎÒâ¼üÍË³ö...
 pause >nul

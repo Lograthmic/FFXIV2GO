@@ -1,10 +1,10 @@
 @echo off
 setlocal EnableDelayedExpansion
 
-:: è¯·æ±‚ç®¡ç†å‘˜æƒé™
+:: ÇëÇó¹ÜÀíÔ±È¨ÏÞ
 >nul 2>&1 "%SYSTEMROOT%\system32\cacls.exe" "%SYSTEMROOT%\system32\config\system"
 if '%errorlevel%' NEQ '0' (
-    echo è¯·æ±‚ç®¡ç†å‘˜æƒé™...
+    echo ÇëÇó¹ÜÀíÔ±È¨ÏÞ...
     goto UACPrompt
 )
 goto gotAdmin
@@ -21,132 +21,132 @@ pushd "%CD%"
 CD /D "%~dp0"
 
 echo ========================================
-echo        FFXIVçŽ¯å¢ƒé…ç½®è„šæœ¬
+echo        FFXIV»·¾³ÅäÖÃ½Å±¾
 echo ========================================
 echo.
 
-:: æ­¥éª¤1ï¼šæ£€æµ‹å½“å‰è„šæœ¬æ‰€åœ¨ç›˜ç¬¦
+:: ²½Öè1£º¼ì²âµ±Ç°½Å±¾ËùÔÚÅÌ·û
 set "CURRENT_DRIVE=%~d0"
-echo [æ­¥éª¤1] æ£€æµ‹åˆ°å½“å‰è„šæœ¬æ‰€åœ¨ç›˜ç¬¦: %CURRENT_DRIVE%
+echo [²½Öè1] ¼ì²âµ½µ±Ç°½Å±¾ËùÔÚÅÌ·û: %CURRENT_DRIVE%
 echo.
 
-:: æ­¥éª¤2ï¼šæ£€æµ‹config.iniæ˜¯å¦å­˜åœ¨PATH_FFXIV
+:: ²½Öè2£º¼ì²âconfig.iniÊÇ·ñ´æÔÚPATH_FFXIV
 set "FFXIV_PATH="
 if exist "config.ini" (
-    echo [æ­¥éª¤2] æ£€æµ‹åˆ°config.iniæ–‡ä»¶ï¼Œè¯»å–FFXIVè·¯å¾„...
+    echo [²½Öè2] ¼ì²âµ½config.iniÎÄ¼þ£¬¶ÁÈ¡FFXIVÂ·¾¶...
     for /f "tokens=2 delims==" %%i in ('findstr "PATH_FFXIV" config.ini') do (
         set "FFXIV_PATH=%%i"
     )
 )
 
 if "!FFXIV_PATH!"=="" (
-    echo [æ­¥éª¤2] æœªæ‰¾åˆ°FFXIVè·¯å¾„é…ç½®ï¼Œè¯·æ‰‹åŠ¨è¾“å…¥...
-    set /p "FFXIV_PATH=è¯·è¾“å…¥FFXIVå®‰è£…è·¯å¾„ï¼ˆä¾‹å¦‚ D:\FFXIVï¼‰: "
+    echo [²½Öè2] Î´ÕÒµ½FFXIVÂ·¾¶ÅäÖÃ£¬ÇëÊÖ¶¯ÊäÈë...
+    set /p "FFXIV_PATH=ÇëÊäÈëFFXIV°²×°Â·¾¶£¨ÀýÈç D:\FFXIV£©: "
     echo PATH_FFXIV=!FFXIV_PATH!>config.ini
-    echo [æ­¥éª¤2] å·²åˆ›å»ºconfig.iniæ–‡ä»¶
+    echo [²½Öè2] ÒÑ´´½¨config.iniÎÄ¼þ
 )
 
-echo [æ­¥éª¤2] FFXIVè·¯å¾„: !FFXIV_PATH!
+echo [²½Öè2] FFXIVÂ·¾¶: !FFXIV_PATH!
 echo.
 
-:: ç¡®è®¤æ“ä½œ
-echo å³å°†å¼€å§‹é…ç½®FFXIVçŽ¯å¢ƒï¼Œè¯·ç¡®è®¤ä»¥ä¸Šä¿¡æ¯æ­£ç¡®...
-echo æŒ‰Enteré”®ç»§ç»­ï¼Œæˆ–æŒ‰Ctrl+Cå–æ¶ˆ...
+:: È·ÈÏ²Ù×÷
+echo ¼´½«¿ªÊ¼ÅäÖÃFFXIV»·¾³£¬ÇëÈ·ÈÏÒÔÉÏÐÅÏ¢ÕýÈ·...
+echo °´Enter¼ü¼ÌÐø£¬»ò°´Ctrl+CÈ¡Ïû...
 pause >nul
 echo.
 
-:: æ­¥éª¤3ï¼šæ£€æµ‹FFXIVè·¯å¾„æ˜¯å¦æ­£ç¡®
+:: ²½Öè3£º¼ì²âFFXIVÂ·¾¶ÊÇ·ñÕýÈ·
 set "GAME_FOLDER=!FFXIV_PATH!\game\My Games\FINAL FANTASY XIV - A Realm Reborn"
 if not exist "!GAME_FOLDER!\" (
-    echo [é”™è¯¯] åœ¨æŒ‡å®šè·¯å¾„ä¸‹æœªæ‰¾åˆ°FFXIVæ¸¸æˆæ–‡ä»¶å¤¹!
-    echo è¯·æ£€æŸ¥è·¯å¾„æ˜¯å¦æ­£ç¡®: !FFXIV_PATH!
+    echo [´íÎó] ÔÚÖ¸¶¨Â·¾¶ÏÂÎ´ÕÒµ½FFXIVÓÎÏ·ÎÄ¼þ¼Ð!
+    echo Çë¼ì²éÂ·¾¶ÊÇ·ñÕýÈ·: !FFXIV_PATH!
     pause
     exit /b 1
 )
-echo [æ­¥éª¤3] FFXIVæ¸¸æˆæ–‡ä»¶å¤¹éªŒè¯æˆåŠŸ
+echo [²½Öè3] FFXIVÓÎÏ·ÎÄ¼þ¼ÐÑéÖ¤³É¹¦
 echo.
 
-:: æ­¥éª¤4ï¼šé‡å‘½ååŽŸæ–‡ä»¶å¤¹
+:: ²½Öè4£ºÖØÃüÃûÔ­ÎÄ¼þ¼Ð
 if exist "!GAME_FOLDER!.old\" (
-    echo [æ­¥éª¤4] å‘çŽ°å·²å­˜åœ¨çš„.oldå¤‡ä»½æ–‡ä»¶å¤¹ï¼Œæ­£åœ¨åˆ é™¤...
+    echo [²½Öè4] ·¢ÏÖÒÑ´æÔÚµÄ.old±¸·ÝÎÄ¼þ¼Ð£¬ÕýÔÚÉ¾³ý...
     rmdir /s /q "!GAME_FOLDER!.old"
 )
-echo [æ­¥éª¤4] æ­£åœ¨å¤‡ä»½åŽŸæ–‡ä»¶å¤¹...
+echo [²½Öè4] ÕýÔÚ±¸·ÝÔ­ÎÄ¼þ¼Ð...
 ren "!GAME_FOLDER!" "FINAL FANTASY XIV - A Realm Reborn.old"
 if errorlevel 1 (
-    echo [é”™è¯¯] é‡å‘½ååŽŸæ–‡ä»¶å¤¹å¤±è´¥!
+    echo [´íÎó] ÖØÃüÃûÔ­ÎÄ¼þ¼ÐÊ§°Ü!
     pause
     exit /b 1
 )
-echo [æ­¥éª¤4] åŽŸæ–‡ä»¶å¤¹å¤‡ä»½å®Œæˆ
+echo [²½Öè4] Ô­ÎÄ¼þ¼Ð±¸·ÝÍê³É
 echo.
 
-:: æ­¥éª¤5ï¼šåˆ›å»ºç¡¬é“¾æŽ¥
-echo [æ­¥éª¤5] æ­£åœ¨åˆ›å»ºæ¸¸æˆé…ç½®ç¡¬é“¾æŽ¥...
+:: ²½Öè5£º´´½¨Ó²Á´½Ó
+echo [²½Öè5] ÕýÔÚ´´½¨ÓÎÏ·ÅäÖÃÓ²Á´½Ó...
 mklink /J "!GAME_FOLDER!" "!CURRENT_DRIVE!\pre\FINAL FANTASY XIV - A Realm Reborn"
 if errorlevel 1 (
-    echo [é”™è¯¯] åˆ›å»ºæ¸¸æˆé…ç½®ç¡¬é“¾æŽ¥å¤±è´¥!
-    echo æ­£åœ¨æ¢å¤åŽŸæ–‡ä»¶å¤¹...
+    echo [´íÎó] ´´½¨ÓÎÏ·ÅäÖÃÓ²Á´½ÓÊ§°Ü!
+    echo ÕýÔÚ»Ö¸´Ô­ÎÄ¼þ¼Ð...
     ren "!GAME_FOLDER!.old" "FINAL FANTASY XIV - A Realm Reborn"
     pause
     exit /b 1
 )
-echo [æ­¥éª¤5] æ¸¸æˆé…ç½®ç¡¬é“¾æŽ¥åˆ›å»ºæˆåŠŸ
+echo [²½Öè5] ÓÎÏ·ÅäÖÃÓ²Á´½Ó´´½¨³É¹¦
 echo.
 
-:: æ­¥éª¤6ï¼šå¤‡ä»½XIVå¯åŠ¨å™¨é…ç½®
+:: ²½Öè6£º±¸·ÝXIVÆô¶¯Æ÷ÅäÖÃ
 set "XIV_LAUNCHER=%appdata%\XIVLauncherCN"
 if exist "!XIV_LAUNCHER!\" (
-    echo [æ­¥éª¤6] æ­£åœ¨å¤‡ä»½XIVå¯åŠ¨å™¨é…ç½®...
+    echo [²½Öè6] ÕýÔÚ±¸·ÝXIVÆô¶¯Æ÷ÅäÖÃ...
     if exist "!XIV_LAUNCHER!.old\" (
         rmdir /s /q "!XIV_LAUNCHER!.old"
     )
     ren "!XIV_LAUNCHER!" "XIVLauncherCN.old"
-    echo [æ­¥éª¤6] XIVå¯åŠ¨å™¨é…ç½®å¤‡ä»½å®Œæˆ
+    echo [²½Öè6] XIVÆô¶¯Æ÷ÅäÖÃ±¸·ÝÍê³É
 )
 echo.
 
-:: æ­¥éª¤7ï¼šåˆ›å»ºXIVå¯åŠ¨å™¨ç¡¬é“¾æŽ¥
-echo [æ­¥éª¤7] æ­£åœ¨åˆ›å»ºXIVå¯åŠ¨å™¨ç¡¬é“¾æŽ¥...
+:: ²½Öè7£º´´½¨XIVÆô¶¯Æ÷Ó²Á´½Ó
+echo [²½Öè7] ÕýÔÚ´´½¨XIVÆô¶¯Æ÷Ó²Á´½Ó...
 mklink /J "!XIV_LAUNCHER!" "!CURRENT_DRIVE!\pre\XIVLauncherCN"
 if errorlevel 1 (
-    echo [é”™è¯¯] åˆ›å»ºXIVå¯åŠ¨å™¨ç¡¬é“¾æŽ¥å¤±è´¥!
+    echo [´íÎó] ´´½¨XIVÆô¶¯Æ÷Ó²Á´½ÓÊ§°Ü!
     pause
     exit /b 1
 )
-echo [æ­¥éª¤7] XIVå¯åŠ¨å™¨ç¡¬é“¾æŽ¥åˆ›å»ºæˆåŠŸ
+echo [²½Öè7] XIVÆô¶¯Æ÷Ó²Á´½Ó´´½¨³É¹¦
 echo.
 
-:: æ­¥éª¤8ï¼šåˆ›å»ºMareSynchronosæ¡Œé¢æ–‡ä»¶å¤¹
-echo [æ­¥éª¤8] æ­£åœ¨åˆ›å»ºMareSynchronosæ¡Œé¢æ–‡ä»¶å¤¹...
+:: ²½Öè8£º´´½¨MareSynchronos×ÀÃæÎÄ¼þ¼Ð
+echo [²½Öè8] ÕýÔÚ´´½¨MareSynchronos×ÀÃæÎÄ¼þ¼Ð...
 set "DESKTOP=%userprofile%\Desktop"
 if not exist "!DESKTOP!\" set "DESKTOP=%userprofile%\OneDrive\Desktop"
-if not exist "!DESKTOP!\" set "DESKTOP=%userprofile%\OneDrive\æ¡Œé¢"
+if not exist "!DESKTOP!\" set "DESKTOP=%userprofile%\OneDrive\×ÀÃæ"
 mkdir "!DESKTOP!\MareSynchronos" 2>nul
-echo [æ­¥éª¤8] MareSynchronosæ¡Œé¢æ–‡ä»¶å¤¹åˆ›å»ºå®Œæˆ
+echo [²½Öè8] MareSynchronos×ÀÃæÎÄ¼þ¼Ð´´½¨Íê³É
 echo.
 
-:: æ­¥éª¤9ï¼šä¿®æ”¹Penumbraé…ç½®æ–‡ä»¶
-echo [æ­¥éª¤9] ä¿®æ”¹Penumbraé…ç½®æ–‡ä»¶...
+:: ²½Öè9£ºÐÞ¸ÄPenumbraÅäÖÃÎÄ¼þ
+echo [²½Öè9] ÐÞ¸ÄPenumbraÅäÖÃÎÄ¼þ...
 powershell -Command "$jsonPath = '%CURRENT_DRIVE%\pre\XIVLauncherCN\pluginConfigs\Penumbra.json'; $json = Get-Content $jsonPath | ConvertFrom-Json; $json.ModDirectory = '%CURRENT_DRIVE%\pre\mods'; $json | ConvertTo-Json -Depth 10 | Set-Content $jsonPath"
-echo [æ­¥éª¤9] ä¿®æ”¹Penumbraé…ç½®æ–‡ä»¶å®Œæˆ
+echo [²½Öè9] ÐÞ¸ÄPenumbraÅäÖÃÎÄ¼þÍê³É
 echo.
 
-:: æ­¥éª¤10-11ï¼šå®‰è£…è¿è¡Œåº“
-echo [æ­¥éª¤10] æ­£åœ¨å®‰è£…VC++è¿è¡Œåº“...
-start /wait "å®‰è£…VC++è¿è¡Œåº“" "!CURRENT_DRIVE!\pre\VC_redist.x64.exe" /install /quiet /norestart
-echo [æ­¥éª¤10] VC++è¿è¡Œåº“å®‰è£…å®Œæˆ
+:: ²½Öè10-11£º°²×°ÔËÐÐ¿â
+echo [²½Öè10] ÕýÔÚ°²×°VC++ÔËÐÐ¿â...
+start /wait "°²×°VC++ÔËÐÐ¿â" "!CURRENT_DRIVE!\pre\VC_redist.x64.exe" /install /quiet /norestart
+echo [²½Öè10] VC++ÔËÐÐ¿â°²×°Íê³É
 echo.
 
-echo [æ­¥éª¤11] æ­£åœ¨å®‰è£….NETè¿è¡Œåº“...
-start /wait "å®‰è£….NETè¿è¡Œåº“" "!CURRENT_DRIVE!\pre\windowsdesktop-runtime-8.0.21-win-x64.exe" /install /quiet /norestart
-echo [æ­¥éª¤11] .NETè¿è¡Œåº“å®‰è£…å®Œæˆ
+echo [²½Öè11] ÕýÔÚ°²×°.NETÔËÐÐ¿â...
+start /wait "°²×°.NETÔËÐÐ¿â" "!CURRENT_DRIVE!\pre\windowsdesktop-runtime-8.0.21-win-x64.exe" /install /quiet /norestart
+echo [²½Öè11] .NETÔËÐÐ¿â°²×°Íê³É
 echo.
 
-:: å®Œæˆ
+:: Íê³É
 echo ========================================
-echo        FFXIVçŽ¯å¢ƒé…ç½®å®Œæˆï¼
+echo        FFXIV»·¾³ÅäÖÃÍê³É£¡
 echo ========================================
 echo.
-echo æ‰€æœ‰æ“ä½œå·²å®Œæˆï¼ŒæŒ‰ä»»æ„é”®é€€å‡º...
+echo ËùÓÐ²Ù×÷ÒÑÍê³É£¬°´ÈÎÒâ¼üÍË³ö...
 pause >nul

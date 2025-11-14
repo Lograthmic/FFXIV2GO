@@ -1,10 +1,10 @@
 @echo off
 setlocal EnableDelayedExpansion
 
-:: ææƒæ£€æŸ¥
+:: ÌáÈ¨¼ì²é
 >nul 2>&1 "%SYSTEMROOT%\system32\cacls.exe" "%SYSTEMROOT%\system32\config\system"
 if '%errorlevel%' NEQ '0' (
-    echo è¯·æ±‚ç®¡ç†å‘˜æƒé™...
+    echo ÇëÇó¹ÜÀíÔ±È¨ÏÞ...
     goto UACPrompt
 ) else ( goto gotAdmin )
 
@@ -19,191 +19,191 @@ if '%errorlevel%' NEQ '0' (
     pushd "%CD%"
     CD /D "%~dp0"
 
-:: ä¸»è„šæœ¬å¼€å§‹
+:: Ö÷½Å±¾¿ªÊ¼
 echo ========================================
-echo           çŽ¯å¢ƒæ£€æµ‹å’Œåˆå§‹åŒ–è„šæœ¬
+echo           »·¾³¼ì²âºÍ³õÊ¼»¯½Å±¾
 echo ========================================
 echo.
 
-:: 1.1 æ£€æµ‹æ˜¯å¦åœ¨ç£ç›˜æ ¹ç›®å½•
+:: 1.1 ¼ì²âÊÇ·ñÔÚ´ÅÅÌ¸ùÄ¿Â¼
 set "CURRENT_PATH=%~d0"
-echo [æ­¥éª¤1] æ£€æµ‹åˆ°å½“å‰è„šæœ¬æ‰€åœ¨è·¯å¾„: %CD%
+echo [²½Öè1] ¼ì²âµ½µ±Ç°½Å±¾ËùÔÚÂ·¾¶: %CD%
 if not "%CD%"=="%CURRENT_PATH%\" (
-    echo é”™è¯¯ï¼šè„šæœ¬ä¸åœ¨ç£ç›˜æ ¹ç›®å½•è¿è¡Œï¼
-    echo è¯·å°†è„šæœ¬ç§»åŠ¨åˆ°ç£ç›˜æ ¹ç›®å½•åŽé‡æ–°è¿è¡Œã€‚
+    echo ´íÎó£º½Å±¾²»ÔÚ´ÅÅÌ¸ùÄ¿Â¼ÔËÐÐ£¡
+    echo Çë½«½Å±¾ÒÆ¶¯µ½´ÅÅÌ¸ùÄ¿Â¼ºóÖØÐÂÔËÐÐ¡£
     pause
     exit /B 1
 )
-echo è„šæœ¬åœ¨æ ¹ç›®å½•è¿è¡Œï¼Œå®‰è£…ç›˜ç¬¦: %CURRENT_PATH%
+echo ½Å±¾ÔÚ¸ùÄ¿Â¼ÔËÐÐ£¬°²×°ÅÌ·û: %CURRENT_PATH%
 set "INSTALL_DRIVE=%CURRENT_PATH%"
 echo.
 
-:: 1.2 æ£€æµ‹githubè¿žé€šæ€§
-echo [æ­¥éª¤2] æ£€æµ‹GitHubè¿žé€šæ€§
+:: 1.2 ¼ì²âgithubÁ¬Í¨ÐÔ
+echo [²½Öè2] ¼ì²âGitHubÁ¬Í¨ÐÔ
 ping -n 1 github.com >nul 2>&1
 if errorlevel 1 (
-    echo é”™è¯¯ï¼šæ— æ³•è¿žæŽ¥åˆ°GitHubï¼Œè¯·æ£€æŸ¥ç½‘ç»œè¿žæŽ¥ï¼
+    echo ´íÎó£ºÎÞ·¨Á¬½Óµ½GitHub£¬Çë¼ì²éÍøÂçÁ¬½Ó£¡
     pause
     exit /B 1
 )
-echo GitHubè¿žé€šæ€§æ£€æµ‹é€šè¿‡ï¼
+echo GitHubÁ¬Í¨ÐÔ¼ì²âÍ¨¹ý£¡
 echo.
 
-:: 2. åˆ›å»ºpreæ–‡ä»¶å¤¹
-echo [æ­¥éª¤3] å¤åˆ¶é…ç½®æ–‡ä»¶
-echo æ­£åœ¨åˆ›å»ºpreæ–‡ä»¶å¤¹...
+:: 2. ´´½¨preÎÄ¼þ¼Ð
+echo [²½Öè3] ¸´ÖÆÅäÖÃÎÄ¼þ
+echo ÕýÔÚ´´½¨preÎÄ¼þ¼Ð...
 if not exist "%INSTALL_DRIVE%\pre" mkdir "%INSTALL_DRIVE%\pre"
-echo preæ–‡ä»¶å¤¹åˆ›å»ºå®Œæˆï¼
+echo preÎÄ¼þ¼Ð´´½¨Íê³É£¡
 echo.
 
-:: 3.1 å¤åˆ¶æ¸¸æˆé…ç½®æ–‡ä»¶
+:: 3.1 ¸´ÖÆÓÎÏ·ÅäÖÃÎÄ¼þ
 :FFXIV_PATH
-echo è¯·è¾“å…¥FFXIVå®‰è£…è·¯å¾„ï¼ˆä¾‹å¦‚ï¼šC:\Program Files (x86)\FFXIVï¼‰ï¼š
+echo ÇëÊäÈëFFXIV°²×°Â·¾¶£¨ÀýÈç£ºC:\Program Files (x86)\FFXIV£©£º
 set /p "PATH_FFXIV="
-echo æ‚¨è¾“å…¥çš„è·¯å¾„æ˜¯ï¼š%PATH_FFXIV%
-echo æŒ‰Enterç¡®è®¤ï¼ŒæŒ‰Ctrl+Cå–æ¶ˆ...
+echo ÄúÊäÈëµÄÂ·¾¶ÊÇ£º%PATH_FFXIV%
+echo °´EnterÈ·ÈÏ£¬°´Ctrl+CÈ¡Ïû...
 pause >nul
 
-:: æ£€æµ‹è·¯å¾„æœ‰æ•ˆæ€§
+:: ¼ì²âÂ·¾¶ÓÐÐ§ÐÔ
 if not exist "%PATH_FFXIV%\game\My Games\FINAL FANTASY XIV - A Realm Reborn" (
-    echo é”™è¯¯ï¼šåœ¨æŒ‡å®šè·¯å¾„ä¸‹æœªæ‰¾åˆ°æ¸¸æˆé…ç½®æ–‡ä»¶ï¼
-    echo è¯·æ£€æŸ¥è·¯å¾„æ˜¯å¦æ­£ç¡®ã€‚
+    echo ´íÎó£ºÔÚÖ¸¶¨Â·¾¶ÏÂÎ´ÕÒµ½ÓÎÏ·ÅäÖÃÎÄ¼þ£¡
+    echo Çë¼ì²éÂ·¾¶ÊÇ·ñÕýÈ·¡£
     goto FFXIV_PATH
 )
 
-echo æ­£åœ¨å¤åˆ¶æ¸¸æˆé…ç½®æ–‡ä»¶...
+echo ÕýÔÚ¸´ÖÆÓÎÏ·ÅäÖÃÎÄ¼þ...
 xcopy "%PATH_FFXIV%\game\My Games\FINAL FANTASY XIV - A Realm Reborn" "%INSTALL_DRIVE%\pre\FINAL FANTASY XIV - A Realm Reborn" /E /I /H /Y > nul
-echo æ¸¸æˆé…ç½®æ–‡ä»¶å¤åˆ¶å®Œæˆï¼
+echo ÓÎÏ·ÅäÖÃÎÄ¼þ¸´ÖÆÍê³É£¡
 echo.
 
-:: 3.2 å¤åˆ¶XIVLauncherCNé…ç½®æ–‡ä»¶
+:: 3.2 ¸´ÖÆXIVLauncherCNÅäÖÃÎÄ¼þ
 if not exist "%appdata%\XIVLauncherCN" (
-    echo è­¦å‘Šï¼šåœ¨æ­¤å°ç”µè„‘ä¸Šæ²¡æœ‰è¿è¡Œè¿‡XIVLauncherCNï¼
-    echo æ²¡æœ‰æ‰¾åˆ°XIVLauncherCNçš„é…ç½®æ–‡ä»¶å¤¹ã€‚
-    choice /C YN /M "æ˜¯å¦ä½œä¸ºæ–°çŽ¯å¢ƒç»§ç»­è¿è¡Œï¼Ÿ"
+    echo ¾¯¸æ£ºÔÚ´ËÌ¨µçÄÔÉÏÃ»ÓÐÔËÐÐ¹ýXIVLauncherCN£¡
+    echo Ã»ÓÐÕÒµ½XIVLauncherCNµÄÅäÖÃÎÄ¼þ¼Ð¡£
+    choice /C YN /M "ÊÇ·ñ×÷ÎªÐÂ»·¾³¼ÌÐøÔËÐÐ£¿"
     if errorlevel 2 (
-        echo ç”¨æˆ·é€‰æ‹©é€€å‡ºè„šæœ¬ã€‚
+        echo ÓÃ»§Ñ¡ÔñÍË³ö½Å±¾¡£
         exit /B 0
     )
-    echo æ­£åœ¨åˆ›å»ºæ–°çš„XIVLauncherCNé…ç½®æ–‡ä»¶å¤¹...
+    echo ÕýÔÚ´´½¨ÐÂµÄXIVLauncherCNÅäÖÃÎÄ¼þ¼Ð...
     mkdir "%INSTALL_DRIVE%\pre\XIVLauncherCN"
-    echo æ–°çš„XIVLauncherCNé…ç½®æ–‡ä»¶å¤¹å·²åˆ›å»ºï¼
-    echo è·³è¿‡XIVLauncherCNé…ç½®å’ŒPenumbraé…ç½®å¤åˆ¶ã€‚
+    echo ÐÂµÄXIVLauncherCNÅäÖÃÎÄ¼þ¼ÐÒÑ´´½¨£¡
+    echo Ìø¹ýXIVLauncherCNÅäÖÃºÍPenumbraÅäÖÃ¸´ÖÆ¡£
     goto DOWNLOAD_DEPS
 )
 
-echo æ­£åœ¨å¤åˆ¶XIVLauncherCNé…ç½®æ–‡ä»¶...
+echo ÕýÔÚ¸´ÖÆXIVLauncherCNÅäÖÃÎÄ¼þ...
 xcopy "%appdata%\XIVLauncherCN" "%INSTALL_DRIVE%\pre\XIVLauncherCN" /E /I /H /Y > nul
-echo XIVLauncherCNé…ç½®æ–‡ä»¶å¤åˆ¶å®Œæˆï¼
+echo XIVLauncherCNÅäÖÃÎÄ¼þ¸´ÖÆÍê³É£¡
 echo.
 
-echo æ­£åœ¨è§£æžPenumbraé…ç½®æ–‡ä»¶...
+echo ÕýÔÚ½âÎöPenumbraÅäÖÃÎÄ¼þ...
 set "MOD_PATH="
 
-:: ä½¿ç”¨PowerShellæ­£ç¡®è§£æžJSON
+:: Ê¹ÓÃPowerShellÕýÈ·½âÎöJSON
 for /f "delims=" %%i in ('powershell -Command "$config = Get-Content '%INSTALL_DRIVE%\pre\XIVLauncherCN\pluginConfigs\Penumbra.json' | ConvertFrom-Json; $config.ModDirectory"') do (
     set "MOD_PATH=%%i"
 )
 
 if defined MOD_PATH (
-    echo æ‰¾åˆ°Modè·¯å¾„: %MOD_PATH%
+    echo ÕÒµ½ModÂ·¾¶: %MOD_PATH%
 ) else (
-    echo è­¦å‘Šï¼šæ— æ³•ä»ŽPenumbraé…ç½®æ–‡ä»¶ä¸­è§£æžå‡ºModè·¯å¾„
+    echo ¾¯¸æ£ºÎÞ·¨´ÓPenumbraÅäÖÃÎÄ¼þÖÐ½âÎö³öModÂ·¾¶
     goto DOWNLOAD_DEPS
 )
 
-echo æ­£åœ¨å¤åˆ¶modæ–‡ä»¶...
+echo ÕýÔÚ¸´ÖÆmodÎÄ¼þ...
 xcopy "!MOD_PATH!" "%INSTALL_DRIVE%\pre\mods" /E /I /H /Y > nul
-echo modæ–‡ä»¶å¤åˆ¶å®Œæˆï¼
+echo modÎÄ¼þ¸´ÖÆÍê³É£¡
 echo.
 
 :DOWNLOAD_DEPS
-:: 3.4 ä¸‹è½½ä¾èµ–æ–‡ä»¶
-echo [æ­¥éª¤4] ä¸‹è½½ä¾èµ–æ–‡ä»¶
+:: 3.4 ÏÂÔØÒÀÀµÎÄ¼þ
+echo [²½Öè4] ÏÂÔØÒÀÀµÎÄ¼þ
 echo.
 
-:: 3.4.1 ä¸‹è½½VC++å¯å†å‘è¡Œç¨‹åºåŒ…
-echo æ­£åœ¨ä¸‹è½½Microsoft Visual C++ å¯å†å‘è¡Œç¨‹åºåŒ…...
+:: 3.4.1 ÏÂÔØVC++¿ÉÔÙ·¢ÐÐ³ÌÐò°ü
+echo ÕýÔÚÏÂÔØMicrosoft Visual C++ ¿ÉÔÙ·¢ÐÐ³ÌÐò°ü...
 powershell -Command "Invoke-WebRequest -Uri 'https://aka.ms/vc14/vc_redist.x64.exe' -OutFile '%INSTALL_DRIVE%\pre\vc_redist.x64.exe'"
 if exist "%INSTALL_DRIVE%\pre\vc_redist.x64.exe" (
-    echo VC++å¯å†å‘è¡Œç¨‹åºåŒ…ä¸‹è½½å®Œæˆï¼
+    echo VC++¿ÉÔÙ·¢ÐÐ³ÌÐò°üÏÂÔØÍê³É£¡
 ) else (
-    echo è­¦å‘Šï¼šVC++å¯å†å‘è¡Œç¨‹åºåŒ…ä¸‹è½½å¤±è´¥ï¼
+    echo ¾¯¸æ£ºVC++¿ÉÔÙ·¢ÐÐ³ÌÐò°üÏÂÔØÊ§°Ü£¡
 )
 
-:: 3.4.2 ä¸‹è½½.NET 8.0 Desktop Runtime
-echo æ­£åœ¨ä¸‹è½½.NET 8.0 Desktop Runtime...
+:: 3.4.2 ÏÂÔØ.NET 8.0 Desktop Runtime
+echo ÕýÔÚÏÂÔØ.NET 8.0 Desktop Runtime...
 powershell -Command "Invoke-WebRequest -Uri 'https://builds.dotnet.microsoft.com/dotnet/WindowsDesktop/8.0.21/windowsdesktop-runtime-8.0.21-win-x64.exe' -OutFile '%INSTALL_DRIVE%\pre\windowsdesktop-runtime-8.0.21-win-x64.exe'"
 if exist "%INSTALL_DRIVE%\pre\windowsdesktop-runtime-8.0.21-win-x64.exe" (
-    echo .NET 8.0 Desktop Runtimeä¸‹è½½å®Œæˆï¼
+    echo .NET 8.0 Desktop RuntimeÏÂÔØÍê³É£¡
 ) else (
-    echo è­¦å‘Šï¼š.NET 8.0 Desktop Runtimeä¸‹è½½å¤±è´¥ï¼
+    echo ¾¯¸æ£º.NET 8.0 Desktop RuntimeÏÂÔØÊ§°Ü£¡
 )
 echo.
 
-:: 3.5 ä¸‹è½½å¯é€‰åº”ç”¨
-echo [æ­¥éª¤5] ä¸‹è½½åº”ç”¨ç¨‹åº
+:: 3.5 ÏÂÔØ¿ÉÑ¡Ó¦ÓÃ
+echo [²½Öè5] ÏÂÔØÓ¦ÓÃ³ÌÐò
 echo.
 
-:: 3.5.1 ä¸‹è½½FFXIVLauncher
-echo æ­£åœ¨ä¸‹è½½FFXIVLauncher...
+:: 3.5.1 ÏÂÔØFFXIVLauncher
+echo ÕýÔÚÏÂÔØFFXIVLauncher...
 powershell -Command "Invoke-WebRequest -Uri 'https://github.com/ottercorp/FFXIVQuickLauncher/releases/download/6.4.6-15/XIVLauncherCN-win-Portable.7z' -OutFile '%INSTALL_DRIVE%\XIVLauncherCN.7z'"
 if exist "%INSTALL_DRIVE%\XIVLauncherCN.7z" (
-    echo æ­£åœ¨è§£åŽ‹FFXIVLauncher...
+    echo ÕýÔÚ½âÑ¹FFXIVLauncher...
     mkdir "%INSTALL_DRIVE%\XIVLauncherCN"
     tar -xf "%INSTALL_DRIVE%\XIVLauncherCN.7z" -C "%INSTALL_DRIVE%\XIVLauncherCN"
     if errorlevel 1 (
-        echo tarè§£åŽ‹å¤±è´¥ï¼Œå°è¯•å…¶ä»–æ–¹æ³•...
+        echo tar½âÑ¹Ê§°Ü£¬³¢ÊÔÆäËû·½·¨...
         goto SCHEME1
     )
     del "%INSTALL_DRIVE%\XIVLauncherCN.7z"
-    echo FFXIVLauncherä¸‹è½½å’Œè§£åŽ‹å®Œæˆï¼
+    echo FFXIVLauncherÏÂÔØºÍ½âÑ¹Íê³É£¡
 ) else (
-    echo è­¦å‘Šï¼šFFXIVLauncherä¸‹è½½å¤±è´¥ï¼
+    echo ¾¯¸æ£ºFFXIVLauncherÏÂÔØÊ§°Ü£¡
 )
 echo.
 
-:: 3.5.2 è¯¢é—®æ˜¯å¦ä¸‹è½½ACT
-choice /C YN /M "æ˜¯å¦ä¸‹è½½ACTå›½æœæ•´åˆç‰ˆï¼Ÿ"
+:: 3.5.2 Ñ¯ÎÊÊÇ·ñÏÂÔØACT
+choice /C YN /M "ÊÇ·ñÏÂÔØACT¹ú·þÕûºÏ°æ£¿"
 if errorlevel 2 (
-    echo è·³è¿‡ACTä¸‹è½½ã€‚
+    echo Ìø¹ýACTÏÂÔØ¡£
     goto CLEANUP
 )
 
-echo æ­£åœ¨ä¸‹è½½ACTå›½æœæ•´åˆç‰ˆ...
+echo ÕýÔÚÏÂÔØACT¹ú·þÕûºÏ°æ...
 powershell -Command "Invoke-WebRequest -Uri 'https://cafemenu.xivcdn.com/act/update/download?channel=release&variant=sfx&version=latest' -OutFile '%INSTALL_DRIVE%\ACT_Installer.exe'"
 if exist "%INSTALL_DRIVE%\ACT_Installer.exe" (
     mkdir "%INSTALL_DRIVE%\ACT" 2>nul
-    echo ACTå›½æœæ•´åˆç‰ˆä¸‹è½½å®Œæˆï¼
-    echo è¯·æ‰‹åŠ¨è¿è¡Œ %INSTALL_DRIVE%\ACT_Installer.exe å¹¶å®‰è£…åˆ° %INSTALL_DRIVE%\ACT æ–‡ä»¶å¤¹
+    echo ACT¹ú·þÕûºÏ°æÏÂÔØÍê³É£¡
+    echo ÇëÊÖ¶¯ÔËÐÐ %INSTALL_DRIVE%\ACT_Installer.exe ²¢°²×°µ½ %INSTALL_DRIVE%\ACT ÎÄ¼þ¼Ð
 ) else (
-    echo è­¦å‘Šï¼šACTå›½æœæ•´åˆç‰ˆä¸‹è½½å¤±è´¥ï¼
+    echo ¾¯¸æ£ºACT¹ú·þÕûºÏ°æÏÂÔØÊ§°Ü£¡
 )
 echo.
 
 :CLEANUP
-:: 3.6 æ¸…ç†ä¸´æ—¶æ–‡ä»¶
-choice /C YN /M "æ˜¯å¦åˆ é™¤è™šæ‹ŸçŽ¯å¢ƒçš„logæ–‡ä»¶ä»¥é‡Šæ”¾Uç›˜ç©ºé—´ï¼Ÿ"
+:: 3.6 ÇåÀíÁÙÊ±ÎÄ¼þ
+choice /C YN /M "ÊÇ·ñÉ¾³ýÐéÄâ»·¾³µÄlogÎÄ¼þÒÔÊÍ·ÅUÅÌ¿Õ¼ä£¿"
 if errorlevel 2 (
-    echo è·³è¿‡logæ–‡ä»¶æ¸…ç†ã€‚
+    echo Ìø¹ýlogÎÄ¼þÇåÀí¡£
     goto FINISH
 )
 
 if exist "%INSTALL_DRIVE%\FFXIV_Clean.bat" (
-    echo æ­£åœ¨è¿è¡Œæ¸…ç†è„šæœ¬...
+    echo ÕýÔÚÔËÐÐÇåÀí½Å±¾...
     call "%INSTALL_DRIVE%\FFXIV_Clean.bat"
-    echo æ¸…ç†å®Œæˆï¼
+    echo ÇåÀíÍê³É£¡
 ) else (
-    echo è­¦å‘Šï¼šæœªæ‰¾åˆ°æ¸…ç†è„šæœ¬ FFXIV_Clean.bat
+    echo ¾¯¸æ£ºÎ´ÕÒµ½ÇåÀí½Å±¾ FFXIV_Clean.bat
 )
 
 :FINISH
 echo.
 echo ========================================
-echo           è„šæœ¬æ‰§è¡Œå®Œæˆï¼
+echo           ½Å±¾Ö´ÐÐÍê³É£¡
 echo ========================================
-echo å®‰è£…ç›˜ç¬¦: %INSTALL_DRIVE%
-echo é…ç½®æ–‡ä»¶ä½ç½®: %INSTALL_DRIVE%\pre\
+echo °²×°ÅÌ·û: %INSTALL_DRIVE%
+echo ÅäÖÃÎÄ¼þÎ»ÖÃ: %INSTALL_DRIVE%\pre\
 echo.
-echo è¯·æŒ‰Enteré”®é€€å‡º...
+echo Çë°´Enter¼üÍË³ö...
 pause >nul
