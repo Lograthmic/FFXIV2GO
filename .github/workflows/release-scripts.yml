@@ -1,0 +1,39 @@
+name: Release FFXIV2GO Scripts
+
+on:
+  push:
+    tags: [ 'v*' ]
+  workflow_dispatch:
+
+jobs:
+  package-and-release:
+    runs-on: windows-latest
+    permissions:
+      contents: write
+
+    steps:
+    # 1. 获取代码
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    # 2. 创建 ZIP 包（BAT 文件在根目录）
+    - name: Create FFXIV2GO ZIP package
+      run: |
+        # 创建版本信息文件
+        echo Version: ${{ github.ref_name }} > version.txt
+        echo Build Date: $(Get-Date -Format "yyyy-MM-dd HH:mm:ss") >> version.txt
+        echo "FFXIV2GO - Portable Final Fantasy XIV Scripts" >> version.txt
+        
+        # 将 BAT 文件和版本文件打包到 ZIP 根目录
+        Compress-Archive -Path scripts\*.bat, version.txt -DestinationPath FFXIV2GO_${{ github.ref_name }}.zip
+
+    # 3. 发布到固定的 latest Release
+    - name: Release to Latest
+      uses: ncipollo/release-action@v1
+      with:
+        tag: 'latest'
+        allowUpdates: true
+        makeLatest: true
+        artifacts: 'FFXIV2GO_${{ github.ref_name }}.zip'
+        name: 'FFXIV2GO - Latest Version'
+        generateReleaseNotes: true
