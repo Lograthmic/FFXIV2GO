@@ -8,6 +8,7 @@
 5. 硬链接"X:\pre\FINAL FANTASY XIV - A Realm Reborn" 到 “PATH_FFXIV\game\My Games\FINAL FANTASY XIV - A Realm Reborn”,如有错误立刻报错退出
 6. 如果存在"%appdata%\XIVLauncherCN”则重命名为“"%appdata%\XIVLauncherCN.old”
 7. 硬链接"X:\pre\XIVLauncherCN“到"%appdata%\XIVLauncherCN”,如有错误立刻报错退出
+8. 修改“X:\pre\XIVLauncherCN\pluginConfigs\Penumbra.json”文件中"ModDirectory"对应的值为"X:\pre\mods"(X为当前脚本所在盘符)
 8. 在当前用户桌面创建"MareSynchronos"文件夹
 9. 安装"X:\pre\VC_redist.x64.exe"
 10. 安装"X:\pre\windowsdesktop-runtime-8.0.21-win-x64.exe"
@@ -28,6 +29,32 @@
 1. 检测当前脚本所在盘符（以下记作X）
 2. 遍历X下所有扩展名为log、old的文件，每删除一个提示删除的是什么，开始删除前提示用户按enter确认
 3. 加上清理空间大小的信息
+
+脚本4：初始化虚拟环境
+1. 检测脚本运行环境
+1.1 检测脚本是否在磁盘根目录，如果不在，则报错退出脚本，如果在，则提示安装所在的盘符（以下记为X）
+1.2 检测github连通性，如果无法访问，则报错退出脚本
+2. 创建X:\pre文件夹
+3. 初始化配置文件
+3.1 复制游戏配置文件
+3.1.1 提示用户输入FFXIV安装路径（以下记为PATH_FFXIV）
+3.1.2 检测PATH_FFXIV下有无文件夹"game\My Games\FINAL FANTASY XIV - A Realm Reborn"，如果没有，提示PATH_FFXIV路径输入错误，并结束脚本
+3.1.3 复制“FINAL FANTASY XIV - A Realm Reborn”文件夹到"X:\pre\"下
+3.2 复制XIVLauncherCN配置文件
+3.1.1 检测是否存在"%appdata%\XIVLauncherCN”文件夹，如果没有，则提示用户“在此台电脑上没有运行过XIVLauncherCN，没有找到XIVLauncherCN的配置文件夹，是否作为新环境继续运行？”，如果用户输入n则退出脚本，如果输入y则新建"X:\pre\XIVLauncherCN"，跳过3.2和3.3
+3.1.2 复制"%appdata%\XIVLauncherCN”文件夹到“X:\pre\”下
+3.3 复制Penumbra配置和mod
+3.3.1 检测“X:\pre\XIVLauncherCN\pluginConfigs\Penumbra.json”文件是否存在，如果不存在，则提示“没有找到Penumbra的相关配置，似乎没有安装该插件”，然后跳过3.3
+3.3.2 “X:\pre\XIVLauncherCN\pluginConfigs\Penumbra.json” 文件中有一行 “"ModDirectory": "mod路径",”，找到这个路径，记为MOD_PATH
+3.3.3 复制MOD_PATH文件夹为“X:\pre\mods”
+3.4 下载依赖文件
+3.4.1 下载Microsoft Visual C++ 可再发行程序包最新支持，地址https://aka.ms/vc14/vc_redist.x64.exe
+3.4.2 下载.NET 8.0 Desktop Runtime (v8.0.21)，地址https://builds.dotnet.microsoft.com/dotnet/WindowsDesktop/8.0.21/windowsdesktop-runtime-8.0.21-win-x64.exe
+3.5 下载可选应用
+3.5.1 下载FFXIVLauncher，地址https://github.com/ottercorp/FFXIVQuickLauncher/releases/download/6.4.6-15/XIVLauncherCN-win-Portable.7z，解压到根目录X:\下后删除压缩包
+3.5.1 询问是否下载ACT国服整合版，地址https://cafemenu.xivcdn.com/act/update/download?channel=release&variant=sfx&version=latest，下载完成后创建X：\ACT文件夹并打印提示需要手动安装到X:\ACT
+3.6 清理临时文件
+3.6.1 询问是否删除虚拟环境的log文件以释放U盘空间，如果是，则运行X:\FFXIV_Clean.bat
 
 注意：
 1. 如果你觉得脚本需要提权，可以加上提权的指令，如果不需要则不加

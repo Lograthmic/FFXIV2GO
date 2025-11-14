@@ -6,17 +6,25 @@
 
 ### 准备工作
 
-1. 将两个脚本放在预配置文件的同一盘符下
-2. 确保 pre 文件夹包含所有必要的文件
+> 注意：**此操作只需要执行一次！**
+
+> 初始化时请保持稳定的网络连接，必要时开启魔法
+
+1. 下载脚本，解压到U盘根目录
+2. 启动初始化脚本FFXIV_Init.bat，根据内容提示操作。
 
 ### 文件结构
 ```text
 X:\  U盘根目录
 ├── FFXIV_Setup.bat  安装脚本
-├── FFXIV_Uninstall.bat  卸载甲苯
+├── FFXIV_Uninstall.bat  卸载脚本
+├── FFXIV_Init.bat  初始化脚本
+├── XIVLauncherCN\  XIVLauncher安装目录
+├── ACT ACT安装目录
 └── pre\
     ├── FINAL FANTASY XIV - A Realm Reborn\  游戏配置目录
     ├── XIVLauncherCN\  XIVLauncherCN配置目录
+    ├── mods\  mod目录
     ├── VC_redist.x64.exe  VC依赖包
     └── windowsdesktop-runtime-8.0.21-win-x64.exe  dotNet依赖包
 ```
@@ -25,8 +33,3 @@ X:\  U盘根目录
 
 1. 先运行 FFXIV_Setup.bat 进行配置
 2. 需要卸载时运行 FFXIV_Uninstall.bat
-
-## 相关链接
-
-1. [Microsoft Visual C++ 可再发行程序包最新支持的下载](https://learn.microsoft.com/zh-cn/cpp/windows/latest-supported-vc-redist?view=msvc-170)
-2. [下载 .NET 8.0](https://dotnet.microsoft.com/zh-cn/download/dotnet/8.0)

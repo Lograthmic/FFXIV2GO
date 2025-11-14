@@ -126,15 +126,21 @@ mkdir "!DESKTOP!\MareSynchronos" 2>nul
 echo [步骤8] MareSynchronos桌面文件夹创建完成
 echo.
 
-:: 步骤9-10：安装运行库
-echo [步骤9] 正在安装VC++运行库...
-start /wait "安装VC++运行库" "!CURRENT_DRIVE!\pre\VC_redist.x64.exe" /install /quiet /norestart
-echo [步骤9] VC++运行库安装完成
+:: 步骤9：修改Penumbra配置文件
+echo [步骤9] 修改Penumbra配置文件...
+powershell -Command "$jsonPath = '%CURRENT_DRIVE%\pre\XIVLauncherCN\pluginConfigs\Penumbra.json'; $json = Get-Content $jsonPath | ConvertFrom-Json; $json.ModDirectory = '%CURRENT_DRIVE%\pre\mods'; $json | ConvertTo-Json -Depth 10 | Set-Content $jsonPath"
+echo [步骤9] 修改Penumbra配置文件完成
 echo.
 
-echo [步骤10] 正在安装.NET运行库...
+:: 步骤10-11：安装运行库
+echo [步骤10] 正在安装VC++运行库...
+start /wait "安装VC++运行库" "!CURRENT_DRIVE!\pre\VC_redist.x64.exe" /install /quiet /norestart
+echo [步骤10] VC++运行库安装完成
+echo.
+
+echo [步骤11] 正在安装.NET运行库...
 start /wait "安装.NET运行库" "!CURRENT_DRIVE!\pre\windowsdesktop-runtime-8.0.21-win-x64.exe" /install /quiet /norestart
-echo [步骤10] .NET运行库安装完成
+echo [步骤11] .NET运行库安装完成
 echo.
 
 :: 完成
