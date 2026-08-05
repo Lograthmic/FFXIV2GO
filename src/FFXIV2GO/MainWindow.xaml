@@ -103,7 +103,7 @@
 
                 <!-- 全局浮动按钮：Play=安装并启动，Stop=卸载 -->
                 <ui:Button Width="64" Height="64" CornerRadius="20" Padding="0"
-                           HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,40,40"
+                           HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,64,64"
                            Appearance="Primary"
                            Command="{Binding FabCommand}"
                            ToolTip="{Binding FabTooltip}">
