@@ -135,6 +135,17 @@
   <data name="Settings.LogLevel.Warn" xml:space="preserve"><value>Warning</value></data>
   <data name="Settings.LogLevel.Error" xml:space="preserve"><value>Error</value></data>
   <data name="Settings.AskOnClose" xml:space="preserve"><value>Ask when closing the main window</value></data>
+  <data name="Settings.AutoLaunchApps" xml:space="preserve"><value>Auto-launch these apps after setup</value></data>
+
+  <data name="Fab.NotInitialized" xml:space="preserve"><value>The environment is not initialized yet. Please initialize it first.</value></data>
+  <data name="Fab.TooltipInit" xml:space="preserve"><value>Go to initialization</value></data>
+  <data name="Fab.TooltipSetup" xml:space="preserve"><value>Set up and launch apps</value></data>
+  <data name="Fab.TooltipUninstall" xml:space="preserve"><value>Uninstall</value></data>
+  <data name="Fab.SetupDone" xml:space="preserve"><value>Setup completed, configured apps launched</value></data>
+  <data name="Fab.SetupCancelled" xml:space="preserve"><value>Setup cancelled or failed</value></data>
+  <data name="Fab.UninstallDone" xml:space="preserve"><value>Uninstall completed</value></data>
+  <data name="Fab.UninstallCancelled" xml:space="preserve"><value>Uninstall cancelled or failed</value></data>
+  <data name="Fab.Error" xml:space="preserve"><value>Operation failed: </value></data>
   <data name="Settings.DeploymentRoot" xml:space="preserve"><value>Deployment root</value></data>
   <data name="Settings.LogFile" xml:space="preserve"><value>Log file</value></data>
   <data name="Settings.OpenLog" xml:space="preserve"><value>Open log</value></data>

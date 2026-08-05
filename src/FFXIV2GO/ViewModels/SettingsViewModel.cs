@@ -36,6 +36,7 @@ public sealed partial class SettingsViewModel : LocalizedViewModel
     public IReadOnlyList<OptionItem> LanguageOptions { get; }
     public IReadOnlyList<OptionItem> ThemeOptions { get; }
     public IReadOnlyList<OptionItem> LogLevelOptions { get; }
+    public IReadOnlyList<AutoLaunchAppItem> AutoLaunchApps { get; }
 
     public IRelayCommand BrowseCommand { get; }
     public IRelayCommand SaveCommand { get; }
@@ -75,6 +76,15 @@ public sealed partial class SettingsViewModel : LocalizedViewModel
             new OptionItem { Value = "Warn", LabelKey = "Settings.LogLevel.Warn" },
             new OptionItem { Value = "Error", LabelKey = "Settings.LogLevel.Error" }
         ];
+
+        var configured = _config.SplitAutoLaunchApps();
+        AutoLaunchApps = AppManifestService.Load().Apps
+            .Select(a => new AutoLaunchAppItem
+            {
+                Name = a.Name,
+                IsSelected = configured.Contains(a.Name, StringComparer.OrdinalIgnoreCase)
+            })
+            .ToList();
 
         BrowseCommand = new RelayCommand(Browse);
         SaveCommand = new RelayCommand(Save);
@@ -184,6 +194,8 @@ public sealed partial class SettingsViewModel : LocalizedViewModel
         _config.Theme = SelectedTheme;
         _config.LogLevel = SelectedLogLevel;
         _config.AskOnClose = AskOnClose;
+        _config.AutoLaunchApps = string.Join(",",
+            AutoLaunchApps.Where(a => a.IsSelected).Select(a => a.Name));
         _config.Save();
         IsSaved = true;
     }

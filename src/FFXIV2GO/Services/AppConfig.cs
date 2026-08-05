@@ -16,6 +16,12 @@ public sealed class AppConfig
     public string LogLevel { get; set; } = "Info";
     public bool AskOnClose { get; set; } = true;
     public string CloseAction { get; set; } = "MinimizeToTray";
+    /// <summary>安装完成后自动启动的应用名列表（逗号分隔）。</summary>
+    public string AutoLaunchApps { get; set; } = string.Empty;
+
+    /// <summary>解析自动启动应用名列表（去除空项与首尾空白）。</summary>
+    public string[] SplitAutoLaunchApps() =>
+        AutoLaunchApps.Split(',', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries);
 
     public static AppConfig Load() => LoadFrom(DeploymentRoot.ConfigFile);
 
@@ -54,6 +60,9 @@ public sealed class AppConfig
                 case "CloseAction":
                     config.CloseAction = value;
                     break;
+                case "AutoLaunchApps":
+                    config.AutoLaunchApps = value;
+                    break;
             }
         }
 
@@ -71,6 +80,7 @@ public sealed class AppConfig
         sb.AppendLine($"LogLevel={LogLevel}");
         sb.AppendLine($"AskOnClose={(AskOnClose ? "True" : "False")}");
         sb.AppendLine($"CloseAction={CloseAction}");
+        sb.AppendLine($"AutoLaunchApps={AutoLaunchApps}");
         File.WriteAllText(file, sb.ToString(), Encoding.UTF8);
     }
 

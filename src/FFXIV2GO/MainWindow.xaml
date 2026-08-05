@@ -90,6 +90,37 @@
                 <Border Background="{DynamicResource ApplicationBackgroundBrush}" Padding="28,24,28,24">
                     <ContentControl Content="{Binding CurrentPage}" />
                 </Border>
+
+                <!-- Toast 通知 -->
+                <ui:InfoBar Title="{Binding ToastMessage}"
+                            Severity="{Binding ToastSeverity}"
+                            IsOpen="{Binding IsToastOpen}"
+                            IsClosable="False"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Bottom"
+                            Margin="0,0,0,120"
+                            MaxWidth="420" />
+
+                <!-- 全局浮动按钮：Play=安装并启动，Stop=卸载 -->
+                <ui:Button Width="64" Height="64" CornerRadius="20" Padding="0"
+                           HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,40,40"
+                           Appearance="Primary"
+                           Command="{Binding FabCommand}"
+                           ToolTip="{Binding FabTooltip}">
+                    <ui:SymbolIcon Width="28" Height="28" FontSize="28" Filled="True"
+                                   Foreground="White">
+                        <ui:SymbolIcon.Style>
+                            <Style TargetType="ui:SymbolIcon">
+                                <Setter Property="Symbol" Value="Play24" />
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding FabIsPlay}" Value="False">
+                                        <Setter Property="Symbol" Value="Stop24" />
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </ui:SymbolIcon.Style>
+                    </ui:SymbolIcon>
+                </ui:Button>
             </Grid>
         </Grid>
     </Grid>

@@ -85,6 +85,9 @@ public abstract partial class WizardViewModelBase : LocalizedViewModel
     [ObservableProperty]
     private string _statusText = string.Empty;
 
+    /// <summary>上次运行是否成功完成（未取消且无步骤失败）。</summary>
+    public bool LastRunSucceeded { get; private set; }
+
     protected bool IsCancelled;
 
     /// <summary>置为 true 时，后续步骤标记为跳过并结束本次运行（不视为取消）。</summary>
@@ -118,6 +121,7 @@ public abstract partial class WizardViewModelBase : LocalizedViewModel
 
         IsCancelled = false;
         StopExecution = false;
+        LastRunSucceeded = false;
         IsRunning = true;
         RunCommand.NotifyCanExecuteChanged();
         CancelCommand.NotifyCanExecuteChanged();
@@ -175,6 +179,7 @@ public abstract partial class WizardViewModelBase : LocalizedViewModel
         IsRunning = false;
         RunCommand.NotifyCanExecuteChanged();
         CancelCommand.NotifyCanExecuteChanged();
+        LastRunSucceeded = !IsCancelled && !Steps.Any(s => s.State == StepState.Failed);
         StatusText = LocalizationService.Instance[IsCancelled ? "Wizard.Cancelled" : "Wizard.Finished"];
     }
 }

@@ -46,3 +46,10 @@ public sealed class AppSelectItem
         Entry = entry;
     }
 }
+
+/// <summary>设置页自动启动应用项。</summary>
+public sealed class AutoLaunchAppItem
+{
+    public required string Name { get; init; }
+    public bool IsSelected { get; set; }
+}

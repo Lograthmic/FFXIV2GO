@@ -135,6 +135,17 @@
   <data name="Settings.LogLevel.Warn" xml:space="preserve"><value>警告</value></data>
   <data name="Settings.LogLevel.Error" xml:space="preserve"><value>错误</value></data>
   <data name="Settings.AskOnClose" xml:space="preserve"><value>关闭主窗口时弹窗询问</value></data>
+  <data name="Settings.AutoLaunchApps" xml:space="preserve"><value>安装完成后自动启动应用</value></data>
+
+  <data name="Fab.NotInitialized" xml:space="preserve"><value>环境尚未初始化，请先完成初始化</value></data>
+  <data name="Fab.TooltipInit" xml:space="preserve"><value>前往初始化</value></data>
+  <data name="Fab.TooltipSetup" xml:space="preserve"><value>安装配置并启动应用</value></data>
+  <data name="Fab.TooltipUninstall" xml:space="preserve"><value>卸载配置</value></data>
+  <data name="Fab.SetupDone" xml:space="preserve"><value>安装完成，已启动配置的应用</value></data>
+  <data name="Fab.SetupCancelled" xml:space="preserve"><value>安装取消或失败</value></data>
+  <data name="Fab.UninstallDone" xml:space="preserve"><value>卸载完成</value></data>
+  <data name="Fab.UninstallCancelled" xml:space="preserve"><value>卸载取消或失败</value></data>
+  <data name="Fab.Error" xml:space="preserve"><value>操作失败: </value></data>
   <data name="Settings.DeploymentRoot" xml:space="preserve"><value>部署根目录</value></data>
   <data name="Settings.LogFile" xml:space="preserve"><value>日志文件</value></data>
   <data name="Settings.OpenLog" xml:space="preserve"><value>打开日志</value></data>

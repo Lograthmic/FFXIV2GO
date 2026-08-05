@@ -22,7 +22,8 @@ public class AppConfigTests
                 Theme = "Dark",
                 LogLevel = "Debug",
                 AskOnClose = false,
-                CloseAction = "Exit"
+                CloseAction = "Exit",
+                AutoLaunchApps = "XIVLauncherCN, Everything"
             };
             config.SaveTo(file);
 
@@ -33,6 +34,7 @@ public class AppConfigTests
             Assert.Equal("Debug", loaded.LogLevel);
             Assert.False(loaded.AskOnClose);
             Assert.Equal("Exit", loaded.CloseAction);
+            Assert.Equal("XIVLauncherCN, Everything", loaded.AutoLaunchApps);
         }
         finally
         {
@@ -100,6 +102,17 @@ public class AppConfigTests
     [InlineData("en", "en")]
     public void ResolveCulture_Explicit(string lang, string expected)
         => Assert.Equal(expected, AppConfig.ResolveCulture(lang));
+
+    [Theory]
+    [InlineData("XIVLauncherCN, Everything", new[] { "XIVLauncherCN", "Everything" })]
+    [InlineData(" X , Y ,", new[] { "X", "Y" })]
+    [InlineData("", new string[0])]
+    [InlineData("   ", new string[0])]
+    public void SplitAutoLaunchApps_SplitsAndTrims(string raw, string[] expected)
+    {
+        var config = new AppConfig { AutoLaunchApps = raw };
+        Assert.Equal(expected, config.SplitAutoLaunchApps());
+    }
 
     [Fact]
     public void LoadFrom_SkipsCommentsAndBlankLines()

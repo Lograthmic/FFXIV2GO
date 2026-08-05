@@ -85,6 +85,16 @@
                     <CheckBox Content="{Binding Source={x:Static loc:LocalizationService.Instance}, Path=[Settings.AskOnClose]}"
                               IsChecked="{Binding AskOnClose}" Margin="0,20,0,0" />
 
+                    <TextBlock Text="{Binding Source={x:Static loc:LocalizationService.Instance}, Path=[Settings.AutoLaunchApps]}"
+                               FontSize="14" FontWeight="SemiBold" Margin="0,20,0,0" />
+                    <ItemsControl ItemsSource="{Binding AutoLaunchApps}" Margin="0,8,0,0">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <CheckBox Content="{Binding Name}" IsChecked="{Binding IsSelected}" Margin="0,4" />
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+
                     <StackPanel Orientation="Horizontal" Margin="0,24,0,0">
                         <ui:Button Appearance="Primary"
                                    Content="{Binding Source={x:Static loc:LocalizationService.Instance}, Path=[Settings.Save]}"
