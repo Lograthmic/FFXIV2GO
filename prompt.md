@@ -9,10 +9,11 @@ FFXIV2GO 是一套用于快速配置和卸载 XIVLauncherCN 游戏环境的 **Wi
 ## 技术要点
 
 - **框架**：C# WPF，.NET 10；发布为**自包含单文件 exe**（win-x64），U盘/网盘即插即用，不依赖预装运行时
-- **权限**：`app.manifest` 声明 `requireAdministrator`，启动即提权
-- **深色模式**：WPF-UI（Fluent 风格），支持 跟随系统/浅/深 三档，运行时即时切换
+- **权限**：`app.manifest` 声明 `requireAdministrator`，启动即提权；同时声明 PerMonitorV2 DPI 感知
+- **深色模式**：WPF-UI（Fluent 风格），支持 跟随系统/浅/深 三档，运行时即时切换；窗口 Mica 背景
 - **多语言**：RESX 资源（中文 zh-CN + 英文 en），默认跟随系统；**首次启动弹窗询问语言并写入 config.ini**
 - **托盘**：关闭窗口弹出三选对话框（取消/退出应用/最小化到托盘），托盘图标双击恢复、右键菜单含 显示主窗口/退出
+- **日志**：`LogService` 分级日志（Debug/Info/Warn/Error），写入部署根 `logs\ffxiv2go.log`，UTF-8、线程安全、失败不阻断；未处理异常另写 `%TEMP%\ffxiv2go-crash.log`
 
 ## 部署根目录结构
 
@@ -20,7 +21,8 @@ FFXIV2GO 是一套用于快速配置和卸载 XIVLauncherCN 游戏环境的 **Wi
 [BASE]\  部署根（exe 所在任意目录，不要求盘符根目录）
 ├── FFXIV2GO.exe
 ├── apps.json                应用下载清单（可编辑：增删应用/改地址/改必选组）
-├── config.ini               FFXIV 路径、语言、主题配置
+├── config.ini               FFXIV 路径、语言、主题、日志级别、关闭行为、自动启动应用配置
+├── logs\ffxiv2go.log        运行日志
 ├── inst\                    安装包
 │   ├── VC_redist.x64.exe
 │   ├── windowsdesktop-runtime-10.0-win-x64.exe   .NET 10（aka.ms 最新直链）
@@ -48,10 +50,12 @@ FFXIV2GO 是一套用于快速配置和卸载 XIVLauncherCN 游戏环境的 **Wi
 
 ## UI 结构
 
-- **主面板（仪表盘）**：四个操作卡片（初始化/安装/卸载/清理）+ 环境信息卡（部署根/配置文件/版本）
-- **左侧导航栏**：仪表盘/初始化/安装/卸载/清理/**应用**/设置
-- **应用管理页**：随时可安装/卸载 `apps.json` 清单中的便携应用（卸载即删除应用文件夹），带进度与状态
-- **设置页**：FFXIV 路径（浏览）、语言选择、主题选择、部署根/配置文件展示、保存写入 config.ini
+- **主面板（仪表盘）**：四个操作卡片（初始化/安装/卸载/清理）+ 环境信息卡（部署根/配置文件/版本）；初始化/安装/卸载卡片带**状态指示图标**（绿对号=就绪、红错号=未就绪、灰点点=中性）
+- **全局浮动按钮（FAB）**：右下角大圆按钮，一键在安装↔卸载间切换（Play=安装并自动启动配置的应用，Stop=卸载）；未初始化时点击跳转初始化；执行完成弹 **toast 通知**（成功/失败/取消）；图标随状态在 Play24/Stop24 间切换
+- **左侧导航栏**：仪表盘/初始化/安装/卸载/清理/**应用**/设置/**关于**
+- **应用管理页**：随时可安装/卸载 `apps.json` 清单中的便携应用（卸载即删除应用文件夹），带进度、状态与刷新；卸载前检测进程占用
+- **设置页**：FFXIV 路径（文本+浏览+打开文件夹）、语言、主题、日志级别（即时生效）、关闭窗口行为（AskOnClose + CloseAction）、**自动启动应用多选**、打开日志/日志文件夹/部署根/配置文件按钮，保存写入 config.ini
+- **关于页**：应用版本、**检查更新**（GitHub 最新 Release 版本比对）、打开仓库、下载最新版、环境信息（部署根/配置文件）
 - **向导页**：步骤列表 + 状态图标（○待执行/●执行中/✓完成/✕失败/—跳过）+ 步骤详情 + 进度条 + 开始/取消/返回按钮
 
 ## 脚本/代码结构
@@ -59,33 +63,36 @@ FFXIV2GO 是一套用于快速配置和卸载 XIVLauncherCN 游戏环境的 **Wi
 ```
 src/FFXIV2GO/
 ├── App.xaml(.cs)            启动、首次运行语言询问、全局异常处理（含崩溃日志 %TEMP%\ffxiv2go-crash.log）
-├── app.manifest             管理员清单
-├── MainWindow.xaml(.cs)     主窗口：导航 + 页面切换 + 托盘 + 关闭对话框（延迟弹窗）
+├── app.manifest             管理员 + DPI 感知清单
+├── MainWindow.xaml(.cs)     主窗口：导航 + 页面切换 + 托盘 + FAB + toast + 关闭对话框（延迟弹窗）
 ├── Resources/
 │   ├── Strings.resx         英文
 │   └── Strings.zh-CN.resx   中文
 ├── Services/
 │   ├── DeploymentRoot.cs    部署根与 inst/conf/apps 路径
-│   ├── AppConfig.cs         config.ini 读写（PATH_FFXIV、Language、Theme）
+│   ├── AppConfig.cs         config.ini 读写（PATH_FFXIV、Language、Theme、LogLevel、AskOnClose、CloseAction、AutoLaunchApps）
 │   ├── AppManifest.cs       apps.json 模型（AppEntry/AppType/GithubLatestRef）
 │   ├── AppManifestService.cs 应用清单加载：exe 旁侧置优先，缺失从内嵌默认生成
-│   ├── AppInstallService.cs 应用安装/卸载（解析地址→下载→解压；卸载删应用文件夹）
-│   ├── GithubLatestResolver.cs GitHub 最新 Release 资产解析（正则匹配）
-│   ├── EnvironmentStatus.cs 初始化检测（conf/inst 有文件）与重置（全部清空）
+│   ├── AppInstallService.cs 应用安装/卸载（解析地址→下载→解压；卸载删应用文件夹；进程占用检测）
+│   ├── GithubLatestResolver.cs GitHub 最新 Release 资产解析（正则匹配）+ 版本号解析
+│   ├── EnvironmentStatus.cs 初始化/安装状态检测（IsInitialized/IsInstalled/UninstallState）与重置
 │   ├── LocalizationService.cs / LocalizedViewModel.cs  多语言
 │   ├── ThemeService.cs      主题切换
-│   ├── DownloadService.cs   HttpClient 下载 + 进度（VC/Net/启动器/ACT，GitHub 连通检测）
+│   ├── DownloadService.cs   HttpClient 下载 + 进度（先落系统临时目录再移动，避免直写 U盘）；启动时清理临时残留
 │   ├── ArchiveService.cs    SharpCompress 解压 7z
 │   ├── JunctionService.cs   P/Invoke 创建/删除目录联接
 │   ├── JsonConfigService.cs Penumbra.json 读写（ModDirectory）
 │   ├── RuntimeInstaller.cs  静默安装 VC++/.NET
 │   ├── FileSystemService.cs 目录递归复制
-│   ├── DesktopHelper.cs     桌面路径（Desktop/OneDrive）
+│   ├── DesktopHelper.cs     桌面路径（Desktop/OneDrive）与 caches 目录
 │   ├── ShortcutService.cs   桌面快捷方式创建/删除（WScript.Shell COM）
 │   ├── DiskService.cs       log/old 扫描、删除、空间换算
-│   └── StepRunner.cs        步骤执行器（顺序执行/失败即停/取消/跳过）
-├── ViewModels/              Main/Dashboard/Settings/Init/Setup/Uninstall/Clean
-└── Views/                   仪表盘/设置/向导/首次运行/关闭确认 + 转换器
+│   ├── StepRunner.cs        步骤执行器（顺序执行/失败即停/取消/跳过）
+│   ├── LogService.cs        分级文件日志
+│   ├── StatusState.cs       状态指示枚举（Ok/Fail/Neutral）
+│   └── AutoLaunchService.cs 安装完成后自动启动 config.ini 配置的应用
+├── ViewModels/              Main/Dashboard/Settings/About/Init/Setup/Uninstall/Clean/AppManager + Common
+└── Views/                   仪表盘/设置/关于/应用管理/向导/首次运行/关闭确认/状态指示 + 转换器
 ```
 
 ## 工作流细节
@@ -100,7 +107,7 @@ src/FFXIV2GO/
 6. 备份 mod：解析 `conf\XIVLauncherCN\pluginConfigs\Penumbra.json` 的 `ModDirectory` → 复制到 conf\mods（无则跳过）
 7. 下载 VC++（aka.ms/vc14）与 .NET 10（aka.ms/dotnet/10.0）→ inst
 8. **选择要下载的应用**：弹勾选窗口，加载 `apps.json` 清单；校验必选组（如 XIVLauncherCN 至少选一）；取消中止
-9. **下载所选应用**：逐个解析地址（固定 URL 或 GitHub 最新 Release 按资产名正则匹配）→ 下载 → 按类型处理（archive 解压 / portable 原样保存 / installer 提示手动安装），带进度与日志；含 `promptExtract` 的应用（如 FFCafe ACT）下载到 `inst` 后弹框提示用户手动运行自解压文件并解压到 `apps\<target>`（应包含 CafeACT.exe）
+9. **下载所选应用**：逐个解析地址（固定 URL 或 GitHub 最新 Release 按资产名正则匹配）→ 下载（先落系统临时目录）→ 按类型处理（archive 解压 / portable 原样保存 / installer 提示手动安装），带进度与日志；含 `promptExtract` 的应用（如 FFCafe ACT）下载到 `inst` 后弹框提示用户手动运行自解压文件并解压到 `apps\<target>`（应包含 CafeACT.exe）
 
 ### 安装（Setup）
 0. **未初始化检测**：若未初始化，提示「是否先进行初始化」，选是则跳转初始化页并中止本次
@@ -125,10 +132,15 @@ src/FFXIV2GO/
 7. 删除桌面 `caches`
 8. **删除桌面快捷方式**：删除安装阶段创建的应用/FFXIV2GO/部署根文件夹快捷方式（文件夹快捷方式按两种语言名尝试删除）
 
+### 全局浮动按钮（FAB）
+- 状态逻辑：未初始化 → 提示并跳转初始化；已初始化未安装 → 后台静默执行安装；已安装 → 后台静默执行卸载
+- 不跳转页面，在后台执行对应向导流程；成功/取消/失败均弹 toast 通知
+- **安装成功后自动启动 config.ini 中勾选的应用**（`AutoLaunchService`），并刷新按钮状态
+
 ### 应用管理（Apps，随时可用，不依赖初始化）
 - 列出 `apps.json` 清单全部应用与安装状态
-- **安装**：解析地址（固定/GitHub 最新版）→ 下载 → 按类型解压/保存，带进度；含 `promptExtract` 的应用（如 FFCafe ACT）弹框提示手动解压
-- **卸载**：删除 `apps\<target>` 应用文件夹（全部为 portable），操作前确认
+- **安装**：解析地址（固定/GitHub 最新版）→ 下载（先落系统临时目录）→ 按类型解压/保存，带进度；含 `promptExtract` 的应用（如 FFCafe ACT）弹框提示手动解压
+- **卸载**：删除 `apps\<target>` 应用文件夹（全部为 portable），操作前确认；应用进程运行时拒绝卸载并提示
 - 刷新按钮重新检测安装状态
 
 ### 清理（Clean）
@@ -137,19 +149,31 @@ src/FFXIV2GO/
 3. 汇报释放空间
 
 ### 设置（Settings）
-- FFXIV 路径：文本 + 浏览
+- FFXIV 路径：文本 + 浏览 + 打开文件夹
 - 语言：跟随系统/中文/英文（即时生效，保存到 config.ini）
 - 主题：跟随系统/浅色/深色（即时生效，保存到 config.ini）
-- 展示部署根目录与配置文件路径
+- 日志级别：Debug/Info/Warn/Error（即时生效，保存到 config.ini）
+- 关闭行为：关闭时询问 + 关闭操作（退出/最小化到托盘）
+- 自动启动应用：勾选 `apps.json` 中的应用，安装完成后自动启动
+- 展示部署根目录、配置文件、日志文件路径，可一键打开
+
+### 关于（About）
+- 展示应用版本与仓库链接
+- **检查更新**：请求 GitHub releases 列表，跳过 draft/prerelease，解析最新版本号（tag 去 v 前缀）并与当前版本比对；有新版提供下载跳转
+- 展示部署根与配置文件路径
 
 ## 关键实现约定
 - 部署根用 `Environment.ProcessPath` 所在目录
-- **日志**：`LogService` 写入部署根 `logs\ffxiv2go.log`（UTF-8，线程安全，失败不阻断）；记录启动/配置、步骤执行、下载、目录联接、应用安装卸载、异常；设置页可「打开日志/打开日志文件夹」，未处理异常同时写 `%TEMP%\ffxiv2go-crash.log`
+- **日志**：`LogService` 分级写入部署根 `logs\ffxiv2go.log`（UTF-8，线程安全，写入失败不阻断）；记录启动/配置、步骤执行、下载、目录联接、应用安装卸载、异常；设置页可「打开日志/打开日志文件夹」，未处理异常同时写 `%TEMP%\ffxiv2go-crash.log`
+- **下载**：先写系统临时目录（`%TEMP%\FFXIV2GO_dl`）再移动到最终位置或直接解压，避免直写 U盘/网盘拖慢；启动时清理临时残留
 - 耗时操作放后台执行（`Task.Run`），进度/日志经 `IProgress`/绑定推送 UI，避免卡顿
 - 步骤失败即停（不再继续后续步骤）；重试通过再次点击"开始"
 - 目录联接创建用 P/Invoke（FSCTL_SET_REPARSE_POINT），删除用 `Directory.Delete`（只删重解析点）
-- 关闭窗口：不在 `OnClosing` 内同步弹框（窗口处于 closing 状态会抛异常），改用 `Dispatcher.BeginInvoke` 延迟弹出三选对话框；窗口未显示/已隐藏时不弹框直接退出
+- 关闭窗口：不在 `OnClosing` 内同步弹框（窗口处于 closing 状态会抛异常），改用 `Dispatcher.BeginInvoke` 延迟弹出三选对话框；窗口未显示/已隐藏时不弹框直接退出；AskOnClose 为 false 时按记录的 CloseAction 直接执行
 - 多语言覆盖界面+日志+对话框；文件夹/文件名（如 `FINAL FANTASY XIV - A Realm Reborn`）固定不翻译
 
 ## CI 发布
-`.github/workflows/release-scripts.yml`：打 `v*` tag → `dotnet publish`（-c Release -r win-x64 --self-contained true /p:PublishSingleFile=true）→ 打包 `FFXIV2GO.exe` + version.txt → 发布版本 Release（资产含固定名 `FFXIV2GO.zip` 与带版本名 zip，`makeLatest: true`）。固定地址 `https://github.com/Lograthmic/FFXIV2GO/releases/latest/download/FFXIV2GO.zip` 始终下载最新版；手动触发仅上传 artifact 不创建 Release。
+两个 GitHub Actions workflow：
+
+1. **`ci.yml`（CI）**：push 到 `main` 或 PR 时，在 `windows-latest` 上 `.NET 10` 环境执行 `dotnet build FFXIV2GO.slnx --configuration Release` 与 `dotnet test --no-build`。
+2. **`release-scripts.yml`（发布）**：打 `v*` tag 或手动触发。流程：测试 → 解析版本（tag 去 `v`；手动触发用输入；空则 `dev-<run_id>`）→ `dotnet publish`（-c Release -r win-x64 --self-contained true /p:PublishSingleFile=true /p:Version=...）→ 打包 `FFXIV2GO.exe + apps.json + version.txt` 为 ZIP（固定名 + 带版本名）→ 上传 artifact → tag 推送时经 `ncipollo/release-action` 创建版本 Release（`makeLatest: true`）。固定地址 `https://github.com/Lograthmic/FFXIV2GO/releases/latest/download/FFXIV2GO.zip` 始终下载最新版；手动触发仅上传 artifact 不创建 Release。
