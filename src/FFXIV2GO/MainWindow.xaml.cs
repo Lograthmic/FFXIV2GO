@@ -106,9 +106,18 @@ public partial class MainWindow : FluentWindow
         _trayIcon = new TaskbarIcon
         {
             ToolTipText = "FFXIV2GO",
-            IconSource = CreateTrayIconSource(),
             Visibility = Visibility.Visible
         };
+
+        if (TryLoadAppIcon() is { } appIcon)
+        {
+            _trayIcon.Icon = appIcon;
+        }
+        else
+        {
+            _trayIcon.IconSource = CreateTrayIconSource();
+        }
+
         _trayIcon.TrayMouseDoubleClick += (_, _) => ShowMainWindow();
 
         var menu = new System.Windows.Controls.ContextMenu();
@@ -136,11 +145,29 @@ public partial class MainWindow : FluentWindow
         Activate();
     }
 
+    /// <summary>从 exe 内嵌图标提取 32px 图标供托盘使用；失败返回 null（回退到代码生成的占位图标）。</summary>
+    private static System.Drawing.Icon? TryLoadAppIcon()
+    {
+        try
+        {
+            if (Environment.ProcessPath is not { } path ||
+                System.Drawing.Icon.ExtractAssociatedIcon(path) is not { } extracted)
+            {
+                return null;
+            }
+
+            return new System.Drawing.Icon(extracted, 32, 32);
+        }
+        catch
+        {
+            return null;
+        }
+    }
+
     private static ImageSource CreateTrayIconSource()
     {
         var brush = new SolidColorBrush(Color.FromRgb(0x00, 0x78, 0xD4));
         brush.Freeze();
-
         var glyph = new FormattedText(
             "F",
             CultureInfo.CurrentUICulture,

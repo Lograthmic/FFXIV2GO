@@ -11,7 +11,7 @@
             <ui:Card Margin="0,20,0,0" Padding="24">
                 <StackPanel>
                     <StackPanel Orientation="Horizontal">
-                        <ui:SymbolIcon Symbol="Games24" Filled="True" Width="48" Height="48" FontSize="48" />
+                        <Image Source="Assets/ffxiv2go.png" Width="48" Height="48" />
                         <StackPanel Margin="16,0,0,0" VerticalAlignment="Center">
                             <TextBlock Text="{Binding Source={x:Static loc:LocalizationService.Instance}, Path=[App.Title]}"
                                        FontSize="20" FontWeight="SemiBold" />
