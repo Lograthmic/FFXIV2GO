@@ -1,0 +1,73 @@
+<UserControl x:Class="FFXIV2GO.Views.WizardView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
+             xmlns:loc="clr-namespace:FFXIV2GO.Services">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <StackPanel Grid.Row="0">
+            <TextBlock Text="{Binding Title}" FontSize="24" FontWeight="SemiBold" />
+            <TextBlock Text="{Binding Description}" FontSize="13" Opacity="0.7" Margin="0,6,0,0" TextWrapping="Wrap" />
+        </StackPanel>
+
+        <Border Grid.Row="1" Margin="0,20,0,0" Background="{DynamicResource ApplicationBackgroundBrush}" CornerRadius="8" Padding="16,8,16,8">
+            <ItemsControl ItemsSource="{Binding Steps}">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Grid Margin="0,8">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="36" />
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="160" />
+                            </Grid.ColumnDefinitions>
+
+                            <TextBlock Grid.Column="0"
+                                       Text="{Binding State, Converter={StaticResource StepGlyph}}"
+                                       Foreground="{Binding State, Converter={StaticResource StepColor}}"
+                                       FontSize="18" VerticalAlignment="Center" />
+
+                            <StackPanel Grid.Column="1" Margin="8,0,16,0" VerticalAlignment="Center">
+                                <TextBlock Text="{Binding Title}" FontSize="14" />
+                                <TextBlock Text="{Binding Detail}" FontSize="11" Opacity="0.6" Margin="0,3,0,0" TextWrapping="Wrap" />
+                            </StackPanel>
+
+                            <ProgressBar Grid.Column="2"
+                                         Value="{Binding Progress}"
+                                         Minimum="0" Maximum="100" Height="4"
+                                         VerticalAlignment="Center"
+                                         Visibility="{Binding State, Converter={StaticResource StepProgressVisible}}" />
+                        </Grid>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </Border>
+
+        <Grid Grid.Row="2" Margin="0,20,0,0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+
+            <TextBlock Grid.Column="0" Text="{Binding StatusText}" VerticalAlignment="Center" Opacity="0.7" />
+
+            <ui:Button Grid.Column="1" Margin="0,0,12,0"
+                       Content="{Binding Source={x:Static loc:LocalizationService.Instance}, Path=[Wizard.Back]}"
+                       Command="{Binding DataContext.BackCommand, RelativeSource={RelativeSource AncestorType={x:Type Window}}}" />
+
+            <ui:Button Grid.Column="2" Margin="0,0,12,0"
+                       Content="{Binding Source={x:Static loc:LocalizationService.Instance}, Path=[Wizard.Cancel]}"
+                       Command="{Binding CancelCommand}" />
+
+            <ui:Button Grid.Column="3" Appearance="Primary"
+                       Content="{Binding Source={x:Static loc:LocalizationService.Instance}, Path=[Wizard.Run]}"
+                       Command="{Binding RunCommand}" />
+        </Grid>
+    </Grid>
+</UserControl>

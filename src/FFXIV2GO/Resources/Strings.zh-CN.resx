@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="App.Title" xml:space="preserve"><value>FFXIV2GO</value></data>
+  <data name="App.Subtitle" xml:space="preserve"><value>FFXIV 便携环境工具</value></data>
+  <data name="App.Version" xml:space="preserve"><value>版本</value></data>
+
+  <data name="Nav.Dashboard" xml:space="preserve"><value>仪表盘</value></data>
+  <data name="Nav.Init" xml:space="preserve"><value>初始化</value></data>
+  <data name="Nav.Setup" xml:space="preserve"><value>安装</value></data>
+  <data name="Nav.Uninstall" xml:space="preserve"><value>卸载</value></data>
+  <data name="Nav.Clean" xml:space="preserve"><value>清理</value></data>
+  <data name="Nav.Apps" xml:space="preserve"><value>应用</value></data>
+  <data name="Nav.Settings" xml:space="preserve"><value>设置</value></data>
+
+  <data name="Dashboard.Welcome" xml:space="preserve"><value>欢迎使用 FFXIV2GO</value></data>
+  <data name="Dashboard.WelcomeDesc" xml:space="preserve"><value>选择下方的操作，配置你的 FFXIV 便携环境</value></data>
+  <data name="Dashboard.EnvInfo" xml:space="preserve"><value>环境信息</value></data>
+  <data name="Dashboard.EnvPath" xml:space="preserve"><value>部署根目录</value></data>
+  <data name="Dashboard.EnvConfig" xml:space="preserve"><value>配置文件</value></data>
+
+  <data name="Card.Init.Title" xml:space="preserve"><value>初始化环境</value></data>
+  <data name="Card.Init.Desc" xml:space="preserve"><value>一次性备份游戏配置、启动器与 mod，并下载运行依赖与软件到部署根目录</value></data>
+  <data name="Card.Setup.Title" xml:space="preserve"><value>安装配置</value></data>
+  <data name="Card.Setup.Desc" xml:space="preserve"><value>将部署根目录的配置挂载到本机游戏与启动器目录，并安装运行库</value></data>
+  <data name="Card.Uninstall.Title" xml:space="preserve"><value>卸载配置</value></data>
+  <data name="Card.Uninstall.Desc" xml:space="preserve"><value>解除本机目录联接，并恢复原始配置</value></data>
+  <data name="Card.Clean.Title" xml:space="preserve"><value>清理空间</value></data>
+  <data name="Card.Clean.Desc" xml:space="preserve"><value>删除部署根目录内的 log 与 old 文件，释放存储空间</value></data>
+
+  <data name="Wizard.Run" xml:space="preserve"><value>开始</value></data>
+  <data name="Wizard.Cancel" xml:space="preserve"><value>取消</value></data>
+  <data name="Wizard.Back" xml:space="preserve"><value>返回仪表盘</value></data>
+  <data name="Wizard.Running" xml:space="preserve"><value>执行中...</value></data>
+  <data name="Wizard.Finished" xml:space="preserve"><value>完成</value></data>
+  <data name="Wizard.Cancelled" xml:space="preserve"><value>已取消</value></data>
+
+  <data name="Init.Title" xml:space="preserve"><value>初始化环境</value></data>
+  <data name="Init.Desc" xml:space="preserve"><value>在已配置好 FFXIV 客户端的电脑上执行一次，把配置持久化备份到部署根目录</value></data>
+  <data name="Init.Step1" xml:space="preserve"><value>检测 GitHub 连通性</value></data>
+  <data name="Init.Step2" xml:space="preserve"><value>创建目录结构</value></data>
+  <data name="Init.Step3" xml:space="preserve"><value>选择并校验 FFXIV 安装路径</value></data>
+  <data name="Init.Step4" xml:space="preserve"><value>备份游戏配置</value></data>
+  <data name="Init.Step5" xml:space="preserve"><value>备份 XIVLauncherCN 配置</value></data>
+  <data name="Init.Step6" xml:space="preserve"><value>备份 mod</value></data>
+  <data name="Init.Step7" xml:space="preserve"><value>下载运行依赖（VC++ / .NET 10）</value></data>
+  <data name="Init.Step8" xml:space="preserve"><value>选择要下载的应用</value></data>
+  <data name="Init.Step9" xml:space="preserve"><value>下载所选应用</value></data>
+  <data name="Init.AlreadyInitialized" xml:space="preserve"><value>已检测到已初始化的环境，是否重新初始化？将清空 conf/inst/apps 全部数据并作为新环境重新初始化。</value></data>
+  <data name="Init.ManifestMissing" xml:space="preserve"><value>未找到 apps.json 或内容为空</value></data>
+  <data name="Init.Resolving" xml:space="preserve"><value>正在获取 {0} 最新版本...</value></data>
+  <data name="Init.Downloading" xml:space="preserve"><value>正在下载 {0}...</value></data>
+  <data name="Init.Extracting" xml:space="preserve"><value>正在解压 {0}...</value></data>
+  <data name="Init.AppDone" xml:space="preserve"><value>{0} 下载完成</value></data>
+  <data name="Init.NoAppsSelected" xml:space="preserve"><value>未选择任何应用，跳过</value></data>
+  <data name="Init.InstallerHint" xml:space="preserve"><value>{0} 需要手动安装</value></data>
+  <data name="Init.PromptExtract" xml:space="preserve"><value>请手动运行 {0}，并安装/解压到 {1} 文件夹，完成后点击确定继续。</value></data>
+  <data name="Init.GithubNoMatch" xml:space="preserve"><value>未在 {0} 发布中找到匹配资产（规则：{1}）</value></data>
+
+  <data name="AppSelect.Title" xml:space="preserve"><value>选择要下载的应用</value></data>
+  <data name="AppSelect.Hint" xml:space="preserve"><value>以下应用将下载到 apps 目录</value></data>
+  <data name="AppSelect.RequiredHint" xml:space="preserve"><value>必选分组 - 每组至少选择一款应用：{0}</value></data>
+  <data name="AppSelect.RequiredMessage" xml:space="preserve"><value>请至少从 {0} 中选择一款应用</value></data>
+  <data name="AppSelect.Download" xml:space="preserve"><value>开始下载</value></data>
+
+  <data name="Setup.Title" xml:space="preserve"><value>安装配置</value></data>
+  <data name="Setup.Desc" xml:space="preserve"><value>在目标机器上把部署根目录的配置挂载到本机游戏与启动器目录</value></data>
+  <data name="Setup.Step1" xml:space="preserve"><value>读取 FFXIV 路径</value></data>
+  <data name="Setup.Step2" xml:space="preserve"><value>校验游戏目录</value></data>
+  <data name="Setup.Step3" xml:space="preserve"><value>备份原游戏配置</value></data>
+  <data name="Setup.Step4" xml:space="preserve"><value>建立游戏配置联接</value></data>
+  <data name="Setup.Step5" xml:space="preserve"><value>备份原 XIVLauncherCN</value></data>
+  <data name="Setup.Step6" xml:space="preserve"><value>建立 XIVLauncherCN 联接</value></data>
+  <data name="Setup.Step7" xml:space="preserve"><value>创建 Lightless 缓存目录</value></data>
+  <data name="Setup.Step8" xml:space="preserve"><value>修改 Penumbra 配置</value></data>
+  <data name="Setup.Step9" xml:space="preserve"><value>安装运行库（VC++ / .NET 10）</value></data>
+
+  <data name="Uninstall.Title" xml:space="preserve"><value>卸载配置</value></data>
+  <data name="Uninstall.Desc" xml:space="preserve"><value>逆转安装过程，解除联接并恢复本机原始配置</value></data>
+  <data name="Uninstall.Step1" xml:space="preserve"><value>读取 FFXIV 路径</value></data>
+  <data name="Uninstall.Step2" xml:space="preserve"><value>校验游戏联接</value></data>
+  <data name="Uninstall.Step3" xml:space="preserve"><value>解除游戏配置联接</value></data>
+  <data name="Uninstall.Step4" xml:space="preserve"><value>恢复原游戏配置</value></data>
+  <data name="Uninstall.Step5" xml:space="preserve"><value>解除 XIVLauncherCN 联接</value></data>
+  <data name="Uninstall.Step6" xml:space="preserve"><value>恢复 XIVLauncherCN</value></data>
+  <data name="Uninstall.Step7" xml:space="preserve"><value>删除 Lightless 缓存目录</value></data>
+
+  <data name="Clean.Title" xml:space="preserve"><value>清理空间</value></data>
+  <data name="Clean.Desc" xml:space="preserve"><value>删除部署根目录内的 log 与 old 文件，释放存储空间</value></data>
+  <data name="Clean.Step1" xml:space="preserve"><value>扫描可清理文件</value></data>
+  <data name="Clean.Step2" xml:space="preserve"><value>删除文件</value></data>
+  <data name="Clean.Step3" xml:space="preserve"><value>统计释放空间</value></data>
+
+  <data name="Settings.Title" xml:space="preserve"><value>设置</value></data>
+  <data name="Settings.FfxivPath" xml:space="preserve"><value>FFXIV 安装路径</value></data>
+  <data name="Settings.FfxivPathHint" xml:space="preserve"><value>游戏安装目录，例如 D:\FFXIV</value></data>
+  <data name="Settings.Browse" xml:space="preserve"><value>浏览...</value></data>
+  <data name="Settings.Language" xml:space="preserve"><value>界面语言</value></data>
+  <data name="Settings.Theme" xml:space="preserve"><value>主题</value></data>
+  <data name="Settings.Theme.System" xml:space="preserve"><value>跟随系统</value></data>
+  <data name="Settings.Theme.Light" xml:space="preserve"><value>浅色</value></data>
+  <data name="Settings.Theme.Dark" xml:space="preserve"><value>深色</value></data>
+  <data name="Settings.Language.System" xml:space="preserve"><value>跟随系统</value></data>
+  <data name="Settings.LogLevel" xml:space="preserve"><value>日志级别</value></data>
+  <data name="Settings.LogLevel.Debug" xml:space="preserve"><value>调试</value></data>
+  <data name="Settings.LogLevel.Info" xml:space="preserve"><value>信息</value></data>
+  <data name="Settings.LogLevel.Warn" xml:space="preserve"><value>警告</value></data>
+  <data name="Settings.LogLevel.Error" xml:space="preserve"><value>错误</value></data>
+  <data name="Settings.DeploymentRoot" xml:space="preserve"><value>部署根目录</value></data>
+  <data name="Settings.LogFile" xml:space="preserve"><value>日志文件</value></data>
+  <data name="Settings.OpenLog" xml:space="preserve"><value>打开日志</value></data>
+  <data name="Settings.OpenLogFolder" xml:space="preserve"><value>打开日志文件夹</value></data>
+  <data name="Settings.ConfigFile" xml:space="preserve"><value>配置文件</value></data>
+  <data name="Settings.Save" xml:space="preserve"><value>保存设置</value></data>
+  <data name="Settings.Saved" xml:space="preserve"><value>设置已保存</value></data>
+
+  <data name="Preview.NotWired" xml:space="preserve"><value>（预览版）该步骤功能尚未接入</value></data>
+
+  <data name="Common.Cancel" xml:space="preserve"><value>取消</value></data>
+  <data name="Tray.Show" xml:space="preserve"><value>显示主窗口</value></data>
+  <data name="Tray.Exit" xml:space="preserve"><value>退出</value></data>
+  <data name="Tray.CloseTitle" xml:space="preserve"><value>关闭 FFXIV2GO</value></data>
+  <data name="Tray.ClosePrompt" xml:space="preserve"><value>关闭主窗口后将最小化到系统托盘，可在托盘图标中恢复或退出应用。</value></data>
+  <data name="Tray.MinimizeToTray" xml:space="preserve"><value>最小化到托盘</value></data>
+  <data name="Tray.ExitApp" xml:space="preserve"><value>退出应用</value></data>
+
+  <data name="FirstRun.Title" xml:space="preserve"><value>欢迎使用 FFXIV2GO</value></data>
+  <data name="FirstRun.Prompt" xml:space="preserve"><value>请选择界面语言，将保存到配置文件。</value></data>
+  <data name="FirstRun.Start" xml:space="preserve"><value>开始使用</value></data>
+
+  <data name="Common.Yes" xml:space="preserve"><value>是</value></data>
+  <data name="Common.No" xml:space="preserve"><value>否</value></data>
+  <data name="Common.OK" xml:space="preserve"><value>确定</value></data>
+  <data name="Common.Cancelled" xml:space="preserve"><value>操作已取消</value></data>
+
+  <data name="Init.SelectFfxivTitle" xml:space="preserve"><value>选择 FFXIV 安装目录</value></data>
+  <data name="Init.GitHubFail" xml:space="preserve"><value>无法连接 GitHub，请检查网络</value></data>
+  <data name="Init.PathInvalid" xml:space="preserve"><value>所选路径下未找到游戏配置目录</value></data>
+  <data name="Init.CopyGame" xml:space="preserve"><value>正在复制游戏配置...</value></data>
+  <data name="Init.GameDone" xml:space="preserve"><value>游戏配置复制完成</value></data>
+  <data name="Init.NoLauncher" xml:space="preserve"><value>本机未找到 XIVLauncherCN 配置，是否作为新环境继续？</value></data>
+  <data name="Init.LauncherDone" xml:space="preserve"><value>XIVLauncherCN 配置复制完成</value></data>
+  <data name="Init.NoPenumbra" xml:space="preserve"><value>未找到 Penumbra 配置，跳过 mod 备份</value></data>
+  <data name="Init.CopyMods" xml:space="preserve"><value>正在复制 mod...</value></data>
+  <data name="Init.ModsDone" xml:space="preserve"><value>mod 复制完成</value></data>
+  <data name="Init.DlVc" xml:space="preserve"><value>正在下载 VC++ 可再发行程序包...</value></data>
+  <data name="Init.DlDotnet" xml:space="preserve"><value>正在下载 .NET 10 Desktop Runtime...</value></data>
+  <data name="Init.DlLauncher" xml:space="preserve"><value>正在下载 XIVLauncherCN...</value></data>
+  <data name="Init.ExtractLauncher" xml:space="preserve"><value>正在解压 XIVLauncherCN...</value></data>
+  <data name="Init.LauncherAppDone" xml:space="preserve"><value>XIVLauncherCN 就绪</value></data>
+  <data name="Init.DlAct" xml:space="preserve"><value>正在下载 ACT...</value></data>
+  <data name="Init.ActDone" xml:space="preserve"><value>ACT 下载完成，请手动安装到 apps\ACT</value></data>
+
+  <data name="Setup.InputPathTitle" xml:space="preserve"><value>FFXIV 安装目录</value></data>
+  <data name="Setup.NoSavedPath" xml:space="preserve"><value>未找到已保存的 FFXIV 路径，请选择</value></data>
+  <data name="Setup.GameInvalid" xml:space="preserve"><value>指定路径下未找到游戏配置目录</value></data>
+  <data name="Setup.NotInitialized" xml:space="preserve"><value>环境尚未初始化，是否先进行初始化？</value></data>
+  <data name="Setup.ConfirmMount" xml:space="preserve"><value>即将在本机挂载配置并安装运行库，确认继续？</value></data>
+  <data name="Setup.BackupGame" xml:space="preserve"><value>正在备份原游戏配置...</value></data>
+  <data name="Setup.BackupGameDone" xml:space="preserve"><value>原游戏配置已备份 (.old)</value></data>
+  <data name="Setup.JunctionGame" xml:space="preserve"><value>正在创建游戏配置联接...</value></data>
+  <data name="Setup.JunctionGameDone" xml:space="preserve"><value>游戏配置联接已创建</value></data>
+  <data name="Setup.BackupLauncher" xml:space="preserve"><value>正在备份原 XIVLauncherCN...</value></data>
+  <data name="Setup.BackupLauncherDone" xml:space="preserve"><value>原 XIVLauncherCN 已备份 (.old)</value></data>
+  <data name="Setup.JunctionLauncher" xml:space="preserve"><value>正在创建 XIVLauncherCN 联接...</value></data>
+  <data name="Setup.JunctionLauncherDone" xml:space="preserve"><value>XIVLauncherCN 联接已创建</value></data>
+  <data name="Setup.CachesDone" xml:space="preserve"><value>Lightless 缓存目录已创建</value></data>
+  <data name="Setup.PenumbraUpdated" xml:space="preserve"><value>Penumbra mod 目录已更新</value></data>
+  <data name="Setup.PenumbraSkipped" xml:space="preserve"><value>未找到 Penumbra.json，跳过</value></data>
+  <data name="Setup.InstallVc" xml:space="preserve"><value>正在安装 VC++ 可再发行程序包...</value></data>
+  <data name="Setup.InstallDotnet" xml:space="preserve"><value>正在安装 .NET 10 Desktop Runtime...</value></data>
+  <data name="Setup.RuntimeDone" xml:space="preserve"><value>运行库安装完成</value></data>
+  <data name="Setup.RuntimeMissing" xml:space="preserve"><value>未找到安装包，跳过</value></data>
+  <data name="Setup.Step10" xml:space="preserve"><value>创建桌面快捷方式</value></data>
+  <data name="Setup.ShortcutCreated" xml:space="preserve"><value>已创建快捷方式：{0}</value></data>
+  <data name="Setup.ShortcutSkipped" xml:space="preserve"><value>未在 {0} 中找到可执行文件，跳过</value></data>
+  <data name="Setup.ShortcutsDone" xml:space="preserve"><value>已创建 {0} 个桌面快捷方式</value></data>
+  <data name="Setup.FolderShortcut" xml:space="preserve"><value>FFXIV2GO 目录</value></data>
+
+  <data name="Uninstall.NoSavedPath" xml:space="preserve"><value>未找到已保存的 FFXIV 路径，请选择</value></data>
+  <data name="Uninstall.JunctionMissing" xml:space="preserve"><value>未找到游戏配置联接</value></data>
+  <data name="Uninstall.RemoveGameJunction" xml:space="preserve"><value>正在解除游戏配置联接...</value></data>
+  <data name="Uninstall.RemoveGameJunctionDone" xml:space="preserve"><value>游戏配置联接已解除</value></data>
+  <data name="Uninstall.RestoreGame" xml:space="preserve"><value>正在恢复原游戏配置...</value></data>
+  <data name="Uninstall.RestoreGameDone" xml:space="preserve"><value>原游戏配置已恢复</value></data>
+  <data name="Uninstall.NoBackup" xml:space="preserve"><value>未找到 .old 备份，跳过恢复</value></data>
+  <data name="Uninstall.RemoveLauncherJunction" xml:space="preserve"><value>正在解除 XIVLauncherCN 联接...</value></data>
+  <data name="Uninstall.RemoveLauncherJunctionDone" xml:space="preserve"><value>XIVLauncherCN 联接已解除</value></data>
+  <data name="Uninstall.RestoreLauncher" xml:space="preserve"><value>正在恢复 XIVLauncherCN...</value></data>
+  <data name="Uninstall.RestoreLauncherDone" xml:space="preserve"><value>XIVLauncherCN 已恢复</value></data>
+  <data name="Uninstall.RemoveCaches" xml:space="preserve"><value>正在删除 Lightless 缓存目录...</value></data>
+  <data name="Uninstall.RemoveCachesDone" xml:space="preserve"><value>缓存目录已删除</value></data>
+  <data name="Uninstall.Step8" xml:space="preserve"><value>删除桌面快捷方式</value></data>
+  <data name="Uninstall.ShortcutsRemoved" xml:space="preserve"><value>桌面快捷方式已删除</value></data>
+
+  <data name="Clean.Scanning" xml:space="preserve"><value>正在扫描...</value></data>
+  <data name="Clean.ScanResult" xml:space="preserve"><value>找到 {0} 个可清理文件，共 {1}</value></data>
+  <data name="Clean.Nothing" xml:space="preserve"><value>没有需要清理的文件</value></data>
+  <data name="Clean.ConfirmDelete" xml:space="preserve"><value>确认删除 {0} 个文件，释放 {1}？</value></data>
+  <data name="Clean.Deleting" xml:space="preserve"><value>正在删除...</value></data>
+  <data name="Clean.Freed" xml:space="preserve"><value>已释放 {0}</value></data>
+
+  <data name="AppManager.Title" xml:space="preserve"><value>应用管理</value></data>
+  <data name="AppManager.Description" xml:space="preserve"><value>安装或卸载便携应用（卸载将删除应用文件夹）</value></data>
+  <data name="AppManager.Refresh" xml:space="preserve"><value>刷新</value></data>
+  <data name="AppManager.Install" xml:space="preserve"><value>安装</value></data>
+  <data name="AppManager.Uninstall" xml:space="preserve"><value>卸载</value></data>
+  <data name="AppManager.Status.NotInstalled" xml:space="preserve"><value>未安装</value></data>
+  <data name="AppManager.Status.Installed" xml:space="preserve"><value>已安装</value></data>
+  <data name="AppManager.Status.Installing" xml:space="preserve"><value>安装中...</value></data>
+  <data name="AppManager.Status.Uninstalling" xml:space="preserve"><value>卸载中...</value></data>
+  <data name="AppManager.ConfirmUninstall" xml:space="preserve"><value>确认删除 {0} 的应用文件夹？（卸载）</value></data>
+  <data name="AppManager.RunningWarning" xml:space="preserve"><value>{0} 正在运行，请先关闭后再卸载。</value></data>
+  <data name="AppManager.DeleteFailed" xml:space="preserve"><value>删除 {0} 失败，请确认应用已关闭。</value></data>
+</root>

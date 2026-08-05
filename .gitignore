@@ -1,0 +1,30 @@
+## .NET / build
+bin/
+obj/
+publish/
+*.user
+*.suo
+*.userprefs
+*.tmp
+*.part
+*_wpftmp.csproj
+
+## Visual Studio / Rider / VS Code
+.vs/
+.vscode/
+.idea/
+*.suo
+
+## NuGet
+*.nupkg
+packages/
+
+## Runtime artifacts (部署根运行时生成)
+logs/
+config.ini
+*.log
+
+## OS
+Thumbs.db
+Desktop.ini
+.DS_Store

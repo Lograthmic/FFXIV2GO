@@ -1,0 +1,8 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/FFXIV2GO/FFXIV2GO.csproj" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/FFXIV2GO.Tests/FFXIV2GO.Tests.csproj" />
+  </Folder>
+</Solution>

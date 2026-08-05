@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="App.Title" xml:space="preserve"><value>FFXIV2GO</value></data>
+  <data name="App.Subtitle" xml:space="preserve"><value>FFXIV Portable Environment Toolkit</value></data>
+  <data name="App.Version" xml:space="preserve"><value>Version</value></data>
+
+  <data name="Nav.Dashboard" xml:space="preserve"><value>Dashboard</value></data>
+  <data name="Nav.Init" xml:space="preserve"><value>Initialize</value></data>
+  <data name="Nav.Setup" xml:space="preserve"><value>Setup</value></data>
+  <data name="Nav.Uninstall" xml:space="preserve"><value>Uninstall</value></data>
+  <data name="Nav.Clean" xml:space="preserve"><value>Clean</value></data>
+  <data name="Nav.Apps" xml:space="preserve"><value>Apps</value></data>
+  <data name="Nav.Settings" xml:space="preserve"><value>Settings</value></data>
+
+  <data name="Dashboard.Welcome" xml:space="preserve"><value>Welcome to FFXIV2GO</value></data>
+  <data name="Dashboard.WelcomeDesc" xml:space="preserve"><value>Select an operation below to configure your portable FFXIV environment</value></data>
+  <data name="Dashboard.EnvInfo" xml:space="preserve"><value>Environment</value></data>
+  <data name="Dashboard.EnvPath" xml:space="preserve"><value>Deployment root</value></data>
+  <data name="Dashboard.EnvConfig" xml:space="preserve"><value>Config file</value></data>
+
+  <data name="Card.Init.Title" xml:space="preserve"><value>Initialize Environment</value></data>
+  <data name="Card.Init.Desc" xml:space="preserve"><value>One-time backup of game config, launcher and mods; download runtimes and apps to the deployment root</value></data>
+  <data name="Card.Setup.Title" xml:space="preserve"><value>Setup</value></data>
+  <data name="Card.Setup.Desc" xml:space="preserve"><value>Mount the deployment root configs to this machine and install runtimes</value></data>
+  <data name="Card.Uninstall.Title" xml:space="preserve"><value>Uninstall</value></data>
+  <data name="Card.Uninstall.Desc" xml:space="preserve"><value>Remove junction links on this machine and restore original configs</value></data>
+  <data name="Card.Clean.Title" xml:space="preserve"><value>Clean Space</value></data>
+  <data name="Card.Clean.Desc" xml:space="preserve"><value>Delete .log and .old files inside the deployment root to free space</value></data>
+
+  <data name="Wizard.Run" xml:space="preserve"><value>Start</value></data>
+  <data name="Wizard.Cancel" xml:space="preserve"><value>Cancel</value></data>
+  <data name="Wizard.Back" xml:space="preserve"><value>Back to Dashboard</value></data>
+  <data name="Wizard.Running" xml:space="preserve"><value>Running...</value></data>
+  <data name="Wizard.Finished" xml:space="preserve"><value>Finished</value></data>
+  <data name="Wizard.Cancelled" xml:space="preserve"><value>Cancelled</value></data>
+
+  <data name="Init.Title" xml:space="preserve"><value>Initialize Environment</value></data>
+  <data name="Init.Desc" xml:space="preserve"><value>Run once on a machine with a configured FFXIV client to back up configuration to the deployment root</value></data>
+  <data name="Init.Step1" xml:space="preserve"><value>Check GitHub connectivity</value></data>
+  <data name="Init.Step2" xml:space="preserve"><value>Create directory structure</value></data>
+  <data name="Init.Step3" xml:space="preserve"><value>Select and validate FFXIV install path</value></data>
+  <data name="Init.Step4" xml:space="preserve"><value>Back up game config</value></data>
+  <data name="Init.Step5" xml:space="preserve"><value>Back up XIVLauncherCN config</value></data>
+  <data name="Init.Step6" xml:space="preserve"><value>Back up mods</value></data>
+  <data name="Init.Step7" xml:space="preserve"><value>Download runtimes (VC++ / .NET 10)</value></data>
+  <data name="Init.Step8" xml:space="preserve"><value>Select apps to download</value></data>
+  <data name="Init.Step9" xml:space="preserve"><value>Download selected apps</value></data>
+  <data name="Init.AlreadyInitialized" xml:space="preserve"><value>An initialized environment was detected. Re-initialize? All data (conf/inst/apps) will be cleared and initialized as a new environment.</value></data>
+  <data name="Init.ManifestMissing" xml:space="preserve"><value>apps.json not found or empty</value></data>
+  <data name="Init.Resolving" xml:space="preserve"><value>Resolving latest version of {0}...</value></data>
+  <data name="Init.Downloading" xml:space="preserve"><value>Downloading {0}...</value></data>
+  <data name="Init.Extracting" xml:space="preserve"><value>Extracting {0}...</value></data>
+  <data name="Init.AppDone" xml:space="preserve"><value>{0} downloaded</value></data>
+  <data name="Init.NoAppsSelected" xml:space="preserve"><value>No apps selected, skipped</value></data>
+  <data name="Init.InstallerHint" xml:space="preserve"><value>{0} requires manual installation</value></data>
+  <data name="Init.PromptExtract" xml:space="preserve"><value>Please run {0} and install/extract it to {1}, then click OK to continue.</value></data>
+  <data name="Init.GithubNoMatch" xml:space="preserve"><value>No matching asset found in {0} releases (pattern: {1})</value></data>
+
+  <data name="AppSelect.Title" xml:space="preserve"><value>Select apps to download</value></data>
+  <data name="AppSelect.Hint" xml:space="preserve"><value>The following apps will be downloaded to the apps folder</value></data>
+  <data name="AppSelect.RequiredHint" xml:space="preserve"><value>Required groups - select at least one app from each: {0}</value></data>
+  <data name="AppSelect.RequiredMessage" xml:space="preserve"><value>Please select at least one app from: {0}</value></data>
+  <data name="AppSelect.Download" xml:space="preserve"><value>Download</value></data>
+
+  <data name="Setup.Title" xml:space="preserve"><value>Setup</value></data>
+  <data name="Setup.Desc" xml:space="preserve"><value>Mount the deployment root configs to this machine</value></data>
+  <data name="Setup.Step1" xml:space="preserve"><value>Read FFXIV path</value></data>
+  <data name="Setup.Step2" xml:space="preserve"><value>Validate game directory</value></data>
+  <data name="Setup.Step3" xml:space="preserve"><value>Back up original game config</value></data>
+  <data name="Setup.Step4" xml:space="preserve"><value>Create game config junction</value></data>
+  <data name="Setup.Step5" xml:space="preserve"><value>Back up original XIVLauncherCN</value></data>
+  <data name="Setup.Step6" xml:space="preserve"><value>Create XIVLauncherCN junction</value></data>
+  <data name="Setup.Step7" xml:space="preserve"><value>Create Lightless cache directory</value></data>
+  <data name="Setup.Step8" xml:space="preserve"><value>Update Penumbra config</value></data>
+  <data name="Setup.Step9" xml:space="preserve"><value>Install runtimes (VC++ / .NET 10)</value></data>
+
+  <data name="Uninstall.Title" xml:space="preserve"><value>Uninstall</value></data>
+  <data name="Uninstall.Desc" xml:space="preserve"><value>Reverse the setup process and restore original configs</value></data>
+  <data name="Uninstall.Step1" xml:space="preserve"><value>Read FFXIV path</value></data>
+  <data name="Uninstall.Step2" xml:space="preserve"><value>Validate game junction</value></data>
+  <data name="Uninstall.Step3" xml:space="preserve"><value>Remove game config junction</value></data>
+  <data name="Uninstall.Step4" xml:space="preserve"><value>Restore original game config</value></data>
+  <data name="Uninstall.Step5" xml:space="preserve"><value>Remove XIVLauncherCN junction</value></data>
+  <data name="Uninstall.Step6" xml:space="preserve"><value>Restore XIVLauncherCN</value></data>
+  <data name="Uninstall.Step7" xml:space="preserve"><value>Remove Lightless cache directory</value></data>
+
+  <data name="Clean.Title" xml:space="preserve"><value>Clean Space</value></data>
+  <data name="Clean.Desc" xml:space="preserve"><value>Delete .log and .old files inside the deployment root</value></data>
+  <data name="Clean.Step1" xml:space="preserve"><value>Scan cleanable files</value></data>
+  <data name="Clean.Step2" xml:space="preserve"><value>Delete files</value></data>
+  <data name="Clean.Step3" xml:space="preserve"><value>Report freed space</value></data>
+
+  <data name="Settings.Title" xml:space="preserve"><value>Settings</value></data>
+  <data name="Settings.FfxivPath" xml:space="preserve"><value>FFXIV install path</value></data>
+  <data name="Settings.FfxivPathHint" xml:space="preserve"><value>Game install directory, e.g. D:\FFXIV</value></data>
+  <data name="Settings.Browse" xml:space="preserve"><value>Browse...</value></data>
+  <data name="Settings.Language" xml:space="preserve"><value>Language</value></data>
+  <data name="Settings.Theme" xml:space="preserve"><value>Theme</value></data>
+  <data name="Settings.Theme.System" xml:space="preserve"><value>Follow system</value></data>
+  <data name="Settings.Theme.Light" xml:space="preserve"><value>Light</value></data>
+  <data name="Settings.Theme.Dark" xml:space="preserve"><value>Dark</value></data>
+  <data name="Settings.Language.System" xml:space="preserve"><value>Follow system</value></data>
+  <data name="Settings.LogLevel" xml:space="preserve"><value>Log level</value></data>
+  <data name="Settings.LogLevel.Debug" xml:space="preserve"><value>Debug</value></data>
+  <data name="Settings.LogLevel.Info" xml:space="preserve"><value>Info</value></data>
+  <data name="Settings.LogLevel.Warn" xml:space="preserve"><value>Warning</value></data>
+  <data name="Settings.LogLevel.Error" xml:space="preserve"><value>Error</value></data>
+  <data name="Settings.DeploymentRoot" xml:space="preserve"><value>Deployment root</value></data>
+  <data name="Settings.LogFile" xml:space="preserve"><value>Log file</value></data>
+  <data name="Settings.OpenLog" xml:space="preserve"><value>Open log</value></data>
+  <data name="Settings.OpenLogFolder" xml:space="preserve"><value>Open folder</value></data>
+  <data name="Settings.ConfigFile" xml:space="preserve"><value>Config file</value></data>
+  <data name="Settings.Save" xml:space="preserve"><value>Save settings</value></data>
+  <data name="Settings.Saved" xml:space="preserve"><value>Settings saved</value></data>
+
+  <data name="Preview.NotWired" xml:space="preserve"><value>(Preview) This step is not wired yet</value></data>
+
+  <data name="Common.Cancel" xml:space="preserve"><value>Cancel</value></data>
+  <data name="Tray.Show" xml:space="preserve"><value>Show main window</value></data>
+  <data name="Tray.Exit" xml:space="preserve"><value>Exit</value></data>
+  <data name="Tray.CloseTitle" xml:space="preserve"><value>Close FFXIV2GO</value></data>
+  <data name="Tray.ClosePrompt" xml:space="preserve"><value>Closing the main window will minimize it to the system tray. You can restore or exit from the tray icon.</value></data>
+  <data name="Tray.MinimizeToTray" xml:space="preserve"><value>Minimize to tray</value></data>
+  <data name="Tray.ExitApp" xml:space="preserve"><value>Exit application</value></data>
+
+  <data name="FirstRun.Title" xml:space="preserve"><value>Welcome to FFXIV2GO</value></data>
+  <data name="FirstRun.Prompt" xml:space="preserve"><value>Choose your language. It will be saved to the config file.</value></data>
+  <data name="FirstRun.Start" xml:space="preserve"><value>Get started</value></data>
+
+  <data name="Common.Yes" xml:space="preserve"><value>Yes</value></data>
+  <data name="Common.No" xml:space="preserve"><value>No</value></data>
+  <data name="Common.OK" xml:space="preserve"><value>OK</value></data>
+  <data name="Common.Cancelled" xml:space="preserve"><value>Operation cancelled</value></data>
+
+  <data name="Init.SelectFfxivTitle" xml:space="preserve"><value>Select FFXIV install directory</value></data>
+  <data name="Init.GitHubFail" xml:space="preserve"><value>Cannot reach GitHub, please check your network</value></data>
+  <data name="Init.PathInvalid" xml:space="preserve"><value>The selected path does not contain the game config directory</value></data>
+  <data name="Init.CopyGame" xml:space="preserve"><value>Copying game config...</value></data>
+  <data name="Init.GameDone" xml:space="preserve"><value>Game config copied</value></data>
+  <data name="Init.NoLauncher" xml:space="preserve"><value>XIVLauncherCN config not found on this machine. Continue as a new environment?</value></data>
+  <data name="Init.LauncherDone" xml:space="preserve"><value>XIVLauncherCN config copied</value></data>
+  <data name="Init.NoPenumbra" xml:space="preserve"><value>Penumbra config not found, skipping mod backup</value></data>
+  <data name="Init.CopyMods" xml:space="preserve"><value>Copying mods...</value></data>
+  <data name="Init.ModsDone" xml:space="preserve"><value>Mods copied</value></data>
+  <data name="Init.DlVc" xml:space="preserve"><value>Downloading VC++ redistributable...</value></data>
+  <data name="Init.DlDotnet" xml:space="preserve"><value>Downloading .NET 10 Desktop Runtime...</value></data>
+  <data name="Init.DlLauncher" xml:space="preserve"><value>Downloading XIVLauncherCN...</value></data>
+  <data name="Init.ExtractLauncher" xml:space="preserve"><value>Extracting XIVLauncherCN...</value></data>
+  <data name="Init.LauncherAppDone" xml:space="preserve"><value>XIVLauncherCN ready</value></data>
+  <data name="Init.DlAct" xml:space="preserve"><value>Downloading ACT...</value></data>
+  <data name="Init.ActDone" xml:space="preserve"><value>ACT downloaded. Install it manually into apps\ACT</value></data>
+
+  <data name="Setup.InputPathTitle" xml:space="preserve"><value>FFXIV install directory</value></data>
+  <data name="Setup.NoSavedPath" xml:space="preserve"><value>No saved FFXIV path found, please select</value></data>
+  <data name="Setup.GameInvalid" xml:space="preserve"><value>Game config directory not found at the given path</value></data>
+  <data name="Setup.NotInitialized" xml:space="preserve"><value>The environment is not initialized yet. Initialize it first?</value></data>
+  <data name="Setup.ConfirmMount" xml:space="preserve"><value>This will mount configs on this machine and install runtimes. Continue?</value></data>
+  <data name="Setup.BackupGame" xml:space="preserve"><value>Backing up original game config...</value></data>
+  <data name="Setup.BackupGameDone" xml:space="preserve"><value>Original game config backed up (.old)</value></data>
+  <data name="Setup.JunctionGame" xml:space="preserve"><value>Creating game config junction...</value></data>
+  <data name="Setup.JunctionGameDone" xml:space="preserve"><value>Game config junction created</value></data>
+  <data name="Setup.BackupLauncher" xml:space="preserve"><value>Backing up original XIVLauncherCN...</value></data>
+  <data name="Setup.BackupLauncherDone" xml:space="preserve"><value>Original XIVLauncherCN backed up (.old)</value></data>
+  <data name="Setup.JunctionLauncher" xml:space="preserve"><value>Creating XIVLauncherCN junction...</value></data>
+  <data name="Setup.JunctionLauncherDone" xml:space="preserve"><value>XIVLauncherCN junction created</value></data>
+  <data name="Setup.CachesDone" xml:space="preserve"><value>Lightless cache directory created</value></data>
+  <data name="Setup.PenumbraUpdated" xml:space="preserve"><value>Penumbra mod directory updated</value></data>
+  <data name="Setup.PenumbraSkipped" xml:space="preserve"><value>Penumbra.json not found, skipped</value></data>
+  <data name="Setup.InstallVc" xml:space="preserve"><value>Installing VC++ redistributable...</value></data>
+  <data name="Setup.InstallDotnet" xml:space="preserve"><value>Installing .NET 10 Desktop Runtime...</value></data>
+  <data name="Setup.RuntimeDone" xml:space="preserve"><value>Runtimes installed</value></data>
+  <data name="Setup.RuntimeMissing" xml:space="preserve"><value>Installer not found, skipped</value></data>
+  <data name="Setup.Step10" xml:space="preserve"><value>Create desktop shortcuts</value></data>
+  <data name="Setup.ShortcutCreated" xml:space="preserve"><value>Created shortcut: {0}</value></data>
+  <data name="Setup.ShortcutSkipped" xml:space="preserve"><value>No executable found in {0}, skipped</value></data>
+  <data name="Setup.ShortcutsDone" xml:space="preserve"><value>Created {0} desktop shortcuts</value></data>
+  <data name="Setup.FolderShortcut" xml:space="preserve"><value>FFXIV2GO Folder</value></data>
+
+  <data name="Uninstall.NoSavedPath" xml:space="preserve"><value>No saved FFXIV path found, please select</value></data>
+  <data name="Uninstall.JunctionMissing" xml:space="preserve"><value>Game config junction not found</value></data>
+  <data name="Uninstall.RemoveGameJunction" xml:space="preserve"><value>Removing game config junction...</value></data>
+  <data name="Uninstall.RemoveGameJunctionDone" xml:space="preserve"><value>Game config junction removed</value></data>
+  <data name="Uninstall.RestoreGame" xml:space="preserve"><value>Restoring original game config...</value></data>
+  <data name="Uninstall.RestoreGameDone" xml:space="preserve"><value>Original game config restored</value></data>
+  <data name="Uninstall.NoBackup" xml:space="preserve"><value>Backup (.old) not found, skipped</value></data>
+  <data name="Uninstall.RemoveLauncherJunction" xml:space="preserve"><value>Removing XIVLauncherCN junction...</value></data>
+  <data name="Uninstall.RemoveLauncherJunctionDone" xml:space="preserve"><value>XIVLauncherCN junction removed</value></data>
+  <data name="Uninstall.RestoreLauncher" xml:space="preserve"><value>Restoring XIVLauncherCN...</value></data>
+  <data name="Uninstall.RestoreLauncherDone" xml:space="preserve"><value>XIVLauncherCN restored</value></data>
+  <data name="Uninstall.RemoveCaches" xml:space="preserve"><value>Removing Lightless cache directory...</value></data>
+  <data name="Uninstall.RemoveCachesDone" xml:space="preserve"><value>Cache directory removed</value></data>
+  <data name="Uninstall.Step8" xml:space="preserve"><value>Remove desktop shortcuts</value></data>
+  <data name="Uninstall.ShortcutsRemoved" xml:space="preserve"><value>Desktop shortcuts removed</value></data>
+
+  <data name="Clean.Scanning" xml:space="preserve"><value>Scanning...</value></data>
+  <data name="Clean.ScanResult" xml:space="preserve"><value>Found {0} file(s), {1} in total</value></data>
+  <data name="Clean.Nothing" xml:space="preserve"><value>Nothing to clean</value></data>
+  <data name="Clean.ConfirmDelete" xml:space="preserve"><value>Delete {0} file(s) and free {1}?</value></data>
+  <data name="Clean.Deleting" xml:space="preserve"><value>Deleting...</value></data>
+  <data name="Clean.Freed" xml:space="preserve"><value>Freed {0}</value></data>
+
+  <data name="AppManager.Title" xml:space="preserve"><value>Apps</value></data>
+  <data name="AppManager.Description" xml:space="preserve"><value>Install or uninstall portable apps (uninstall deletes the app folder)</value></data>
+  <data name="AppManager.Refresh" xml:space="preserve"><value>Refresh</value></data>
+  <data name="AppManager.Install" xml:space="preserve"><value>Install</value></data>
+  <data name="AppManager.Uninstall" xml:space="preserve"><value>Uninstall</value></data>
+  <data name="AppManager.Status.NotInstalled" xml:space="preserve"><value>Not installed</value></data>
+  <data name="AppManager.Status.Installed" xml:space="preserve"><value>Installed</value></data>
+  <data name="AppManager.Status.Installing" xml:space="preserve"><value>Installing...</value></data>
+  <data name="AppManager.Status.Uninstalling" xml:space="preserve"><value>Uninstalling...</value></data>
+  <data name="AppManager.ConfirmUninstall" xml:space="preserve"><value>Delete the app folder of {0}? (uninstall)</value></data>
+  <data name="AppManager.RunningWarning" xml:space="preserve"><value>{0} is running. Close it before uninstalling.</value></data>
+  <data name="AppManager.DeleteFailed" xml:space="preserve"><value>Failed to delete {0}. Make sure the app is closed.</value></data>
+</root>

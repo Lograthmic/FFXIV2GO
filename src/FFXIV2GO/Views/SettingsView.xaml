@@ -1,0 +1,86 @@
+<UserControl x:Class="FFXIV2GO.Views.SettingsView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
+             xmlns:loc="clr-namespace:FFXIV2GO.Services">
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
+        <StackPanel>
+            <TextBlock Text="{Binding Source={x:Static loc:LocalizationService.Instance}, Path=[Settings.Title]}"
+                       FontSize="24" FontWeight="SemiBold" />
+
+            <ui:Card Margin="0,20,0,0" Padding="24">
+                <StackPanel>
+                    <TextBlock Text="{Binding Source={x:Static loc:LocalizationService.Instance}, Path=[Settings.FfxivPath]}"
+                               FontSize="14" FontWeight="SemiBold" />
+                    <Grid Margin="0,8,0,0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                        <ui:TextBox Grid.Column="0"
+                                    Text="{Binding FfxivPath, UpdateSourceTrigger=PropertyChanged}"
+                                    PlaceholderText="{Binding Source={x:Static loc:LocalizationService.Instance}, Path=[Settings.FfxivPathHint]}" />
+                        <ui:Button Grid.Column="1" Margin="8,0,0,0"
+                                   Content="{Binding Source={x:Static loc:LocalizationService.Instance}, Path=[Settings.Browse]}"
+                                   Command="{Binding BrowseCommand}" />
+                    </Grid>
+
+                    <TextBlock Text="{Binding Source={x:Static loc:LocalizationService.Instance}, Path=[Settings.DeploymentRoot]}"
+                               FontSize="14" FontWeight="SemiBold" Margin="0,20,0,0" />
+                    <TextBlock Text="{Binding DeploymentRootDisplay}" Opacity="0.7" Margin="0,6,0,0" TextWrapping="Wrap" />
+
+                    <TextBlock Text="{Binding Source={x:Static loc:LocalizationService.Instance}, Path=[Settings.ConfigFile]}"
+                               FontSize="14" FontWeight="SemiBold" Margin="0,20,0,0" />
+                    <TextBlock Text="{Binding ConfigFileDisplay}" Opacity="0.7" Margin="0,6,0,0" TextWrapping="Wrap" />
+
+                    <TextBlock Text="{Binding Source={x:Static loc:LocalizationService.Instance}, Path=[Settings.LogFile]}"
+                               FontSize="14" FontWeight="SemiBold" Margin="0,20,0,0" />
+                    <TextBlock Text="{Binding LogFileDisplay}" Opacity="0.7" Margin="0,6,0,0" TextWrapping="Wrap" />
+                    <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
+                        <ui:Button Content="{Binding Source={x:Static loc:LocalizationService.Instance}, Path=[Settings.OpenLog]}"
+                                   Command="{Binding OpenLogCommand}" />
+                        <ui:Button Content="{Binding Source={x:Static loc:LocalizationService.Instance}, Path=[Settings.OpenLogFolder]}"
+                                   Margin="12,0,0,0"
+                                   Command="{Binding OpenLogFolderCommand}" />
+                    </StackPanel>
+
+                    <TextBlock Text="{Binding Source={x:Static loc:LocalizationService.Instance}, Path=[Settings.Language]}"
+                               FontSize="14" FontWeight="SemiBold" Margin="0,20,0,0" />
+                    <ComboBox Width="220" HorizontalAlignment="Left" Margin="0,8,0,0"
+                              ItemsSource="{Binding LanguageOptions}"
+                              DisplayMemberPath="Label"
+                              SelectedValuePath="Value"
+                              SelectedValue="{Binding SelectedLanguage}" />
+
+                    <TextBlock Text="{Binding Source={x:Static loc:LocalizationService.Instance}, Path=[Settings.Theme]}"
+                               FontSize="14" FontWeight="SemiBold" Margin="0,20,0,0" />
+                    <ComboBox Width="220" HorizontalAlignment="Left" Margin="0,8,0,0"
+                              ItemsSource="{Binding ThemeOptions}"
+                              DisplayMemberPath="Label"
+                              SelectedValuePath="Value"
+                              SelectedValue="{Binding SelectedTheme}" />
+
+                    <TextBlock Text="{Binding Source={x:Static loc:LocalizationService.Instance}, Path=[Settings.LogLevel]}"
+                               FontSize="14" FontWeight="SemiBold" Margin="0,20,0,0" />
+                    <ComboBox Width="220" HorizontalAlignment="Left" Margin="0,8,0,0"
+                              ItemsSource="{Binding LogLevelOptions}"
+                              DisplayMemberPath="Label"
+                              SelectedValuePath="Value"
+                              SelectedValue="{Binding SelectedLogLevel}" />
+
+                    <StackPanel Orientation="Horizontal" Margin="0,24,0,0">
+                        <ui:Button Appearance="Primary"
+                                   Content="{Binding Source={x:Static loc:LocalizationService.Instance}, Path=[Settings.Save]}"
+                                   Command="{Binding SaveCommand}" />
+                        <ui:InfoBar Severity="Success"
+                                    Title="{Binding Source={x:Static loc:LocalizationService.Instance}, Path=[Settings.Saved]}"
+                                    IsClosable="False"
+                                    IsOpen="{Binding IsSaved}"
+                                    Margin="16,0,0,0"
+                                    MinWidth="240" />
+                    </StackPanel>
+                </StackPanel>
+            </ui:Card>
+        </StackPanel>
+    </ScrollViewer>
+</UserControl>

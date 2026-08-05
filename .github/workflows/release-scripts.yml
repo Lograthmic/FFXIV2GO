@@ -1,4 +1,4 @@
-name: Release FFXIV2GO Scripts
+name: Release FFXIV2GO
 
 on:
   push:
@@ -16,18 +16,30 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v4
 
-    # 2. 创建 ZIP 包（BAT 文件在根目录）
+    # 2. 安装 .NET 10 SDK
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: '10.0.x'
+
+    # 3. 发布自包含单文件 exe
+    - name: Publish self-contained single file
+      run: |
+        dotnet publish src/FFXIV2GO/FFXIV2GO.csproj -c Release -r win-x64 --self-contained true -p:PublishSingleFile=true -p:IncludeNativeLibrariesForSelfExtract=true -p:EnableCompressionInSingleFile=true -o publish
+
+    # 4. 创建版本信息文件
+    - name: Create version info
+      run: |
+        echo "Version: ${{ github.ref_name }}" > version.txt
+        echo "Build Date: $(Get-Date -Format "yyyy-MM-dd HH:mm:ss")" >> version.txt
+        echo "FFXIV2GO - Portable Final Fantasy XIV Environment Toolkit" >> version.txt
+
+    # 5. 打包 exe + apps.json + 版本文件到 ZIP
     - name: Create FFXIV2GO ZIP package
       run: |
-        # 创建版本信息文件
-        echo Version: ${{ github.ref_name }} > version.txt
-        echo Build Date: $(Get-Date -Format "yyyy-MM-dd HH:mm:ss") >> version.txt
-        echo "FFXIV2GO - Portable Final Fantasy XIV Scripts" >> version.txt
-        
-        # 将 BAT 文件和版本文件打包到 ZIP 根目录
-        Compress-Archive -Path *.bat, version.txt -DestinationPath FFXIV2GO_${{ github.ref_name }}.zip
+        Compress-Archive -Path publish/FFXIV2GO.exe, apps.json, version.txt -DestinationPath FFXIV2GO_${{ github.ref_name }}.zip
 
-    # 3. 发布到固定的 latest Release
+    # 6. 发布到固定的 latest Release
     - name: Release to Latest
       uses: ncipollo/release-action@v1
       with:

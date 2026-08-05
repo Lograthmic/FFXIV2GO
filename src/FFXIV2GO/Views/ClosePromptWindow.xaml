@@ -1,0 +1,33 @@
+<ui:FluentWindow x:Class="FFXIV2GO.Views.ClosePromptWindow"
+                 xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                 xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
+                 xmlns:loc="clr-namespace:FFXIV2GO.Services"
+                 Title="FFXIV2GO"
+                 Width="440"
+                 SizeToContent="Height"
+                 WindowStartupLocation="CenterOwner"
+                 ShowInTaskbar="False"
+                 ResizeMode="NoResize"
+                 WindowBackdropType="None"
+                 WindowCornerPreference="Round">
+    <StackPanel Margin="28,24,28,24">
+        <TextBlock Text="{Binding Source={x:Static loc:LocalizationService.Instance}, Path=[Tray.CloseTitle]}"
+                   FontSize="18" FontWeight="SemiBold" />
+        <TextBlock Text="{Binding Source={x:Static loc:LocalizationService.Instance}, Path=[Tray.ClosePrompt]}"
+                   FontSize="12" Opacity="0.7" TextWrapping="Wrap" Margin="0,8,0,24" />
+
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+            <ui:Button Content="{Binding Source={x:Static loc:LocalizationService.Instance}, Path=[Common.Cancel]}"
+                       Click="Cancel_Click" />
+            <ui:Button Content="{Binding Source={x:Static loc:LocalizationService.Instance}, Path=[Tray.ExitApp]}"
+                       Appearance="Danger"
+                       Margin="12,0,0,0"
+                       Click="Exit_Click" />
+            <ui:Button Content="{Binding Source={x:Static loc:LocalizationService.Instance}, Path=[Tray.MinimizeToTray]}"
+                       Appearance="Primary"
+                       Margin="12,0,0,0"
+                       Click="Minimize_Click" />
+        </StackPanel>
+    </StackPanel>
+</ui:FluentWindow>
