@@ -36,7 +36,8 @@ public sealed partial class MainViewModel : ObservableObject
             new NavItem { Key = "uninstall", TitleKey = "Nav.Uninstall", Symbol = SymbolRegular.Delete24 },
             new NavItem { Key = "clean", TitleKey = "Nav.Clean", Symbol = SymbolRegular.Broom24 },
             new NavItem { Key = "apps", TitleKey = "Nav.Apps", Symbol = SymbolRegular.AppStore24 },
-            new NavItem { Key = "settings", TitleKey = "Nav.Settings", Symbol = SymbolRegular.Settings24 }
+            new NavItem { Key = "settings", TitleKey = "Nav.Settings", Symbol = SymbolRegular.Settings24 },
+            new NavItem { Key = "about", TitleKey = "Nav.About", Symbol = SymbolRegular.Info24 }
         ];
 
         BackCommand = new RelayCommand(() => Navigate("dashboard"));
@@ -53,6 +54,7 @@ public sealed partial class MainViewModel : ObservableObject
             "clean" => new CleanViewModel(),
             "apps" => new AppManagerViewModel(),
             "settings" => _settings,
+            "about" => new AboutViewModel(this),
             _ => new DashboardViewModel(this)
         };
 }

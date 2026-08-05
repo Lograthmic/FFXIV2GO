@@ -23,6 +23,16 @@
   <data name="Nav.Clean" xml:space="preserve"><value>Clean</value></data>
   <data name="Nav.Apps" xml:space="preserve"><value>Apps</value></data>
   <data name="Nav.Settings" xml:space="preserve"><value>Settings</value></data>
+  <data name="Nav.About" xml:space="preserve"><value>About</value></data>
+
+  <data name="About.Title" xml:space="preserve"><value>About</value></data>
+  <data name="About.Desc" xml:space="preserve"><value>A portable environment toolkit for FFXIV</value></data>
+  <data name="About.Version" xml:space="preserve"><value>Version</value></data>
+  <data name="About.Repository" xml:space="preserve"><value>GitHub repository</value></data>
+  <data name="About.OpenGitHub" xml:space="preserve"><value>Open GitHub</value></data>
+  <data name="About.Environment" xml:space="preserve"><value>Environment</value></data>
+  <data name="About.DeploymentRoot" xml:space="preserve"><value>Deployment root</value></data>
+  <data name="About.ConfigFile" xml:space="preserve"><value>Config file</value></data>
 
   <data name="Dashboard.Welcome" xml:space="preserve"><value>Welcome to FFXIV2GO</value></data>
   <data name="Dashboard.WelcomeDesc" xml:space="preserve"><value>Select an operation below to configure your portable FFXIV environment</value></data>

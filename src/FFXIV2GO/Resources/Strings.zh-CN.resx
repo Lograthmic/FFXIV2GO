@@ -23,6 +23,16 @@
   <data name="Nav.Clean" xml:space="preserve"><value>清理</value></data>
   <data name="Nav.Apps" xml:space="preserve"><value>应用</value></data>
   <data name="Nav.Settings" xml:space="preserve"><value>设置</value></data>
+  <data name="Nav.About" xml:space="preserve"><value>关于</value></data>
+
+  <data name="About.Title" xml:space="preserve"><value>关于</value></data>
+  <data name="About.Desc" xml:space="preserve"><value>一个用于 FFXIV 的便携环境工具箱</value></data>
+  <data name="About.Version" xml:space="preserve"><value>版本</value></data>
+  <data name="About.Repository" xml:space="preserve"><value>GitHub 仓库</value></data>
+  <data name="About.OpenGitHub" xml:space="preserve"><value>打开 GitHub</value></data>
+  <data name="About.Environment" xml:space="preserve"><value>环境信息</value></data>
+  <data name="About.DeploymentRoot" xml:space="preserve"><value>部署根目录</value></data>
+  <data name="About.ConfigFile" xml:space="preserve"><value>配置文件</value></data>
 
   <data name="Dashboard.Welcome" xml:space="preserve"><value>欢迎使用 FFXIV2GO</value></data>
   <data name="Dashboard.WelcomeDesc" xml:space="preserve"><value>选择下方的操作，配置你的 FFXIV 便携环境</value></data>
