@@ -24,7 +24,7 @@ public sealed partial class MainViewModel : ObservableObject
     public MainViewModel()
     {
         var version = Assembly.GetExecutingAssembly().GetName().Version;
-        VersionText = $"{LocalizationService.Instance["App.Version"]} {version?.ToString(3) ?? "1.1.0"}";
+        VersionText = $"{LocalizationService.Instance["App.Version"]} {version?.ToString(3) ?? "2.0.0"}";
 
         var dashboard = new DashboardViewModel(this);
 

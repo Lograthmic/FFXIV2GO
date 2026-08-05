@@ -48,7 +48,7 @@ public sealed partial class AboutViewModel : LocalizedViewModel
     public AboutViewModel(MainViewModel main)
     {
         var version = Assembly.GetExecutingAssembly().GetName().Version;
-        CurrentVersion = version?.ToString(3) ?? "1.1.0";
+        CurrentVersion = version?.ToString(3) ?? "2.0.0";
         VersionText = main.VersionText;
 
         OpenGitHubCommand = new RelayCommand(() => OpenUrl(RepositoryUrl));
