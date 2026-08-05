@@ -41,6 +41,9 @@ public sealed partial class SettingsViewModel : LocalizedViewModel
     public IRelayCommand SaveCommand { get; }
     public IRelayCommand OpenLogCommand { get; }
     public IRelayCommand OpenLogFolderCommand { get; }
+    public IRelayCommand OpenDeploymentRootCommand { get; }
+    public IRelayCommand OpenConfigFileCommand { get; }
+    public IRelayCommand OpenFfxivFolderCommand { get; }
 
     public SettingsViewModel()
     {
@@ -77,6 +80,9 @@ public sealed partial class SettingsViewModel : LocalizedViewModel
         SaveCommand = new RelayCommand(Save);
         OpenLogCommand = new RelayCommand(OpenLog);
         OpenLogFolderCommand = new RelayCommand(OpenLogFolder);
+        OpenDeploymentRootCommand = new RelayCommand(OpenDeploymentRoot);
+        OpenConfigFileCommand = new RelayCommand(OpenConfigFile);
+        OpenFfxivFolderCommand = new RelayCommand(OpenFfxivFolder);
     }
 
     private static void OpenLog()
@@ -97,6 +103,45 @@ public sealed partial class SettingsViewModel : LocalizedViewModel
         {
             FileName = "explorer.exe",
             Arguments = $"/select,\"{file}\"",
+            UseShellExecute = true
+        });
+    }
+
+    private static void OpenDeploymentRoot()
+    {
+        var dir = DeploymentRoot.Path;
+        Directory.CreateDirectory(dir);
+        Process.Start(new ProcessStartInfo
+        {
+            FileName = "explorer.exe",
+            Arguments = $"\"{dir}\"",
+            UseShellExecute = true
+        });
+    }
+
+    private static void OpenConfigFile()
+    {
+        var file = DeploymentRoot.ConfigFile;
+        if (!File.Exists(file))
+        {
+            File.WriteAllText(file, string.Empty);
+        }
+
+        Process.Start(new ProcessStartInfo { FileName = file, UseShellExecute = true });
+    }
+
+    private void OpenFfxivFolder()
+    {
+        var path = FfxivPath.Trim();
+        if (path.Length == 0 || !Directory.Exists(path))
+        {
+            return;
+        }
+
+        Process.Start(new ProcessStartInfo
+        {
+            FileName = "explorer.exe",
+            Arguments = $"\"{path}\"",
             UseShellExecute = true
         });
     }

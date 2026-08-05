@@ -139,6 +139,8 @@
   <data name="Settings.LogFile" xml:space="preserve"><value>Log file</value></data>
   <data name="Settings.OpenLog" xml:space="preserve"><value>Open log</value></data>
   <data name="Settings.OpenLogFolder" xml:space="preserve"><value>Open folder</value></data>
+  <data name="Settings.OpenFolder" xml:space="preserve"><value>Open folder</value></data>
+  <data name="Settings.OpenConfigFile" xml:space="preserve"><value>Open config file</value></data>
   <data name="Settings.ConfigFile" xml:space="preserve"><value>Config file</value></data>
   <data name="Settings.Save" xml:space="preserve"><value>Save settings</value></data>
   <data name="Settings.Saved" xml:space="preserve"><value>Settings saved</value></data>

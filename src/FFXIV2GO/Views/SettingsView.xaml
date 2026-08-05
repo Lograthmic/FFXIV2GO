@@ -16,22 +16,36 @@
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*" />
                             <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="Auto" />
                         </Grid.ColumnDefinitions>
                         <ui:TextBox Grid.Column="0"
                                     Text="{Binding FfxivPath, UpdateSourceTrigger=PropertyChanged}"
                                     PlaceholderText="{Binding Source={x:Static loc:LocalizationService.Instance}, Path=[Settings.FfxivPathHint]}" />
                         <ui:Button Grid.Column="1" Margin="8,0,0,0"
+                                   Content="{Binding Source={x:Static loc:LocalizationService.Instance}, Path=[Settings.OpenFolder]}"
+                                   Command="{Binding OpenFfxivFolderCommand}" />
+                        <ui:Button Grid.Column="2" Margin="8,0,0,0"
                                    Content="{Binding Source={x:Static loc:LocalizationService.Instance}, Path=[Settings.Browse]}"
                                    Command="{Binding BrowseCommand}" />
                     </Grid>
 
                     <TextBlock Text="{Binding Source={x:Static loc:LocalizationService.Instance}, Path=[Settings.DeploymentRoot]}"
                                FontSize="14" FontWeight="SemiBold" Margin="0,20,0,0" />
-                    <TextBlock Text="{Binding DeploymentRootDisplay}" Opacity="0.7" Margin="0,6,0,0" TextWrapping="Wrap" />
+                    <StackPanel Orientation="Horizontal" Margin="0,6,0,0">
+                        <TextBlock Text="{Binding DeploymentRootDisplay}" Opacity="0.7" TextWrapping="Wrap" VerticalAlignment="Center" />
+                        <ui:Button Content="{Binding Source={x:Static loc:LocalizationService.Instance}, Path=[Settings.OpenFolder]}"
+                                   Command="{Binding OpenDeploymentRootCommand}"
+                                   Margin="12,0,0,0" />
+                    </StackPanel>
 
                     <TextBlock Text="{Binding Source={x:Static loc:LocalizationService.Instance}, Path=[Settings.ConfigFile]}"
                                FontSize="14" FontWeight="SemiBold" Margin="0,20,0,0" />
-                    <TextBlock Text="{Binding ConfigFileDisplay}" Opacity="0.7" Margin="0,6,0,0" TextWrapping="Wrap" />
+                    <StackPanel Orientation="Horizontal" Margin="0,6,0,0">
+                        <TextBlock Text="{Binding ConfigFileDisplay}" Opacity="0.7" TextWrapping="Wrap" VerticalAlignment="Center" />
+                        <ui:Button Content="{Binding Source={x:Static loc:LocalizationService.Instance}, Path=[Settings.OpenConfigFile]}"
+                                   Command="{Binding OpenConfigFileCommand}"
+                                   Margin="12,0,0,0" />
+                    </StackPanel>
 
                     <TextBlock Text="{Binding Source={x:Static loc:LocalizationService.Instance}, Path=[Settings.LogFile]}"
                                FontSize="14" FontWeight="SemiBold" Margin="0,20,0,0" />
