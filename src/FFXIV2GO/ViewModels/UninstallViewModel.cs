@@ -8,6 +8,8 @@ public sealed class UninstallViewModel : WizardViewModelBase
 {
     public override string TitleKey => "Uninstall.Title";
     public override string DescriptionKey => "Uninstall.Desc";
+    public override bool ShowStatus => true;
+    public override StatusState Status => EnvironmentStatus.UninstallState();
 
     private string _gameFolder = string.Empty;
 

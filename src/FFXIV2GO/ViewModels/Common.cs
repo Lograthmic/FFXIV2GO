@@ -18,6 +18,12 @@ public sealed class DashboardCard : LocalizedViewModel
     public required SymbolRegular Symbol { get; init; }
     public required string TargetKey { get; init; }
 
+    /// <summary>标题右侧是否显示状态指示图标。</summary>
+    public bool ShowStatus { get; init; }
+
+    /// <summary>状态指示三态（Ok=绿对号，Fail=红错号，Neutral=灰点点）。</summary>
+    public StatusState Status { get; init; } = StatusState.Fail;
+
     public string Title => LocalizationService.Instance[TitleKey];
     public string Desc => LocalizationService.Instance[DescKey];
 }

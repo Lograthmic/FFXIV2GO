@@ -24,9 +24,23 @@ public sealed class DashboardViewModel : LocalizedViewModel
 
         Cards =
         [
-            new DashboardCard { TitleKey = "Card.Init.Title", DescKey = "Card.Init.Desc", Symbol = SymbolRegular.Archive24, TargetKey = "init" },
-            new DashboardCard { TitleKey = "Card.Setup.Title", DescKey = "Card.Setup.Desc", Symbol = SymbolRegular.PlugConnected24, TargetKey = "setup" },
-            new DashboardCard { TitleKey = "Card.Uninstall.Title", DescKey = "Card.Uninstall.Desc", Symbol = SymbolRegular.Delete24, TargetKey = "uninstall" },
+            new DashboardCard
+            {
+                TitleKey = "Card.Init.Title", DescKey = "Card.Init.Desc", Symbol = SymbolRegular.Archive24,
+                TargetKey = "init", ShowStatus = true,
+                Status = EnvironmentStatus.IsInitialized() ? StatusState.Ok : StatusState.Fail
+            },
+            new DashboardCard
+            {
+                TitleKey = "Card.Setup.Title", DescKey = "Card.Setup.Desc", Symbol = SymbolRegular.PlugConnected24,
+                TargetKey = "setup", ShowStatus = true,
+                Status = EnvironmentStatus.IsInstalled() ? StatusState.Ok : StatusState.Fail
+            },
+            new DashboardCard
+            {
+                TitleKey = "Card.Uninstall.Title", DescKey = "Card.Uninstall.Desc", Symbol = SymbolRegular.Delete24,
+                TargetKey = "uninstall", ShowStatus = true, Status = EnvironmentStatus.UninstallState()
+            },
             new DashboardCard { TitleKey = "Card.Clean.Title", DescKey = "Card.Clean.Desc", Symbol = SymbolRegular.Broom24, TargetKey = "clean" }
         ];
     }

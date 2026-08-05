@@ -73,6 +73,12 @@ public abstract partial class WizardViewModelBase : LocalizedViewModel
     public string Title => LocalizationService.Instance[TitleKey];
     public string Description => LocalizationService.Instance[DescriptionKey];
 
+    /// <summary>页面标题右侧是否显示状态指示图标。</summary>
+    public virtual bool ShowStatus => false;
+
+    /// <summary>状态指示三态（Ok=绿对号，Fail=红错号，Neutral=灰点点）。</summary>
+    public virtual StatusState Status => StatusState.Fail;
+
     [ObservableProperty]
     private bool _isRunning;
 

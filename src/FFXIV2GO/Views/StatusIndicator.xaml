@@ -1,0 +1,25 @@
+<UserControl x:Class="FFXIV2GO.Views.StatusIndicator"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml">
+    <ui:SymbolIcon Width="20" Height="20" FontSize="20">
+        <ui:SymbolIcon.Style>
+            <Style TargetType="ui:SymbolIcon">
+                <Setter Property="Symbol" Value="DismissCircle24" />
+                <Setter Property="Foreground" Value="{DynamicResource SystemFillColorCriticalBrush}" />
+                <Style.Triggers>
+                    <DataTrigger Binding="{Binding Status, RelativeSource={RelativeSource AncestorType=UserControl}}"
+                                 Value="Ok">
+                        <Setter Property="Symbol" Value="CheckmarkCircle24" />
+                        <Setter Property="Foreground" Value="{DynamicResource SystemFillColorSuccessBrush}" />
+                    </DataTrigger>
+                    <DataTrigger Binding="{Binding Status, RelativeSource={RelativeSource AncestorType=UserControl}}"
+                                 Value="Neutral">
+                        <Setter Property="Symbol" Value="MoreHorizontal24" />
+                        <Setter Property="Foreground" Value="{DynamicResource TextFillColorTertiaryBrush}" />
+                    </DataTrigger>
+                </Style.Triggers>
+            </Style>
+        </ui:SymbolIcon.Style>
+    </ui:SymbolIcon>
+</UserControl>

@@ -2,7 +2,8 @@
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
-             xmlns:loc="clr-namespace:FFXIV2GO.Services">
+             xmlns:loc="clr-namespace:FFXIV2GO.Services"
+             xmlns:views="clr-namespace:FFXIV2GO.Views">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
@@ -11,7 +12,11 @@
         </Grid.RowDefinitions>
 
         <StackPanel Grid.Row="0">
-            <TextBlock Text="{Binding Title}" FontSize="24" FontWeight="SemiBold" />
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="{Binding Title}" FontSize="24" FontWeight="SemiBold" />
+                <views:StatusIndicator Status="{Binding Status}" Margin="10,0,0,0" VerticalAlignment="Center"
+                                       Visibility="{Binding ShowStatus, Converter={StaticResource BoolToVisible}}" />
+            </StackPanel>
             <TextBlock Text="{Binding Description}" FontSize="13" Opacity="0.7" Margin="0,6,0,0" TextWrapping="Wrap" />
         </StackPanel>
 

@@ -238,4 +238,111 @@ public class EnvironmentStatusTests
             if (Directory.Exists(root)) Directory.Delete(root, true);
         }
     }
+
+    [Fact]
+    public void IsInstalled_EmptyPath_ReturnsFalse()
+        => Assert.False(EnvironmentStatus.IsInstalled("  "));
+
+    [Fact]
+    public void IsJunction_NonExistentPath_ReturnsFalse()
+    {
+        var path = Path.Combine(Path.GetTempPath(), $"ffxiv2go-noexist-{Guid.NewGuid():N}");
+        Assert.False(JunctionService.IsJunction(path));
+    }
+
+    [Fact]
+    public void UninstallState_NotInitialized_ReturnsFail()
+    {
+        var root = TempRoot();
+        try
+        {
+            Assert.Equal(StatusState.Fail, EnvironmentStatus.UninstallState(root));
+        }
+        finally
+        {
+            if (Directory.Exists(root)) Directory.Delete(root, true);
+        }
+    }
+
+    [Fact]
+    public void UninstallState_InitializedNotInstalled_ReturnsOk()
+    {
+        var root = TempRoot();
+        try
+        {
+            var conf = Path.Combine(root, "conf");
+            Directory.CreateDirectory(conf);
+            File.WriteAllText(Path.Combine(conf, "config.json"), "{}");
+            Assert.Equal(StatusState.Ok, EnvironmentStatus.UninstallState(root));
+        }
+        finally
+        {
+            if (Directory.Exists(root)) Directory.Delete(root, true);
+        }
+    }
+
+    [Fact]
+    public void UninstallState_InitializedAndInstalled_ReturnsNeutral()
+    {
+        var root = TempRoot();
+        var target = TempRoot();
+        try
+        {
+            var conf = Path.Combine(root, "conf");
+            Directory.CreateDirectory(conf);
+            File.WriteAllText(Path.Combine(conf, "config.json"), "{}");
+
+            var gameFolder = Path.Combine(root, "game", "My Games", DeploymentRoot.GameConfigFolderName);
+            Directory.CreateDirectory(gameFolder);
+            JunctionService.Create(gameFolder, target);
+
+            Assert.Equal(StatusState.Neutral, EnvironmentStatus.UninstallState(root));
+        }
+        finally
+        {
+            var gameFolder = Path.Combine(root, "game", "My Games", DeploymentRoot.GameConfigFolderName);
+            JunctionService.Delete(gameFolder);
+            if (Directory.Exists(root)) Directory.Delete(root, true);
+            if (Directory.Exists(target)) Directory.Delete(target, true);
+        }
+    }
+
+    [Fact]
+    public void IsInstalled_NormalGameFolder_ReturnsFalse()
+    {
+        var root = TempRoot();
+        try
+        {
+            var gameFolder = Path.Combine(root, "game", "My Games", DeploymentRoot.GameConfigFolderName);
+            Directory.CreateDirectory(gameFolder);
+            Assert.False(EnvironmentStatus.IsInstalled(root));
+        }
+        finally
+        {
+            if (Directory.Exists(root)) Directory.Delete(root, true);
+        }
+    }
+
+    [Fact]
+    public void IsInstalled_AfterJunctionDeleted_ReturnsFalse()
+    {
+        var root = TempRoot();
+        var target = TempRoot();
+        var gameFolder = Path.Combine(root, "game", "My Games", DeploymentRoot.GameConfigFolderName);
+        try
+        {
+            Directory.CreateDirectory(gameFolder);
+            JunctionService.Create(gameFolder, target);
+            Assert.True(EnvironmentStatus.IsInstalled(root));
+
+            JunctionService.Delete(gameFolder);
+            Assert.False(EnvironmentStatus.IsInstalled(root));
+        }
+        finally
+        {
+            JunctionService.Delete(gameFolder);
+            if (Directory.Exists(root)) Directory.Delete(root, true);
+            if (Directory.Exists(target)) Directory.Delete(target, true);
+        }
+    }
 }

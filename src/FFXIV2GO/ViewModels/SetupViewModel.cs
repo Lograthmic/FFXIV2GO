@@ -9,6 +9,8 @@ public sealed class SetupViewModel : WizardViewModelBase
 {
     public override string TitleKey => "Setup.Title";
     public override string DescriptionKey => "Setup.Desc";
+    public override bool ShowStatus => true;
+    public override StatusState Status => EnvironmentStatus.IsInstalled() ? StatusState.Ok : StatusState.Fail;
 
     private string _ffxivPath = string.Empty;
     private string _gameFolder = string.Empty;

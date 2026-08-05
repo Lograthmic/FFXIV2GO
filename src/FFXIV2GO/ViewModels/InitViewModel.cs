@@ -10,6 +10,8 @@ public sealed class InitViewModel : WizardViewModelBase
 {
     public override string TitleKey => "Init.Title";
     public override string DescriptionKey => "Init.Desc";
+    public override bool ShowStatus => true;
+    public override StatusState Status => EnvironmentStatus.IsInitialized() ? StatusState.Ok : StatusState.Fail;
 
     private string _ffxivPath = string.Empty;
     private bool _skipMods;

@@ -37,6 +37,12 @@ public static class JunctionService
     {
         try
         {
+            // 不存在的路径 Attributes 会返回 -1（全位为 1），与 ReparsePoint 相与非零会误判为联接，故先判存在。
+            if (!Directory.Exists(path))
+            {
+                return false;
+            }
+
             return (new DirectoryInfo(path).Attributes & FileAttributes.ReparsePoint) != 0;
         }
         catch
