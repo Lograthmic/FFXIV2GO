@@ -1,4 +1,5 @@
 using System.Windows;
+using FFXIV2GO.Services;
 using Wpf.Ui.Controls;
 
 namespace FFXIV2GO.Views;
@@ -26,14 +27,23 @@ public partial class ClosePromptWindow : FluentWindow
     }
 
     private void Exit_Click(object sender, RoutedEventArgs e)
-    {
-        Result = CloseAction.Exit;
-        Close();
-    }
+        => RememberAndClose(CloseAction.Exit);
 
     private void Minimize_Click(object sender, RoutedEventArgs e)
+        => RememberAndClose(CloseAction.MinimizeToTray);
+
+    /// <summary>勾选“不再询问”时记住本次选择，下次关闭主窗口直接按此操作执行。</summary>
+    private void RememberAndClose(CloseAction action)
     {
-        Result = CloseAction.MinimizeToTray;
+        if (RememberCheckBox.IsChecked == true)
+        {
+            var config = AppConfig.Load();
+            config.AskOnClose = false;
+            config.CloseAction = action.ToString();
+            config.Save();
+        }
+
+        Result = action;
         Close();
     }
 }

@@ -4,20 +4,38 @@
                  xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
                  xmlns:loc="clr-namespace:FFXIV2GO.Services"
                  Title="FFXIV2GO"
-                 Width="440"
+                 Width="460"
+                 MinHeight="230"
                  SizeToContent="Height"
                  WindowStartupLocation="CenterOwner"
                  ShowInTaskbar="False"
                  ResizeMode="NoResize"
                  WindowBackdropType="None"
                  WindowCornerPreference="Round">
-    <StackPanel Margin="28,24,28,24">
-        <TextBlock Text="{Binding Source={x:Static loc:LocalizationService.Instance}, Path=[Tray.CloseTitle]}"
-                   FontSize="18" FontWeight="SemiBold" />
-        <TextBlock Text="{Binding Source={x:Static loc:LocalizationService.Instance}, Path=[Tray.ClosePrompt]}"
-                   FontSize="12" Opacity="0.7" TextWrapping="Wrap" Margin="0,8,0,24" />
+    <Grid Margin="28,22,28,22">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
 
-        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+        <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+            <ui:SymbolIcon Symbol="QuestionCircle24" Filled="True" Width="22" Height="22"
+                           Foreground="{DynamicResource TextFillColorPrimaryBrush}" />
+            <TextBlock Text="{Binding Source={x:Static loc:LocalizationService.Instance}, Path=[Tray.CloseTitle]}"
+                       FontSize="18" FontWeight="SemiBold" Margin="10,0,0,0" VerticalAlignment="Center" />
+        </StackPanel>
+
+        <TextBlock Grid.Row="1"
+                   Text="{Binding Source={x:Static loc:LocalizationService.Instance}, Path=[Tray.ClosePrompt]}"
+                   FontSize="12" Opacity="0.7" TextWrapping="Wrap" VerticalAlignment="Center" Margin="0,16,0,0" />
+
+        <CheckBox Grid.Row="2" x:Name="RememberCheckBox"
+                  Content="{Binding Source={x:Static loc:LocalizationService.Instance}, Path=[Tray.RememberChoice]}"
+                  FontSize="12" Margin="0,22,0,0" />
+
+        <StackPanel Grid.Row="3" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,18,0,0">
             <ui:Button Content="{Binding Source={x:Static loc:LocalizationService.Instance}, Path=[Common.Cancel]}"
                        Click="Cancel_Click" />
             <ui:Button Content="{Binding Source={x:Static loc:LocalizationService.Instance}, Path=[Tray.ExitApp]}"
@@ -29,5 +47,5 @@
                        Margin="12,0,0,0"
                        Click="Minimize_Click" />
         </StackPanel>
-    </StackPanel>
+    </Grid>
 </ui:FluentWindow>

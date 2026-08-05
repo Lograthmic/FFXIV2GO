@@ -49,6 +49,22 @@ public partial class MainWindow : FluentWindow
             return;
         }
 
+        // 已记住关闭行为（“不再询问”），直接按记录的操作执行。
+        var config = AppConfig.Load();
+        if (!config.AskOnClose)
+        {
+            if (config.CloseAction == CloseAction.Exit.ToString())
+            {
+                _allowExit = true;
+                _trayIcon?.Dispose();
+                return;
+            }
+
+            e.Cancel = true;
+            Hide();
+            return;
+        }
+
         e.Cancel = true;
 
         // 不能在 OnClosing（WM_CLOSE 处理期间）同步弹模态框：

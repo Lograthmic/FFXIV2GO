@@ -5,7 +5,7 @@ using System.Text;
 namespace FFXIV2GO.Services;
 
 /// <summary>
-/// config.ini 读写：FFXIV 安装路径、语言、主题。
+/// config.ini 读写：FFXIV 安装路径、语言、主题、日志级别、关闭行为。
 /// 位于部署根目录，与 exe 同目录。
 /// </summary>
 public sealed class AppConfig
@@ -14,6 +14,8 @@ public sealed class AppConfig
     public string Language { get; set; } = "System";
     public string Theme { get; set; } = "System";
     public string LogLevel { get; set; } = "Info";
+    public bool AskOnClose { get; set; } = true;
+    public string CloseAction { get; set; } = "MinimizeToTray";
 
     public static AppConfig Load() => LoadFrom(DeploymentRoot.ConfigFile);
 
@@ -46,6 +48,12 @@ public sealed class AppConfig
                 case "LogLevel":
                     config.LogLevel = value;
                     break;
+                case "AskOnClose":
+                    config.AskOnClose = value != "False";
+                    break;
+                case "CloseAction":
+                    config.CloseAction = value;
+                    break;
             }
         }
 
@@ -61,6 +69,8 @@ public sealed class AppConfig
         sb.AppendLine($"Language={Language}");
         sb.AppendLine($"Theme={Theme}");
         sb.AppendLine($"LogLevel={LogLevel}");
+        sb.AppendLine($"AskOnClose={(AskOnClose ? "True" : "False")}");
+        sb.AppendLine($"CloseAction={CloseAction}");
         File.WriteAllText(file, sb.ToString(), Encoding.UTF8);
     }
 

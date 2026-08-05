@@ -117,6 +117,7 @@
   <data name="Settings.LogLevel.Info" xml:space="preserve"><value>信息</value></data>
   <data name="Settings.LogLevel.Warn" xml:space="preserve"><value>警告</value></data>
   <data name="Settings.LogLevel.Error" xml:space="preserve"><value>错误</value></data>
+  <data name="Settings.AskOnClose" xml:space="preserve"><value>关闭主窗口时弹窗询问</value></data>
   <data name="Settings.DeploymentRoot" xml:space="preserve"><value>部署根目录</value></data>
   <data name="Settings.LogFile" xml:space="preserve"><value>日志文件</value></data>
   <data name="Settings.OpenLog" xml:space="preserve"><value>打开日志</value></data>
@@ -134,6 +135,7 @@
   <data name="Tray.ClosePrompt" xml:space="preserve"><value>关闭主窗口后将最小化到系统托盘，可在托盘图标中恢复或退出应用。</value></data>
   <data name="Tray.MinimizeToTray" xml:space="preserve"><value>最小化到托盘</value></data>
   <data name="Tray.ExitApp" xml:space="preserve"><value>退出应用</value></data>
+  <data name="Tray.RememberChoice" xml:space="preserve"><value>下次不再询问，按本次选择执行</value></data>
 
   <data name="FirstRun.Title" xml:space="preserve"><value>欢迎使用 FFXIV2GO</value></data>
   <data name="FirstRun.Prompt" xml:space="preserve"><value>请选择界面语言，将保存到配置文件。</value></data>
@@ -166,7 +168,6 @@
   <data name="Setup.NoSavedPath" xml:space="preserve"><value>未找到已保存的 FFXIV 路径，请选择</value></data>
   <data name="Setup.GameInvalid" xml:space="preserve"><value>指定路径下未找到游戏配置目录</value></data>
   <data name="Setup.NotInitialized" xml:space="preserve"><value>环境尚未初始化，是否先进行初始化？</value></data>
-  <data name="Setup.ConfirmMount" xml:space="preserve"><value>即将在本机挂载配置并安装运行库，确认继续？</value></data>
   <data name="Setup.BackupGame" xml:space="preserve"><value>正在备份原游戏配置...</value></data>
   <data name="Setup.BackupGameDone" xml:space="preserve"><value>原游戏配置已备份 (.old)</value></data>
   <data name="Setup.JunctionGame" xml:space="preserve"><value>正在创建游戏配置联接...</value></data>

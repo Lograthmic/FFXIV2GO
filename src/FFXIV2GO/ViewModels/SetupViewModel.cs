@@ -45,9 +45,7 @@ public sealed class SetupViewModel : WizardViewModelBase
             return Task.FromResult(false);
         }
 
-        var confirm = MessageBox.Show(
-            L("Setup.ConfirmMount"), "FFXIV2GO", MessageBoxButton.YesNo, MessageBoxImage.Warning);
-        return Task.FromResult(confirm == MessageBoxResult.Yes);
+        return Task.FromResult(true);
     }
 
     private static string L(string key) => LocalizationService.Instance[key];
@@ -59,6 +57,9 @@ public sealed class SetupViewModel : WizardViewModelBase
 
         if (string.IsNullOrEmpty(_ffxivPath))
         {
+            MessageBox.Show(L("Setup.NoSavedPath"), "FFXIV2GO",
+                MessageBoxButton.OK, MessageBoxImage.Information);
+
             var dialog = new OpenFolderDialog { Title = L("Setup.InputPathTitle") };
             if (dialog.ShowDialog() != true)
             {

@@ -1,4 +1,5 @@
 using System.IO;
+using System.Text;
 using FFXIV2GO.Services;
 
 namespace FFXIV2GO.Tests;
@@ -19,7 +20,9 @@ public class AppConfigTests
                 FfxivPath = @"D:\FFXIV",
                 Language = "zh-CN",
                 Theme = "Dark",
-                LogLevel = "Debug"
+                LogLevel = "Debug",
+                AskOnClose = false,
+                CloseAction = "Exit"
             };
             config.SaveTo(file);
 
@@ -28,6 +31,8 @@ public class AppConfigTests
             Assert.Equal("zh-CN", loaded.Language);
             Assert.Equal("Dark", loaded.Theme);
             Assert.Equal("Debug", loaded.LogLevel);
+            Assert.False(loaded.AskOnClose);
+            Assert.Equal("Exit", loaded.CloseAction);
         }
         finally
         {
@@ -72,6 +77,23 @@ public class AppConfigTests
     [InlineData("verbose", "Info")]
     public void NormalizeLogLevel_ReturnsValid(string? value, string expected)
         => Assert.Equal(expected, AppConfig.NormalizeLogLevel(value));
+
+    [Fact]
+    public void LoadFrom_MissingAskOnClose_DefaultsToTrue()
+    {
+        var file = Path.Combine(Path.GetTempPath(), $"ffxiv2go-test-{Guid.NewGuid():N}.ini");
+        try
+        {
+            File.WriteAllText(file, "Language=en\n", Encoding.UTF8);
+            var config = AppConfig.LoadFrom(file);
+            Assert.True(config.AskOnClose);
+            Assert.Equal("MinimizeToTray", config.CloseAction);
+        }
+        finally
+        {
+            File.Delete(file);
+        }
+    }
 
     [Theory]
     [InlineData("zh-CN", "zh-CN")]

@@ -24,6 +24,9 @@ public sealed partial class SettingsViewModel : LocalizedViewModel
     private string _selectedLogLevel;
 
     [ObservableProperty]
+    private bool _askOnClose;
+
+    [ObservableProperty]
     private bool _isSaved;
 
     public string DeploymentRootDisplay => DeploymentRoot.Path;
@@ -46,6 +49,7 @@ public sealed partial class SettingsViewModel : LocalizedViewModel
         _selectedLanguage = _config.Language;
         _selectedTheme = _config.Theme;
         _selectedLogLevel = _config.LogLevel;
+        _askOnClose = _config.AskOnClose;
 
         LanguageOptions =
         [
@@ -134,6 +138,7 @@ public sealed partial class SettingsViewModel : LocalizedViewModel
         _config.Language = SelectedLanguage;
         _config.Theme = SelectedTheme;
         _config.LogLevel = SelectedLogLevel;
+        _config.AskOnClose = AskOnClose;
         _config.Save();
         IsSaved = true;
     }

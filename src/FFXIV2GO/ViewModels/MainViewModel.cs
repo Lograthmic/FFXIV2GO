@@ -11,6 +11,8 @@ public sealed partial class MainViewModel : ObservableObject
     [ObservableProperty]
     private object _currentPage;
 
+    private readonly SettingsViewModel _settings;
+
     public IReadOnlyList<NavItem> NavItems { get; }
 
     public string DeploymentRootDisplay => DeploymentRoot.Path;
@@ -39,6 +41,7 @@ public sealed partial class MainViewModel : ObservableObject
 
         BackCommand = new RelayCommand(() => Navigate("dashboard"));
         _currentPage = dashboard;
+        _settings = new SettingsViewModel();
     }
 
     public void Navigate(string key) =>
@@ -49,7 +52,7 @@ public sealed partial class MainViewModel : ObservableObject
             "uninstall" => new UninstallViewModel(),
             "clean" => new CleanViewModel(),
             "apps" => new AppManagerViewModel(),
-            "settings" => new SettingsViewModel(),
+            "settings" => _settings,
             _ => new DashboardViewModel(this)
         };
 }
