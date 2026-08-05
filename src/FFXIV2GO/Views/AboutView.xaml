@@ -33,6 +33,26 @@
                                Command="{Binding OpenGitHubCommand}"
                                HorizontalAlignment="Left"
                                Margin="0,14,0,0" />
+
+                    <TextBlock Text="{Binding Source={x:Static loc:LocalizationService.Instance}, Path=[About.Update]}"
+                               FontSize="14" FontWeight="SemiBold" Margin="0,20,0,0" />
+                    <StackPanel Orientation="Horizontal" Margin="0,8,0,0">
+                        <ui:Button Content="{Binding Source={x:Static loc:LocalizationService.Instance}, Path=[About.CheckUpdate]}"
+                                   Command="{Binding CheckUpdateCommand}" />
+                        <ui:Button Appearance="Primary"
+                                   Content="{Binding Source={x:Static loc:LocalizationService.Instance}, Path=[About.DownloadUpdate]}"
+                                   Command="{Binding DownloadUpdateCommand}"
+                                   Visibility="{Binding HasUpdate, Converter={StaticResource BoolToVisible}}"
+                                   Margin="12,0,0,0" />
+                        <ProgressBar Width="120" Height="4" IsIndeterminate="True"
+                                     Visibility="{Binding IsChecking, Converter={StaticResource BoolToVisible}}"
+                                     Margin="12,0,0,0" VerticalAlignment="Center" />
+                    </StackPanel>
+                    <ui:InfoBar Severity="{Binding Severity}"
+                                Title="{Binding ResultMessage}"
+                                IsClosable="False"
+                                IsOpen="{Binding HasResult}"
+                                Margin="0,12,0,0" />
                 </StackPanel>
             </ui:Card>
 

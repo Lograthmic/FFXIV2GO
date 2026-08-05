@@ -30,6 +30,13 @@
   <data name="About.Version" xml:space="preserve"><value>Version</value></data>
   <data name="About.Repository" xml:space="preserve"><value>GitHub repository</value></data>
   <data name="About.OpenGitHub" xml:space="preserve"><value>Open GitHub</value></data>
+  <data name="About.Update" xml:space="preserve"><value>Updates</value></data>
+  <data name="About.CheckUpdate" xml:space="preserve"><value>Check for updates</value></data>
+  <data name="About.DownloadUpdate" xml:space="preserve"><value>Go to download</value></data>
+  <data name="About.UpToDate" xml:space="preserve"><value>You are on the latest version</value></data>
+  <data name="About.UpdateAvailable" xml:space="preserve"><value>New version {0} is available</value></data>
+  <data name="About.UpdateUnknown" xml:space="preserve"><value>Could not determine the latest version, check GitHub for details</value></data>
+  <data name="About.UpdateFailed" xml:space="preserve"><value>Failed to check for updates, please check your network</value></data>
   <data name="About.Environment" xml:space="preserve"><value>Environment</value></data>
   <data name="About.DeploymentRoot" xml:space="preserve"><value>Deployment root</value></data>
   <data name="About.ConfigFile" xml:space="preserve"><value>Config file</value></data>

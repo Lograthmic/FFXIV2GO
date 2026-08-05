@@ -30,6 +30,13 @@
   <data name="About.Version" xml:space="preserve"><value>版本</value></data>
   <data name="About.Repository" xml:space="preserve"><value>GitHub 仓库</value></data>
   <data name="About.OpenGitHub" xml:space="preserve"><value>打开 GitHub</value></data>
+  <data name="About.Update" xml:space="preserve"><value>更新</value></data>
+  <data name="About.CheckUpdate" xml:space="preserve"><value>检查更新</value></data>
+  <data name="About.DownloadUpdate" xml:space="preserve"><value>前往下载</value></data>
+  <data name="About.UpToDate" xml:space="preserve"><value>已是最新版本</value></data>
+  <data name="About.UpdateAvailable" xml:space="preserve"><value>发现新版本 {0}</value></data>
+  <data name="About.UpdateUnknown" xml:space="preserve"><value>无法确定最新版本，请前往 GitHub 查看</value></data>
+  <data name="About.UpdateFailed" xml:space="preserve"><value>检查更新失败，请检查网络</value></data>
   <data name="About.Environment" xml:space="preserve"><value>环境信息</value></data>
   <data name="About.DeploymentRoot" xml:space="preserve"><value>部署根目录</value></data>
   <data name="About.ConfigFile" xml:space="preserve"><value>配置文件</value></data>

@@ -96,6 +96,60 @@ public class GithubLatestResolverTests
     {
         Assert.Null(GithubLatestResolver.MatchAsset("{}", ".*"));
     }
+
+    [Theory]
+    [InlineData("v1.1.0", "1.1.0")]
+    [InlineData("V2.0.0", "2.0.0")]
+    [InlineData("1.2.3-beta.1", "1.2.3")]
+    [InlineData("v1.1.0.1", "1.1.0.1")]
+    [InlineData("latest", null)]
+    [InlineData("", null)]
+    [InlineData(null, null)]
+    public void CleanVersion_NormalizesTag(string? tag, string? expected)
+        => Assert.Equal(expected, GithubLatestResolver.CleanVersion(tag));
+
+    [Fact]
+    public void ResolveLatestVersion_FromVersionedTag()
+    {
+        var json = """
+        [
+          { "tag_name": "latest", "draft": false, "prerelease": false, "name": "FFXIV2GO - Latest Version", "body": "## FFXIV2GO 1.2.0" },
+          { "tag_name": "v1.2.0", "draft": false, "prerelease": false, "name": "FFXIV2GO v1.2.0", "body": "" }
+        ]
+        """;
+        Assert.Equal("1.2.0", GithubLatestResolver.ResolveLatestVersion(json));
+    }
+
+    [Fact]
+    public void ResolveLatestVersion_FallsBackToBody()
+    {
+        var json = """
+        [
+          { "tag_name": "latest", "draft": false, "prerelease": false, "name": "FFXIV2GO - Latest Version", "body": "## FFXIV2GO 1.5.2" }
+        ]
+        """;
+        Assert.Equal("1.5.2", GithubLatestResolver.ResolveLatestVersion(json));
+    }
+
+    [Fact]
+    public void ResolveLatestVersion_SkipsDraftAndPreRelease()
+    {
+        var json = """
+        [
+          { "tag_name": "v1.1.0", "draft": true, "prerelease": false, "name": "", "body": "" },
+          { "tag_name": "v1.0.0-beta", "draft": false, "prerelease": true, "name": "", "body": "" },
+          { "tag_name": "v1.0.0", "draft": false, "prerelease": false, "name": "", "body": "" }
+        ]
+        """;
+        Assert.Equal("1.0.0", GithubLatestResolver.ResolveLatestVersion(json));
+    }
+
+    [Fact]
+    public void ResolveLatestVersion_NoVersion_ReturnsNull()
+    {
+        Assert.Null(GithubLatestResolver.ResolveLatestVersion("[]"));
+        Assert.Null(GithubLatestResolver.ResolveLatestVersion("{}"));
+    }
 }
 
 public class EnvironmentStatusTests
