@@ -1,0 +1,29 @@
+name: CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+
+jobs:
+  build-and-test:
+    runs-on: windows-latest
+
+    steps:
+    # 1. 获取代码
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    # 2. 安装 .NET 10 SDK
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: '10.0.x'
+
+    # 3. 构建解决方案
+    - name: Build
+      run: dotnet build FFXIV2GO.slnx --configuration Release
+
+    # 4. 运行单元测试
+    - name: Test
+      run: dotnet test FFXIV2GO.slnx --configuration Release --no-build
