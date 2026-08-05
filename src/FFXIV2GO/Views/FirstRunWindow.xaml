@@ -11,7 +11,7 @@
                  WindowBackdropType="None"
                  WindowCornerPreference="Round">
     <StackPanel Margin="28,24,28,24">
-        <ui:SymbolIcon Symbol="Games24" Filled="True" Width="40" Height="40" />
+        <ui:SymbolIcon Symbol="Games24" Filled="True" Width="40" Height="40" FontSize="40" />
         <TextBlock Text="{Binding Source={x:Static loc:LocalizationService.Instance}, Path=[FirstRun.Title]}"
                    FontSize="20" FontWeight="SemiBold" Margin="0,16,0,6" />
         <TextBlock Text="{Binding Source={x:Static loc:LocalizationService.Instance}, Path=[FirstRun.Prompt]}"

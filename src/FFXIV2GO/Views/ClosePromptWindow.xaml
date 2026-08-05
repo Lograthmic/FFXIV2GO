@@ -21,7 +21,7 @@
         </Grid.RowDefinitions>
 
         <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
-            <ui:SymbolIcon Symbol="QuestionCircle24" Filled="True" Width="22" Height="22"
+            <ui:SymbolIcon Symbol="QuestionCircle24" Filled="True" Width="22" Height="22" FontSize="22"
                            Foreground="{DynamicResource TextFillColorPrimaryBrush}" />
             <TextBlock Text="{Binding Source={x:Static loc:LocalizationService.Instance}, Path=[Tray.CloseTitle]}"
                        FontSize="18" FontWeight="SemiBold" Margin="10,0,0,0" VerticalAlignment="Center" />

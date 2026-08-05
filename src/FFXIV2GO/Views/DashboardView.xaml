@@ -23,7 +23,7 @@
                                        Command="{Binding DataContext.OpenCommand, RelativeSource={RelativeSource AncestorType=ItemsControl}}"
                                        CommandParameter="{Binding}">
                             <StackPanel>
-                                <ui:SymbolIcon Symbol="{Binding Symbol}" Filled="True" Width="48" Height="48" />
+                                <ui:SymbolIcon Symbol="{Binding Symbol}" Filled="True" Width="64" Height="64" FontSize="64" />
                                 <TextBlock Text="{Binding Title}" FontSize="18" FontWeight="SemiBold" Margin="0,16,0,6" />
                                 <TextBlock Text="{Binding Desc}" FontSize="12" Opacity="0.7" TextWrapping="Wrap" />
                             </StackPanel>
