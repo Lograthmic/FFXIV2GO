@@ -69,6 +69,8 @@ jobs:
         path: package/*.zip
 
     # 8. 发布版本 Release（仅 tag 推送时；真实 tag 保证自动 changelog 准确）
+    #    资产同时包含固定名 zip（供 /releases/latest/download/FFXIV2GO.zip 稳定下载）
+    #    与带版本号 zip（供按版本下载）。
     - name: Release version
       if: github.event_name == 'push'
       uses: ncipollo/release-action@v1
@@ -77,7 +79,9 @@ jobs:
         allowUpdates: true
         makeLatest: true
         generateReleaseNotes: true
-        artifacts: 'package/FFXIV2GO_${{ steps.version.outputs.version }}.zip'
+        artifacts: |
+          package/FFXIV2GO.zip
+          package/FFXIV2GO_${{ steps.version.outputs.version }}.zip
         name: 'FFXIV2GO ${{ github.ref_name }}'
         body: |
           ## FFXIV2GO ${{ steps.version.outputs.version }}
@@ -90,29 +94,9 @@ jobs:
           1. 解压 ZIP 到部署根目录（如 U盘、移动硬盘、网盘）
           2. 运行 FFXIV2GO.exe（首次启动自动提权）
           3. 按初始化 → 安装 → 卸载 → 清理 顺序使用
-        draft: false
-        prerelease: false
 
-    # 9. 更新固定的 latest Release（URL 稳定，供直接下载）
-    - name: Update latest Release
-      uses: ncipollo/release-action@v1
-      with:
-        tag: 'latest'
-        allowUpdates: true
-        makeLatest: false
-        artifacts: 'package/FFXIV2GO.zip'
-        name: 'FFXIV2GO - Latest Version'
-        body: |
-          ## FFXIV2GO ${{ steps.version.outputs.version }}
+          ### 下载
 
-          - 版本：`${{ steps.version.outputs.version }}`
-          - 构建日期：`${{ steps.version.outputs.date }}`
-          - 完整变更记录见对应版本的 Release（`v*` tag）
-
-          ### 使用说明
-
-          1. 解压 ZIP 到部署根目录（如 U盘、移动硬盘、网盘）
-          2. 运行 FFXIV2GO.exe（首次启动自动提权）
-          3. 按初始化 → 安装 → 卸载 → 清理 顺序使用
+          固定地址（始终指向最新版本）：`https://github.com/Lograthmic/FFXIV2GO/releases/latest/download/FFXIV2GO.zip`
         draft: false
         prerelease: false

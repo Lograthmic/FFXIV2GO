@@ -70,7 +70,7 @@ X:\  部署根目录（exe 所在任意文件夹）
 - 本地构建：`dotnet build FFXIV2GO.slnx`
 - 单元测试：`dotnet test`
 - 发布单文件：`dotnet publish src/FFXIV2GO/FFXIV2GO.csproj -c Release -r win-x64 --self-contained true -p:PublishSingleFile=true -p:IncludeNativeLibrariesForSelfExtract=true -p:EnableCompressionInSingleFile=true`
-- 打 `v*` tag 自动触发 CI 打包并发布到 GitHub Release（`latest`）
+- 打 `v*` tag 自动触发 CI 打包并发布到 GitHub Release（最新版本 Release 即 GitHub "Latest"，固定地址 `https://github.com/Lograthmic/FFXIV2GO/releases/latest/download/FFXIV2GO.zip` 始终下载最新版）
 - 详细需求说明见 [prompt.md](prompt.md)
 
 ## License

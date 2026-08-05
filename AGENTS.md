@@ -42,4 +42,4 @@
 
 ## 发布
 
-- 打 `vMAJOR.MINOR.PATCH` tag 触发 CI 自动构建并发布到 GitHub Release（latest）。
+- 打 `vMAJOR.MINOR.PATCH` tag 触发 CI 自动构建并发布到 GitHub Release（最新版本 Release）。固定下载地址：`https://github.com/Lograthmic/FFXIV2GO/releases/latest/download/FFXIV2GO.zip`

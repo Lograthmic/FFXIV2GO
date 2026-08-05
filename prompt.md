@@ -152,4 +152,4 @@ src/FFXIV2GO/
 - 多语言覆盖界面+日志+对话框；文件夹/文件名（如 `FINAL FANTASY XIV - A Realm Reborn`）固定不翻译
 
 ## CI 发布
-`.github/workflows/release-scripts.yml`：打 `v*` tag 或手动触发 → `dotnet publish`（-c Release -r win-x64 --self-contained true /p:PublishSingleFile=true）→ 打包 `FFXIV2GO.exe` + version.txt → 发布到固定 `latest` Release。
+`.github/workflows/release-scripts.yml`：打 `v*` tag → `dotnet publish`（-c Release -r win-x64 --self-contained true /p:PublishSingleFile=true）→ 打包 `FFXIV2GO.exe` + version.txt → 发布版本 Release（资产含固定名 `FFXIV2GO.zip` 与带版本名 zip，`makeLatest: true`）。固定地址 `https://github.com/Lograthmic/FFXIV2GO/releases/latest/download/FFXIV2GO.zip` 始终下载最新版；手动触发仅上传 artifact 不创建 Release。
