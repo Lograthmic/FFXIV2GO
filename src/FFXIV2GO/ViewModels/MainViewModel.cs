@@ -37,6 +37,9 @@ public sealed partial class MainViewModel : ObservableObject
     public IRelayCommand BackCommand { get; }
     public IAsyncRelayCommand FabCommand { get; }
 
+    /// <summary>浮动按钮仅显示在仪表盘页面。</summary>
+    public bool IsFabVisible => CurrentPage is DashboardViewModel;
+
     public string FabTooltip => !EnvironmentStatus.IsInitialized()
         ? LocalizationService.Instance["Fab.TooltipInit"]
         : !EnvironmentStatus.IsInstalled()
@@ -84,6 +87,7 @@ public sealed partial class MainViewModel : ObservableObject
 
     partial void OnCurrentPageChanged(object value)
     {
+        OnPropertyChanged(nameof(IsFabVisible));
         OnPropertyChanged(nameof(FabTooltip));
         RefreshFabState();
     }

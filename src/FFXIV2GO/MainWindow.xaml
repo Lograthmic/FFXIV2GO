@@ -101,10 +101,11 @@
                             Margin="0,0,0,120"
                             MaxWidth="420" />
 
-                <!-- 全局浮动按钮：Play=安装并启动，Stop=卸载 -->
+                <!-- 仪表盘浮动按钮：Play=安装并启动，Stop=卸载（仅仪表盘页面显示） -->
                 <ui:Button Width="64" Height="64" CornerRadius="20" Padding="0"
                            HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,64,64"
                            Appearance="Primary"
+                           Visibility="{Binding IsFabVisible, Converter={StaticResource BoolToVisible}}"
                            Command="{Binding FabCommand}"
                            ToolTip="{Binding FabTooltip}">
                     <ui:SymbolIcon Width="28" Height="28" FontSize="28" Filled="True"
