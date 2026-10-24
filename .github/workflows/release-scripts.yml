@@ -97,6 +97,6 @@ jobs:
 
           ### 下载
 
-          固定地址（始终指向最新版本）：`https://github.com/Lograthmic/FFXIV2GO/releases/latest/download/FFXIV2GO.zip`
+          `https://github.com/Lograthmic/FFXIV2GO/releases/latest/download/FFXIV2GO.zip`
         draft: false
         prerelease: false
